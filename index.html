@@ -860,67 +860,57 @@
             errorElement.style.display = 'block';
         }
         
+        // Di website, update fungsi saveAllData()
         async function saveAllData() {
-            // Collect all data
-            userData.videoReflection = document.getElementById('video-reflection').value.trim();
-            
-            // Validasi
-            if (!userData.videoReflection) {
-                showError('error-video', 'Harap isi refleksi video');
-                showNotification('Harap isi refleksi video!', 'error');
-                return;
-            }
-            
-            if (!userData.gratitude1 || !userData.gratitude2 || !userData.gratitude3 || 
-                !userData.confidenceLevel || !userData.supportFriend || 
-                !userData.selfAppreciation || !userData.videoReflection) {
-                showNotification('Harap lengkapi semua data sebelum mengirim!', 'error');
-                return;
-            }
-            
+            // ... validasi data ...
+
             // Tampilkan loading spinner
             const spinner = document.getElementById('spinner-page5');
             spinner.style.display = 'block';
-            
-            // BUAT FORMDATA - bukan JSON
-            const formData = new FormData();
-            formData.append('gratitude1', userData.gratitude1);
-            formData.append('gratitude2', userData.gratitude2);
-            formData.append('gratitude3', userData.gratitude3);
-            formData.append('confidenceLevel', userData.confidenceLevel);
-            formData.append('supportFriend', userData.supportFriend);
-            formData.append('selfAppreciation', userData.selfAppreciation);
-            formData.append('videoReflection', userData.videoReflection);
-            formData.append('timestamp', new Date().toLocaleString('id-ID'));
-            
+
+            // Siapkan data
+            const dataToSend = {
+                gratitude1: userData.gratitude1,
+                gratitude2: userData.gratitude2,
+                gratitude3: userData.gratitude3,
+                confidenceLevel: userData.confidenceLevel,
+                supportFriend: userData.supportFriend,
+                selfAppreciation: userData.selfAppreciation,
+                videoReflection: userData.videoReflection,
+                timestamp: new Date().toLocaleString('id-ID')
+            };
+
             try {
-                console.log('Sending form data:', Object.fromEntries(formData));
-                
-                // Kirim sebagai FormData (application/x-www-form-urlencoded)
+                console.log('Sending data:', dataToSend);
+
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Mode no-cors untuk Google Apps Script
-                    body: formData
-                    // JANGAN set Content-Type header, biarkan browser set otomatis
+                    mode: 'cors',  // Gunakan mode cors
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend)
                 });
-                
-                // Karena mode no-cors, kita tidak bisa membaca response
-                // Tapi data akan terkirim
-                
-                // Tampilkan pesan sukses
-                document.getElementById('success-message').style.display = 'block';
-                showNotification('✅ Data berhasil dikirim! Cek spreadsheet Anda.', 'success');
-                playSound('celebration');
-                showSimpleCelebration();
-                
-                // Reset form setelah 3 detik
-                setTimeout(() => {
-                    resetForm();
-                    navigateTo('landing-page');
-                }, 3000);
-                
+
+                const result = await response.json();
+                console.log('Response:', result);
+
+                if (result.status === "success") {
+                    document.getElementById('success-message').style.display = 'block';
+                    showNotification('✅ Data berhasil dikirim!', 'success');
+                    playSound('celebration');
+                    showSimpleCelebration();
+
+                    setTimeout(() => {
+                        resetForm();
+                        navigateTo('landing-page');
+                    }, 3000);
+                } else {
+                    showNotification('❌ Gagal: ' + result.message, 'error');
+                }
+
             } catch (error) {
-                console.error('Error sending data:', error);
+                console.error('Error:', error);
                 showNotification('❌ Gagal mengirim data. Coba lagi.', 'error');
             } finally {
                 spinner.style.display = 'none';
