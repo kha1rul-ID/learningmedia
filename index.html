@@ -3,1095 +3,1674 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CERDIK – Cerminan Diri dan Kepuasan</title>
+    <title>CERDIK - Cerminan Diri dan Kepuasan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables for Colors */
         :root {
-            --pastel-blue: #a8d0e6;
-            --pastel-pink: #f8c8dc;
-            --pastel-purple: #d8bfd8;
-            --pastel-green: #c1e1c1;
-            --pastel-yellow: #fffacd;
-            --pastel-orange: #ffdab9;
+            --primary: #4a9eff;
+            --primary-light: #e3f2ff;
+            --secondary: #ff7eb3;
+            --secondary-light: #ffe4f0;
+            --accent: #ffd166;
+            --text: #333;
+            --light: #f8f9fa;
             --white: #ffffff;
-            --text-color: #333333;
+            --success: #5cb85c;
             --shadow: rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
         }
-
-        /* Base Styles - PERFORMANCE OPTIMIZED */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Nunito', 'Arial Rounded MT Bold', 'Segoe UI', sans-serif;
         }
-
+        
         body {
-            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-pink));
-            color: var(--text-color);
+            font-family: 'Nunito', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
             line-height: 1.6;
-            min-height: 100vh;
             overflow-x: hidden;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
-
-        /* Typography - SIMPLIFIED */
-        h1, h2, h3 {
-            color: var(--text-color);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #6a5acd;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            font-size: 2rem;
-            color: #7b68ee;
-        }
-
-        p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .affirmation {
-            font-weight: bold;
-            font-size: 1.3rem;
-            color: #6a5acd;
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-        }
-
-        /* Button Styles - OPTIMIZED */
-        .btn {
-            display: inline-block;
-            background-color: var(--pastel-purple);
-            color: var(--text-color);
-            padding: 14px 28px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 8px var(--shadow);
-            margin: 10px 5px;
-            font-weight: bold;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px var(--shadow);
-            background-color: var(--pastel-pink);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .btn-pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
-        .btn-primary {
-            background-color: var(--pastel-purple);
-            font-weight: bold;
-        }
-
-        /* Page Styles */
-        .page {
-            display: none;
-            min-height: 80vh;
-            padding: 25px;
-            border-radius: 20px;
-            background-color: var(--white);
-            box-shadow: 0 8px 24px var(--shadow);
-            margin-top: 20px;
-            animation: fadeIn 0.5s ease;
-            position: relative;
-        }
-
-        .active {
-            display: block;
-        }
-
-        /* MINIMAL FLOATING ELEMENTS for Performance */
-        .floating-heart {
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            color: var(--pastel-pink);
-            font-size: 1.5rem;
-            animation: float 4s ease-in-out infinite;
-            opacity: 0.7;
-        }
-
-        .floating-star {
-            position: absolute;
-            top: 15%;
-            right: 5%;
-            color: gold;
-            font-size: 1.5rem;
-            animation: float 5s ease-in-out infinite;
-            animation-delay: 1s;
-            opacity: 0.7;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Landing Page */
-        #landing-page {
-            text-align: center;
-            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-pink));
-            color: var(--text-color);
-            padding: 40px 20px;
-            border-radius: 20px;
+        
+        /* Homepage Styles */
+        .homepage {
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 85vh;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #d4e9ff 100%);
+            position: relative;
+            overflow: hidden;
         }
-
-        .logo {
+        
+        .homepage h1 {
             font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: #6a5acd;
+            font-weight: 800;
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px var(--shadow);
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .homepage h1 span {
+            color: var(--secondary);
+        }
+        
+        .affirmation {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 2rem;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        .start-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite 1.5s;
+            box-shadow: 0 4px 15px rgba(255, 126, 179, 0.3);
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .start-btn:hover {
+            background-color: #ff6ba3;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 126, 179, 0.4);
+        }
+        
+        /* Decorative elements */
+        .cloud {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .cloud-1 {
+            width: 120px;
+            height: 40px;
+            top: 15%;
+            left: 5%;
+            animation: float 20s infinite linear;
+        }
+        
+        .cloud-2 {
+            width: 80px;
+            height: 25px;
+            top: 25%;
+            right: 10%;
+            animation: float 25s infinite linear reverse;
+        }
+        
+        .heart {
+            position: absolute;
+            color: var(--secondary);
+            font-size: 24px;
+            animation: float 15s infinite linear;
+        }
+        
+        .heart-1 {
+            top: 40%;
+            left: 10%;
+            animation-delay: 1s;
+        }
+        
+        .heart-2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+        
+        .star {
+            position: absolute;
+            color: var(--accent);
+            font-size: 20px;
+            animation: spin 20s infinite linear;
+        }
+        
+        .star-1 {
+            top: 20%;
+            right: 20%;
+        }
+        
+        .star-2 {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+        
+        /* Main content area */
+        .main-content {
+            display: none;
+            padding: 30px 0;
+            min-height: 100vh;
         }
 
-        .tagline {
-            font-size: 1.6rem;
+        .main-content.active {
+            display: block; /* Tampilkan hanya ketika aktif */
+        }
+        
+        .header {
+            text-align: center;
             margin-bottom: 30px;
-            font-weight: bold;
         }
-
-        .illustration {
-            max-width: 350px;
-            margin: 20px auto;
+        
+        .header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
         }
-
-        /* Material Page */
-        .content-box {
-            background-color: var(--pastel-yellow);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            box-shadow: 0 4px 8px var(--shadow);
-            transition: var(--transition);
-        }
-
-        .content-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px var(--shadow);
-        }
-
-        .reflection-box {
-            background-color: var(--pastel-green);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-
-        textarea, input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid var(--pastel-purple);
-            border-radius: 10px;
-            font-size: 1rem;
-            margin: 10px 0;
-            resize: vertical;
-            transition: var(--transition);
-        }
-
-        textarea:focus, input[type="text"]:focus {
-            border-color: var(--pastel-blue);
-            box-shadow: 0 0 8px var(--pastel-blue);
-            outline: none;
-        }
-
-        /* Reflection Page */
-        .choice-buttons {
+        
+        .day-tabs {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
-            margin: 30px 0;
+            gap: 10px;
+            margin-bottom: 30px;
         }
-
-        .choice-btn {
-            padding: 18px 35px;
-            font-size: 1.3rem;
+        
+        .day-tab {
+            padding: 12px 25px;
+            background-color: var(--white);
+            border: 2px solid var(--primary-light);
             border-radius: 50px;
-            transition: var(--transition);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-
-        .motivation-box {
-            background-color: var(--pastel-pink);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            text-align: center;
+        
+        .day-tab:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .day-tab.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .day-content {
             display: none;
-            animation: slideIn 0.5s ease;
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 15px var(--shadow);
         }
 
-        @keyframes slideIn {
-            from { transform: translateY(10px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .day-content.active {
+            display: block; /* Tampilkan yang aktif */
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        /* Interactive Page */
-        .question-box {
-            background-color: var(--pastel-blue);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            transition: var(--transition);
-        }
-
-        .question-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px var(--shadow);
-        }
-
-        /* Video Page */
-        .video-container {
+        
+        .slides-container {
             position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%;
+            min-height: auto;
+        }
+        
+        .slide {
+        display: none;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .slide.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0);
+        }
+        
+        .slide-header {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-size: 1.8rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        
+        .slide-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .slide-content h3 {
+            color: var(--secondary);
+            margin: 20px 0 10px;
+        }
+        
+        .slide-content ul, .slide-content ol {
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .slide-content li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: var(--primary-light);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .myth-fact-container {
             margin: 20px 0;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 6px 12px var(--shadow);
         }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 15px;
+        
+        .myth, .fact {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
-
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            background-color: var(--pastel-yellow);
-            border-radius: 50px;
+        
+        .myth {
+            background-color: #fff0f0;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .fact {
+            background-color: #f0fff4;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .myth h4, .fact h4 {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .myth h4 i {
+            color: #ff6b6b;
+        }
+        
+        .fact h4 i {
+            color: #4caf50;
+        }
+        
+        .quiz-container {
+            background-color: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
             margin: 20px 0;
-            height: 16px;
-            overflow: hidden;
         }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--pastel-blue), var(--pastel-purple));
+        
+        .question {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .options {
+            margin-left: 20px;
+        }
+        
+        .option {
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .option.selected {
+            background-color: #d4edda;
+            border-left: 3px solid var(--success);
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
             border-radius: 50px;
-            width: 0%;
-            transition: width 0.5s ease;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-top: 10px;
         }
-
-        /* Navigation */
-        .navigation {
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3a8de8;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #ff6ba3;
+        }
+        
+        .btn-light {
+            background-color: var(--light);
+            color: var(--text);
+        }
+        
+        .btn-light:hover {
+            background-color: #e9ecef;
+        }
+        
+        .slide-navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: 25px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
             margin-top: 30px;
-            padding: 20px;
-            color: var(--text-color);
-            font-size: 1rem;
         }
-
-        /* Maskot - STATIC untuk performa */
-        .maskot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 70px;
-            height: 70px;
-            background-color: var(--pastel-purple);
-            border-radius: 50%;
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .poster-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: var(--primary-light);
+            border-radius: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2rem;
-            box-shadow: 0 3px 6px var(--shadow);
-            z-index: 100;
-            cursor: pointer;
-            transition: var(--transition);
+            margin: 20px 0;
+            border: 3px dashed var(--primary);
         }
-
-        .maskot:hover {
-            transform: scale(1.1);
-            background-color: var(--pastel-pink);
+        
+        .poster-placeholder i {
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.5;
         }
-
-        /* Animations - MINIMAL */
+        
+        .video-placeholder {
+            width: 100%;
+            height: 300px;
+            background-color: #333;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            color: white;
+            flex-direction: column;
+        }
+        
+        .video-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            color: #ff0000;
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: var(--primary-light);
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .assignment-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .assignment-link {
+            display: block;
+            padding: 15px;
+            background-color: var(--primary-light);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .assignment-link:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 158, 255, 0.2);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: var(--text);
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            25% {
+                transform: translateX(20px) translateY(-10px);
+            }
+            50% {
+                transform: translateX(40px) translateY(0);
+            }
+            75% {
+                transform: translateX(20px) translateY(10px);
+            }
+            100% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+        
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
-
-        .fade-in {
-            animation: fadeIn 0.6s ease;
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.5s ease;
-        }
-
-        @keyframes slideInLeft {
-            from { transform: translateX(-30px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .slide-in-right {
-            animation: slideInRight 0.5s ease;
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(30px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* Responsive Design */
+        
+        /* Responsive styles */
         @media (max-width: 768px) {
-            h1 {
+            .homepage h1 {
+                font-size: 2.5rem;
+            }
+            
+            .affirmation {
+                font-size: 1.8rem;
+            }
+            
+            .header h2 {
                 font-size: 2rem;
             }
             
-            h2 {
-                font-size: 1.6rem;
-            }
-            
-            .btn {
-                padding: 12px 24px;
-                font-size: 1.1rem;
-            }
-            
-            .choice-buttons {
+            .day-tabs {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .choice-btn {
+            .day-tab {
+                width: 80%;
+                text-align: center;
+            }
+            
+            .slide-header {
+                font-size: 1.5rem;
+            }
+            
+            .poster-placeholder {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .homepage h1 {
+                font-size: 2rem;
+            }
+            
+            .affirmation {
+                font-size: 1.4rem;
+            }
+            
+            .start-btn {
+                padding: 15px 30px;
+                font-size: 1.3rem;
+            }
+            
+            .slide-navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
                 width: 100%;
-                max-width: 300px;
-                padding: 15px 25px;
+                margin-right: 0;
             }
-            
-            .maskot {
-                width: 60px;
-                height: 60px;
-                font-size: 1.8rem;
-            }
-            
-            .floating-heart, .floating-star {
-                display: none; /* Sembunyikan di mobile untuk performa */
-            }
-        }
-
-        /* Celebration Animation - SIMPLIFIED */
-        .celebration {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
-            display: none;
-        }
-
-        .confetti {
-            position: absolute;
-            width: 8px;
-            height: 16px;
-            background-color: var(--pastel-pink);
-            top: -20px;
-            animation: confettiFall 3s linear forwards;
-        }
-
-        @keyframes confettiFall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(180deg); opacity: 0; }
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            border: 3px solid rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            border-top: 3px solid var(--pastel-purple);
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-            display: none;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 12px 20px;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            display: none;
-            animation: slideInRight 0.4s ease;
-            max-width: 300px;
-        }
-
-        .notification.success {
-            background-color: #4caf50;
-        }
-
-        .notification.error {
-            background-color: #f44336;
-        }
-
-        /* Success Message */
-        .success-message {
-            background-color: var(--pastel-green);
-            color: #2e7d32;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            text-align: center;
-            display: none;
-        }
-
-        /* Form Validation */
-        .error-message {
-            color: #f44336;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: none;
-        }
-
-        input:invalid, textarea:invalid {
-            border-color: #f44336;
         }
     </style>
 </head>
 <body>
-    <!-- MINIMAL FLOATING ELEMENTS -->
-    <div class="floating-heart">❤️</div>
-    <div class="floating-star">⭐</div>
+    <!-- Homepage -->
+    <section class="homepage active">
+        <h1>CERDIK<br><span>Cerminan Diri dan Kepuasan</span></h1>
+        <p class="affirmation">🩵 "Tubuhku Unik, Diriku Hebat!"</p>
+        <button class="start-btn" id="startBtn">Lanjut yukk!</button>
+        
+        <!-- Decorative elements -->
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="heart heart-1"><i class="fas fa-heart"></i></div>
+        <div class="heart heart-2"><i class="fas fa-heart"></i></div>
+        <div class="star star-1"><i class="fas fa-star"></i></div>
+        <div class="star star-2"><i class="fas fa-star"></i></div>
+    </section>
     
-    <!-- Celebration Animation -->
-    <div class="celebration" id="celebration"></div>
-    
-    <!-- Notification -->
-    <div class="notification" id="notification"></div>
-    
-    <!-- Maskot -->
-    <div class="maskot" onclick="playSound('click')">
-        <i class="fas fa-smile"></i>
-    </div>
-    
-    <div class="container">
-        <!-- Progress Bar -->
-        <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
+    <!-- Main Content Area -->
+    <section class="main-content container" id="mainContent">
+        <div class="header">
+            <h2>CERDIK - Cerminan Diri dan Kepuasan</h2>
+            <p>Website interaktif untuk memahami dan mencintai diri sendiri</p>
         </div>
         
-        <!-- Landing Page -->
-        <div id="landing-page" class="page active">
-            <div class="logo">🌈 CERDIK</div>
-            <h1 class="fade-in">Cerminan Diri dan Kepuasan</h1>
-            <p class="tagline slide-in-left">"Tubuhku Unik, Diriku Hebat!"</p>
-            
-            <div class="illustration">
-                <!-- Simplified illustration -->
-                <svg width="350" height="250" viewBox="0 0 350 250" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="175" cy="125" r="80" fill="#f8c8dc" />
-                    <circle cx="150" cy="110" r="8" fill="#333" />
-                    <circle cx="200" cy="110" r="8" fill="#333" />
-                    <path d="M140 160 Q175 185 210 160" stroke="#333" stroke-width="6" fill="none" />
-                    <circle cx="175" cy="90" r="12" fill="#ff6b6b" />
-                </svg>
+        <!-- Day Tabs -->
+        <div class="day-tabs">
+            <div class="day-tab active" data-day="day1">Hari 1: Aspek Kognitif</div>
+            <div class="day-tab" data-day="day2">Hari 2: Aspek Afektif</div>
+            <div class="day-tab" data-day="day3">Hari 3: Aspek Perilaku</div>
+            <div class="day-tab" data-day="assignment">Pengumpulan Tugas</div>
+        </div>
+        
+        <!-- Day 1 Content -->
+        <div class="day-content active" id="day1">
+            <div class="slides-container">
+                <!-- Slide 1 -->
+                <div class="slide active" id="day1-slide1">
+                    <h3 class="slide-header">MATERI ASPEK KOGNITIF (COGNITIVE)</h3>
+                    <div class="slide-content">
+                        <h3>Materi Body Image Satisfaction</h3>
+                        
+                        <div class="highlight">
+                            <h4>1. Pengertian Body Image Satisfaction</h4>
+                            <p>Body image satisfaction adalah perasaan puas, nyaman, dan menerima diri sendiri terhadap bentuk dan penampilan tubuh yang dimiliki. Artinya, seseorang merasa bahwa tubuhnya sudah cukup baik dan tidak membenci atau merendahkan dirinya sendiri hanya karena penampilan fisik.</p>
+                            <p>Secara sederhana, body image satisfaction berarti cara kita memandang dan memperlakukan tubuh kita dengan sikap positif, meskipun tubuh tersebut tidak sama dengan standar tubuh ideal yang sering ditampilkan di media. Bagi siswa SMP, body image satisfaction dapat dipahami sebagai rasa percaya diri dan rasa nyaman dengan tubuh sendiri, seperti tinggi badan, berat badan, warna kulit, atau bentuk wajah.</p>
+                            <h4>Contoh body image satisfaction dalam kehidupan sehari-hari: </h4>
+                            <ul>
+                                <li> Siswa yang merasa tetap percaya diri meskipun tinggi badannya lebih pendek dibanding teman-temannya.</li>
+                                <li> Siswa yang tidak malu menggunakan kacamata atau memiliki warna kulit yang berbeda.</li>
+                                <li> Siswa yang menerima bentuk tubuhnya dan tidak mudah sedih ketika ada komentar negatif dari orang lain.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>2. Perbedaan antara Body Image Satisfaction dan Body Image Dissatisfaction</h4>
+                            <p><strong>a. Body Image Satisfaction:</strong> Perasaan positif terhadap tubuh, penerimaan keunikan tubuh, fokus pada fungsi tubuh daripada penampilan.</p>
+                            <p>Body image satisfaction adalah kondisi ketika seseorang merasa puas, nyaman, dan menerima tubuhnya apa adanya. Seseorang dengan body image satisfaction tidak harus memiliki tubuh yang sempurna, tetapi mampu menghargai dan bersikap positif terhadap dirinya sendiri.</p>
+                            <h4>Ciri-ciri body image satisfaction pada siswa SMP: </h4>
+                            <ul>
+                                <li> Percaya diri dengan penampilan sendiri</li>
+                                <li> Tidak mudah tersinggung dengan komentar tentang fisik</li>
+                                <li> Bersyukur dan menerima keunikan tubuhnya</li>
+                                <li> Tetap berani tampil di depan kelas</li>
+                                <p> <strong>Contoh: </strong> Andi memiliki tinggi badan yang lebih pendek dari teman-temannya. Meskipun demikian, Andi tetap percaya diri, aktif di kelas, dan tidak malu saat tampil di depan umum. Andi menyadari bahwa setiap orang memiliki bentuk tubuh yang berbeda.</p>
+                            </ul>
+                            <ul></ul>
+                            <p><strong>b. Body Image Dissatisfaction:</strong> Perasaan negatif terhadap tubuh, sering membandingkan dengan orang lain, fokus berlebihan pada kekurangan fisik.</p>
+                            <p>Body image dissatisfaction adalah kondisi ketika seseorang merasa tidak puas, tidak nyaman, atau tidak menerima tubuhnya. Individu sering merasa tubuhnya kurang baik dan terus membandingkan diri dengan orang lain.</p>
+                            <h4>Ciri-ciri body image dissatisfaction pada siswa SMP: </h4>
+                            <ul>
+                                <li> Sering merasa malu atau minder</li>
+                                <li> Tidak percaya diri dengan penampilan</li>
+                                <li> Mudah sedih jika mendapat komentar tentang fisik</li>
+                                <li> Sering membandingkan diri dengan teman atau tokoh di media sosial</li>
+                                <p> <strong> Contoh: </strong> Siti merasa berat badannya terlalu gemuk dibandingkan teman-temannya. Ia sering menutup diri, enggan maju ke depan kelas, dan merasa sedih ketika melihat unggahan tubuh ideal di media sosial. Siti sering merasa tubuhnya tidak cukup baik.</p>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>3. Faktor-Faktor yang Mempengaruhi Body Image Satisfaction</h4>
+                            <p>Body image satisfaction pada siswa SMP tidak muncul dengan sendirinya, tetapi dipengaruhi oleh berbagai faktor dari dalam diri maupun lingkungan sekitar. Berikut penjelasan faktor-faktor tersebut dengan bahasa yang mudah dipahami.</p>
+                            <ul></ul>
+                            <p><strong>a. Faktor Dari Dalam Diri (INTERNAL):</strong> Kepribadian, Harga Diri, Cara Berpikir, Pengalaman Pribadi.</p>
+                            <h4>1. Kepercayaan diri </h4>
+                            <p>Kepercayaan diri sangat memengaruhi cara siswa memandang tubuhnya. Siswa yang percaya diri cenderung lebih mudah menerima kekurangan dan kelebihan tubuhnya.</p>
+                            <p> <strong>Contoh:</strong> Rani memiliki kulit lebih gelap dibandingkan teman-temannya, tetapi ia tetap percaya diri karena merasa pintar dan aktif di kelas. Hal ini membuat Rani tidak malu dengan penampilannya.</p>
+                            
+                            <ul></ul>
+                            <h4>2. Cara berpikir tentang tubuh </h4>
+                            <p>Cara berpikir positif atau negatif memengaruhi body image satisfaction. Jika siswa sering berpikir negatif tentang tubuhnya, maka kepuasan terhadap tubuh akan menurun.</p>
+                            <p> <strong>Contoh: </strong> Budi berpikir bahwa tubuh setiap orang berbeda-beda. Meskipun badannya kurus, ia tetap merasa nyaman dan tidak menganggap hal itu sebagai masalah besar.</p>
+                            
+                            <ul></ul>
+                            <h4>3. Pengalaman pribadi </h4>
+                            <p>Pengalaman seperti pujian atau ejekan sangat memengaruhi perasaan siswa terhadap tubuhnya.</p>
+                            <p> <strong>Contoh: </strong> Seorang siswa yang sering diejek karena bentuk tubuhnya bisa menjadi minder. Sebaliknya, siswa yang sering mendapat dukungan akan lebih mudah menerima dirinya.</p>
+                            
+                            <ul></ul>
+                            <p><strong>b. Faktor Dari Lingkungan (EKSTERNAL):</strong> Keluarga, Teman, Media Sosial, Budaya, Tekanan Sosial.</p>
+                            <h4>1. Keluarga </h4>
+                            <p>Kata-kata dan sikap keluarga sangat berpengaruh. Dukungan keluarga membantu siswa merasa aman dan dihargai.</p>
+                            <p> <strong>Contoh:</strong> Orang tua yang memberi semangat dan mengatakan bahwa anaknya berharga apa adanya dapat meningkatkan rasa percaya diri anak.</p>
+                            
+                            <ul></ul>
+                            <h4>2. Teman sebaya </h4>
+                            <p>Pendapat teman sering dianggap penting oleh siswa SMP. Dukungan teman dapat meningkatkan body image satisfaction, sedangkan ejekan dapat menurunkannya.</p>
+                            <p> <strong>Contoh: </strong> Jika teman-teman saling menghargai dan tidak mengejek fisik, siswa akan merasa lebih nyaman dengan tubuhnya.</p>
+                            
+                            <ul></ul>
+                            <h4>3. Media sosial dan Media massa </h4>
+                            <p>Media sering menampilkan tubuh ideal yang tidak selalu realistis. Hal ini dapat memengaruhi cara siswa menilai tubuhnya sendiri.</p>
+                            <p> <strong>Contoh: </strong> Siswa yang sering melihat gambar tubuh ideal di media sosial bisa merasa tubuhnya kurang menarik, padahal gambar tersebut sering sudah diedit.</p>
+                            
+                            <ul></ul>
+                            <h4>4. Budaya dan lingkungan sekolah </h4>
+                            <p> Sekolah merupakan tempat siswa menghabiskan banyak waktu untuk belajar, berinteraksi, dan bersosialisasi. Oleh karena itu, suasana sekolah yang aman, nyaman, dan saling menghargai sangat membantu siswa dalam menerima dirinya sendiri.</p>
+                            <p> <strong>Contoh: </strong> Di sebuah sekolah yang menerapkan aturan anti-bullying, siswa diajarkan untuk tidak mengejek fisik teman. Guru memberikan nasihat jika terjadi ejekan, dan teman-teman saling mendukung. Dalam lingkungan seperti ini, siswa akan merasa aman, lebih percaya diri, dan lebih mudah menerima tubuhnya sendiri.</p>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light" disabled>Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day1" data-next="2">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="slide" id="day1-slide2">
+                    <h3 class="slide-header">Mitos & Fakta Tubuh Ideal Anak SMP</h3>
+                    <div class="slide-content">
+                        <div class="myth-fact-container">
+                            <div class="myth">
+                                <h4><i class="fas fa-times-circle"></i> Mitos 1: Tubuh ideal itu harus kurus dan berotot</h4>
+                                <p><strong>Faktanya:</strong> Setiap anak memiliki bentuk tubuh yang berbeda-beda. Pada usia SMP, tubuh masih dalam masa pertumbuhan dan perkembangan, sehingga perubahan bentuk tubuh adalah hal yang normal.</p>
+                            </div>
+                            
+                            <div class="fact">
+                                <h4><i class="fas fa-check-circle"></i> Mitos 2: Tinggi badan menentukan keren atau tidaknya seseorang</h4>
+                                <p><strong>Faktanya:</strong> Tinggi badan dipengaruhi oleh genetik dan hormon pertumbuhan, bukan penentu nilai diri atau kepercayaan diri seseorang.</p>
+                            </div>
+                            
+                            <div class="myth">
+                                <h4><i class="fas fa-times-circle"></i> Mitos 3: Harus mirip artis atau influencer supaya cantik/tampan</h4>
+                                <p><strong>Faktanya:</strong> Foto di media sosial sering diedit dan tidak menunjukkan kondisi sebenarnya. Tubuh ideal bukan berarti harus sama dengan orang lain.</p>
+                            </div>
+                            
+                            <div class="fact">
+                                <h4><i class="fas fa-check-circle"></i> Mitos 4: Anak yang gemuk itu tidak sehat</h4>
+                                <p><strong>Faktanya:</strong> Kesehatan tidak hanya dilihat dari bentuk tubuh. Anak bisa saja bertubuh berisi tetapi tetap sehat, aktif, dan bugar jika memiliki pola hidup sehat.</p>
+                            </div>
+                            
+                            <div class="myth">
+                                <h4><i class="fas fa-times-circle"></i> Mitos 5: Anak SMP sudah boleh diet ketat</h4>
+                                <p><strong>Faktanya:</strong> Diet ketat dapat mengganggu pertumbuhan. Anak SMP lebih membutuhkan nutrisi seimbang, bukan pembatasan makan yang berlebihan.</p>
+                            </div>
+                            
+                            <div class="fact">
+                                <h4><i class="fas fa-check-circle"></i> Mitos 6: Punya tubuh berbeda itu memalukan</h4>
+                                <p><strong>Faktanya:</strong> Perbedaan tubuh adalah hal yang wajar. Menghargai dan menerima tubuh sendiri merupakan bagian dari body image satisfaction yang sehat.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day1" data-prev="1">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day1" data-next="3">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="slide" id="day1-slide3">
+                    <h3 class="slide-header">Keberagaman Bentuk Tubuh Anak SMP 🌈</h3>
+                    <div class="slide-content">
+                        <h3>Semua Tubuh Itu Berbeda, dan Itu Normal!</h3>
+                        <p>👦👧 Setiap siswa SMP memiliki bentuk tubuh yang <strong>unik</strong> dan <strong>tidak sama</strong>. Perbedaan ini adalah bagian alami dari <strong>pertumbuhan dan perkembangan</strong>.</p>
+                        
+                        <hr style="margin: 20px 0; border: 1px dashed #ccc;">
+                        
+                        <h3>Mengapa Bentuk Tubuh Bisa Berbeda?</h3>
+                        <ul>
+                            <li>🔹 <strong>Genetik</strong> (keturunan orang tua)</li>
+                            <li>🔹 <strong>Usia dan masa pubertas</strong></li>
+                            <li>🔹 <strong>Pola makan dan aktivitas</strong></li>
+                            <li>🔹 <strong>Hormon pertumbuhan</strong></li>
+                        </ul>
+                        
+                        <h3>Bentuk Tubuh Itu Beragam</h3>
+                        <ul>
+                            <li>📏 <strong>Tinggi badan:</strong> pendek – sedang – tinggi</li>
+                            <li>⚖ <strong>Berat badan:</strong> ringan – sedang – berisi</li>
+                            <li>🧍 <strong>Postur tubuh:</strong> masih berkembang</li>
+                            <li>⏳ <strong>Perkembangan fisik:</strong> cepat – sedang – lambat</li>
+                        </ul>
+                        <p>➡ Semua <strong>normal</strong> sesuai tahap usia.</p>
+                        
+                        <hr style="margin: 20px 0; border: 1px dashed #ccc;">
+                        
+                        <h3>Ingat!</h3>
+                        <p>❌ Tidak perlu membandingkan tubuh dengan orang lain<br>
+                        ❌ Tidak ada satu tubuh yang paling ideal</p>
+                        
+                        <h3>Pesan Utama 💡</h3>
+                        <p>❤️ Tubuh ideal adalah tubuh yang <strong>sehat</strong><br>
+                        ❤️ Percaya diri lebih penting dari bentuk tubuh<br>
+                        ❤️ Hargai dan rawat tubuhmu</p>
+                        
+                        <p style="text-align: center; font-style: italic; margin-top: 20px; color: var(--primary);">✨ <strong>Tubuhmu berharga apa adanya!</strong></p>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day1" data-prev="2">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day1" data-next="4">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 4 -->
+                <div class="slide" id="day1-slide4">
+                    <h3 class="slide-header">Info Grafis</h3>
+                    <div class="slide-content">
+                        <h3>Poster Body Image Satisfaction</h3>
+                        <p>Berikut adalah poster yang dapat mengingatkan kita untuk mencintai tubuh sendiri:</p>
+                        
+                        <div class="poster-placeholder">
+                            <div>
+                                <i class="fas fa-image"></i>
+                                <p style="margin-top: 15px; color: var(--primary); font-weight: bold;">[Space untuk Poster Body Image Satisfaction]</p>
+                                <p style="margin-top: 10px; color: var(--text);">Poster ini dapat berisi gambar dan kata-kata positif tentang penerimaan tubuh</p>
+                            </div>
+                        </div>
+                        
+                        <p>Poster ini dapat ditempel di kamar atau di tempat yang sering dilihat untuk mengingatkan bahwa tubuh kita unik dan berharga.</p>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day1" data-prev="3">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day1" data-next="5">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 5 -->
+                <div class="slide" id="day1-slide5">
+                    <h3 class="slide-header">Kuis: Mitos atau Fakta?</h3>
+                    <div class="slide-content">
+                        <p>Pilihlah apakah pernyataan berikut termasuk <strong>Mitos</strong> atau <strong>Fakta</strong> berdasarkan materi yang telah dipelajari:</p>
+                        
+                        <div class="quiz-container">
+                            <div class="question" data-answer="mitos">1. Tubuh ideal harus kurus dan tidak peduli bagaimana bentuk </div>
+                            <div class="options">
+                                <div class="option" data-question="1" data-value="mitos">Mitos</div>
+                                <div class="option" data-question="1" data-value="fakta">Fakta</div>
+                            </div>
+                            
+                            <div class="question" data-answer="fakta">2. Kesehatan lebih penting daripada ukuran atau bentuk tubuh </div>
+                            <div class="options">
+                                <div class="option" data-question="2" data-value="mitos">Mitos</div>
+                                <div class="option" data-question="2" data-value="fakta">Fakta</div>
+                            </div>
+                            
+                            <div class="question" data-answer="mitos">3. Hanya remaja yang berolahraga setiap hari yang bisa memiliki tubuh ideal </div>
+                            <div class="options">
+                                <div class="option" data-question="3" data-value="mitos">Mitos</div>
+                                <div class="option" data-question="3" data-value="fakta">Fakta</div>
+                            </div>
+                            
+                            <div class="question" data-answer="fakta">4. Media sosial sering menampikan standar tubuh yang tidak realistis </div>
+                            <div class="options">
+                                <div class="option" data-question="4" data-value="mitos">Mitos</div>
+                                <div class="option" data-question="4" data-value="fakta">Fakta</div>
+                            </div>
+                            
+                            <div class="question" data-answer="fakta">5. Makan sehat dan olahraga teratur membantu tubuh tetap sehat, bukan hanya menurunkan berat badan </div>
+                            <div class="options">
+                                <div class="option" data-question="5" data-value="mitos">Mitos</div>
+                                <div class="option" data-question="5" data-value="fakta">Fakta</div>
+                            </div>
+
+                            <div class="question" data-answer="mitos">6. Semua orang harus terlihat seperti selebriti di TV atau media sosial </div>
+                            <div class="options">
+                                <div class="option" data-question="6" data-value="mitos">Mitos</div>
+                                <div class="option" data-question="6" data-value="fakta">Fakta</div>
+                            </div>
+
+                            <div class="question" data-answer="fakta">7. Setiap tubuh berbeda dan bentuk tubuhmu tidak menentukan nilai dirimu </div>
+                            <div class="options">
+                                <div class="option" data-question="7" data-value="mitos">Mitos</div>
+                                <div class="option" data-question="7" data-value="fakta">Fakta</div>
+                            </div>
+
+                            <div class="question" data-answer="mitos">8. Diet ekstrim dan menahan lapar adalah cara terbaik untuk mendapatkan tubuh ideal </div>
+                            <div class="options">
+                                <div class="option" data-question="8" data-value="mitos">Mitos</div>
+                                <div class="option" data-question="8" data-value="fakta">Fakta</div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-secondary" id="checkScoreDay1">Lihat Skor</button>
+                        <div class="score-display" id="scoreDay1"></div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day1" data-prev="4">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day1" data-next="6">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 6 -->
+                <div class="slide" id="day1-slide6">
+                    <h3 class="slide-header">Tugas Pilihan Ganda</h3>
+                    <div class="slide-content">
+                        <p>Jawablah pertanyaan berikut dengan memilih salah satu jawaban yang benar:</p>
+                        
+                        <div class="quiz-container">
+                            <div class="question">1. Apa yang dimaksud dengan body image?</div>
+                            <div class="options">
+                                <div class="option" data-question="tugas1" data-value="a">a. Bentuk tubuh yang selalu kurus</div>
+                                <div class="option correct" data-question="tugas1" data-value="b">b. Pandangan dan perasaan seseorang terhadap tubuhnya sendiri</div>
+                                <div class="option" data-question="tugas1" data-value="c">c. Cara orang lain menilai tubuhmu</div>
+                                <div class="option" data-question="tugas1" data-value="d">d. Tubuh yang sesuai standar media sosial</div>
+                            </div>
+                            
+                            <div class="question">2. Pernyataan mana yang fakta tentang tubuh ideal?</div>
+                            <div class="options">
+                                <div class="option" data-question="tugas2" data-value="a">a. Tubuh ideal sama untuk semua orang</div>
+                                <div class="option correct" data-question="tugas2" data-value="b">b. Kesehatan lebih penting daripada ukuran tubuh</div>
+                                <div class="option" data-question="tugas2" data-value="c">c. Semua orang harus terlihat seperti selebriti</div>
+                                <div class="option" data-question="tugas2" data-value="d">d. Diet ekstrem selalu baik</div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="margin-top: 30px;">Tugas Google Form</h3>
+                        <p>Silakan kumpulkan jawaban kamu melalui Google Form berikut:</p>
+                        <div class="assignment-links">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-mqSKE6dFFW3eoHFJg3qG6k64s-96Is2lzogqHT4l96jWOA/viewform?pli=1" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 1: Body Image Satisfaction
+                            </a>
+                            <p><em>*Link Google Form akan disediakan oleh guru</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day1" data-prev="5">Sebelumnya</button>
+                        <button class="btn btn-primary" id="completeDay1">Selesaikan Hari 1</button>
+                    </div>
+                </div>
             </div>
-            
-            <p class="slide-in-right">Website interaktif edukatif untuk membantu anak-anak memahami dan mengembangkan body image satisfaction melalui pengalaman belajar yang positif, reflektif, dan menyenangkan.</p>
-            
-            <button class="btn btn-primary btn-pulse" onclick="navigateTo('material-page')">Lanjut yukk!</button>
+        </div>
+        
+        <!-- ================== PERBAIKAN UNTUK HARI KEDUA ================== -->
+        <div class="day-content" id="day2">
+            <div class="slides-container">
+                <!-- Slide 1 -->
+                <div class="slide active" id="day2-slide1">
+                    <h3 class="slide-header">MATERI ASPEK AFEKTIF (AFFECTIVE)</h3>
+                    <div class="slide-content">
+                        <h3>Materi Dampak Emosi Negatif</h3>
+                        
+                        <div class="highlight">
+                            <h4>1. Mengenali Emosi dalam Cakupan Body Image Satisfaction</h4>
+                            <p>Mengenali emosi merupakan langkah awal dalam membangun body image satisfaction yang sehat. Individu perlu menyadari bahwa setiap perubahan fisik dapat menimbulkan berbagai perasaan, dan semua perasaan tersebut adalah wajar.</p>
+                            <p>Emosi yang berkaitan dengan body image satisfaction dapat dibedakan menjadi. </p>
+                            <p><strong>a. Emosi positif terhadap tubuh:</strong> Emosi positif muncul ketika siswa merasa menerima dan nyaman dengan tubuhnya. Emosi ini antara lain:</p>
+                            <ul>
+                                <li> Rasa senang terhadap penampilan diri</li>
+                                <li> Bangga terhadap keunikan tubuh</li>
+                                <li> Percaya diri saat berinteraksi dengan orang lain</li>
+                                <li> Merasa nyaman berada di lingkungan sosial</li>
+                                <p> <strong> Contoh: </strong> Salsa, siswi kelas IX, menyadari bahwa tinggi badannya tidak sama dengan teman-temannya. Namun, ia merasa nyaman dengan tubuhnya dan berkata, “Aku mungkin tidak tinggi, tapi aku sehat dan bisa aktif.” Salsa tetap percaya diri mengikuti kegiatan sekolah dan berinteraksi dengan teman-temannya.</p>
+                            </ul>
+                            
+                            <ul></ul>
+                            <p><strong>b. Emosi negatif terhadap tubuh:</strong> Emosi negatif muncul ketika siswa merasa tidak puas atau tidak nyaman dengan tubuhnya. Emosi ini dapat berupa:</p>
+                            <ul>
+                                <li> Rasa malu terhadap bentuk atau ukuran tubuh </li>
+                                <li> Minder ketika membandingkan diri dengan teman</li>
+                                <li> Cemas saat tampil didepan umum</li>
+                                <li> Tidak puas terhadap penampilan fisik</li>
+                                <p> <strong> Contoh: </strong> Rani, siswi kelas VIII, merasa tidak percaya diri karena tubuhnya lebih berisi dibandingkan teman-temannya. Ia sering merasa malu saat pelajaran olahraga dan enggan berganti pakaian di ruang ganti. Ketika teman-temannya membicarakan bentuk tubuh atau penampilan, Rani merasa cemas dan memilih diam. Ia sering berkata dalam hati, “Tubuhku tidak bagus, aku berbeda dari yang lain.”</p>
+                            </ul> 
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>2. Dampak Emosi Negatif dalam Cakupan Body Image Satisfaction</h4>
+                            <p>Apabila emosi negatif terhadap tubuh berlangsung secara terus-menerus dan tidak dikelola dengan baik, hal tersebut dapat berdampak pada perkembangan psikologis siswa. Dampak tersebut antara lain:</p>
+                            <ul>
+                                <li> Menurunnya rasa percaya diri </li>
+                                <li> Munculnya kecemasan sosial, terutama dalam situasi yang menuntut perhatian terhadap penampilan </li>
+                                <li> Individu cenderung menarik diri dari pergaualan atau aktivitas sekolah </li>
+                                <li> Terbentuknya sikap tidak menghargai dan tidak menyayangi tubuh sendiri </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>3. Dampak Emosi Positif dalam Cakupan Body Image Satisfaction</h4>
+                            <p>Sebaliknya, emosi positif terhadap tubuh memberikan pengaruh yang konstruktif bagi perkembangan siswa. Emosi positif memungkinkan siswa untuk:</p>
+                            <ul>
+                                <li> Menerima kondisi fisik diri apa adanya </li>
+                                <li> Merasa nyaman dan aman dengan identitas dirinya </li>
+                                <li> Menunjukkan kepercayaan diri dalam berinteraksi sosial </li>
+                                <li> Mengembangkan sikap menghargai dan merawat tubuh secara sehat </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>4. Mengekspresikan Perasaan Terhadap Tubuh Secara Sehat</h4>
+                            <p> Tidak cukup bagi siswa hanya mengenali perasaan terhadap tubuhnya, tetapi siswa juga perlu mampu menyampaikan, mengelola, dan menyalurkan perasaan tersebut dengan cara yang tepat dan konstruktif. Ekspresi emosi yang sehat membantu siswa membangun penerimaan diri, mengurangi tekanan emosional, serta mencegah munculnya sikap negatif terhadap tubuh.</p>
+                            <p><strong>a. Mengungkapkan perasaan terkait tubuh secara terbuka dan jujur:</strong> </p>
+                            <p>Berani mengakui dan mengungkapkan perasaan yang muncul terkait tubuhnya, baik perasaan senang maupun tidak nyaman. Mengungkapkan perasaan secara terbuka bukan berarti mengeluh berlebihan, tetapi menyadari dan mengakui apa yang dirasakan tanpa menyangkal atau memendamnya.</p>
+                            <ul>
+                                <p> <strong> Contoh: </strong> Seorang siswa merasa tidak nyaman karena berat badannya bertambah. Ia mengatakan kepada guru BK, “Saya sebenarnya sering merasa minder dengan tubuh saya, tapi saya tidak tahu harus cerita ke siapa.”</p>
+                                <p> Ungkapan ini menunjukkan bahwa siswa sudah mulai mengekspresikan perasaannya secara sehat, bukan memendamnya.</p>
+                            </ul>
+                            
+                            <ul></ul>
+                            <p><strong>b. Menggunakan bahasa yang positif saat berbicara tentang diri sendiri:</strong> </p>
+                            <p>Berbicara tentang tubuhnya mencerminkan bagaimana ia memandang dan menghargai dirinya. Penggunaan bahasa yang negatif, seperti mencela atau merendahkan diri, dapat memperkuat emosi negatif dan menurunkan body image satisfaction. Oleh karena itu, siswa perlu dilatih untuk mengganti self-talk negatif dengan bahasa yang lebih positif dan realistis.</p>
+                            <ul>
+                                <p> <strong> Contoh: </strong> Bahasa negatif: “Tubuhku jelek dan memalukan.”</p>
+                                <p> Bahasa positif: “Tubuhku sedang berkembang, dan aku tetap berusaha menjaganya tetap sehat.”</p>
+                            </ul>
+                            
+                            <ul></ul>
+                            <p><strong>c. Menghindari kebiasaan membandingkan tubuh dengan orang lain:</strong> </p>
+                            <p>Membandingkan tubuh dengan teman sebaya, figur publik, atau tokoh di media sosial sering menjadi sumber utama ketidakpuasan tubuh pada. Kebiasaan ini dapat memunculkan rasa iri, minder, dan tidak puas karena setiap individu memiliki kondisi fisik dan tahap perkembangan yang berbeda.</p>
+                            <ul>
+                                <p> <strong> Contoh: </strong> Seorang siswa berkata, “Saya tidak seperti teman saya yang tinggi dan kurus, jadi saya merasa kurang percaya diri.”</p>
+                                <p> Melalui bimbingan, siswa diajak menyadari bahwa perbedaan tersebut adalah hal yang normal dan tidak menentukan nilai diri seseorang.</p>
+                            </ul>
+
+                            <ul></ul>
+                            <p><strong>d. Memfokuskan perhatian pada fungsi dan kesehatan tubuh:</strong> </p>
+                            <p>Ekspresi perasaan terhadap tubuh yang sehat juga ditunjukkan dengan kemampuan siswa untuk menghargai tubuh berdasarkan fungsi dan manfaatnya, bukan hanya penampilan fisik. Dengan fokus pada fungsi tubuh, siswa dapat mengembangkan rasa syukur dan sikap menghargai diri.</p>
+                            <ul>
+                                <p> <strong> Contoh: </strong> Seorang siswa mengatakan, “Aku mungkin tidak suka bentuk tubuhku, tapi aku bersyukur karena tubuhku kuat dan bisa berolahraga.”</p>
+                                <p> Pernyataan ini menunjukkan pergeseran dari penilaian penampilan menuju penghargaan terhadap fungsi tubuh.</p>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light" disabled>Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day2" data-next="2">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="slide" id="day2-slide2">
+                    <h3 class="slide-header">Refleksi Diri</h3>
+                    <div class="slide-content">
+                        <p>Isilah kolom berikut dengan jujur sesuai perasaan kamu:</p>
+                        
+                        <h3>Saya merasa minder dan tidak percaya diri ketika...</h3>
+                        <textarea class="form-input" rows="4" placeholder="Tuliskan situasi atau kondisi yang membuat kamu merasa minder atau tidak percaya diri..."></textarea>
+                        
+                        <h3>Hal yang membuat saya percaya diri adalah...</h3>
+                        <textarea class="form-input" rows="4" placeholder="Tuliskan hal-hal yang membuat kamu merasa percaya diri dan bangga pada diri sendiri..."></textarea>
+                        
+                        <button class="btn btn-primary" style="margin-top: 20px;" id="saveReflection">Simpan Refleksi</button>
+                        <p id="reflectionSaved" style="color: var(--success); margin-top: 10px; display: none;"><i class="fas fa-check-circle"></i> Refleksi telah disimpan!</p>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="1">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day2" data-next="3">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="slide" id="day2-slide3">
+                    <h3 class="slide-header">Video Refleksi Diri</h3>
+                    <div class="slide-content">
+                        <p>Tontonlah video berikut tentang pentingnya mencintai diri sendiri:</p>
+                        
+                        <div class="video-placeholder">
+                            <i class="fab fa-youtube"></i>
+                            <p>[Video tentang Body Image dan Self-Love]</p>
+                            <p style="font-size: 0.9rem; margin-top: 10px;">Link YouTube akan disediakan oleh guru</p>
+                        </div>
+                        
+                        <h3>Tuliskan pesan yang tersirat dari video yang kamu tonton:</h3>
+                        <textarea class="form-input" rows="4" placeholder="Tuliskan pesan utama atau hal penting yang kamu dapatkan dari video tersebut..."></textarea>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="2">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day2" data-next="4">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 4 -->
+                <div class="slide" id="day2-slide4">
+                    <h3 class="slide-header">Kuis Pilihan Ganda</h3>
+                    <div class="slide-content">
+                        <p>Jawablah pertanyaan berikut dengan memilih jawaban yang paling tepat:</p>
+                        
+                        <div class="quiz-container">
+                            <div class="question">1. Rina melihat foto teman-temannya di media sosial dan merasa tubuhnya "kurang ideal", ia ingin membandingkan dirinya dengan temannya. Apa sikap yang paling tepat? </div>
+                            <div class="options">
+                                <div class="option" data-question="day2q1" data-value="a">a. Menyalahkan diri sendiri</div>
+                                <div class="option correct" data-question="day2q1" data-value="b">b. Menutup akun media sosial supaya tidak merasa minder</div>
+                                <div class="option" data-question="day2q1" data-value="c">c. Berusaha meniru teman tampa pertimbangan kesehatan</div>
+                                <div class="option" data-question="day2q1" data-value="d">d. Mengolok-olok teman yang terlihat lebih ideal</div>
+                            </div>
+                            
+                            <div class="question">2. Ali ingin ikut lomba olahraga di sekolah, tapi merasa hubungannya tidak sekuat teman-temannya. Apa sikap yang sebaiknya dilakukan? </div>
+                            <div class="options">
+                                <div class="option" data-question="day2q2" data-value="a">a. Tidak ikut karena takut kalah</div>
+                                <div class="option" data-question="day2q2" data-value="b">b. Berlatih tanpa memperhatikan kesehatan tubuh</div>
+                                <div class="option correct" data-question="day2q2" data-value="c">c. Ikut lomba, fokus pada usaha dan kemampuan sendiri</div>
+                                <div class="option" data-question="day2q2" data-value="d">d. Meminta teman lain yang lebih kuat menggantikan</div>
+                            </div>
+                            
+                            <div class="question">3. Media sosial dapat mempengaruhi body image siswa karena? </div>
+                            <div class="options">
+                                <div class="option" data-question="day2q3" data-value="a">a. Semua yang ditampilkan selalu realistis</div>
+                                <div class="option" data-question="day2q3" data-value="b">b. Membuat semua orang puas dengan tubuhnya</div>
+                                <div class="option correct" data-question="day2q3" data-value="c">c. Menampilkan standar tubuh yang sering tidak realistis</div>
+                                <div class="option" data-question="day2q3" data-value="d">d. Tidak memiliki pengaruh sama sekali</div>
+                            </div>
+
+                            <div class="question">4. Body image positif dapat ditingkatkan dengan? </div>
+                            <div class="options">
+                                <div class="option" data-question="day2q3" data-value="a">a. Menerima diri sendiri</div>
+                                <div class="option" data-question="day2q3" data-value="b">b. Selalu membandingkan diri dengan teman</div>
+                                <div class="option correct" data-question="day2q3" data-value="c">c. Diet ekstrem</div>
+                                <div class="option" data-question="day2q3" data-value="d">d. Menutupi tubuh dengan pakaian tebal</div>
+                            </div>
+
+                            <div class="question">5. Pernyataan mana yang mitos? </div>
+                            <div class="options">
+                                <div class="option" data-question="day2q3" data-value="a">a. Olahraga teratur baik untuk kesehatan </div>
+                                <div class="option" data-question="day2q3" data-value="b">b. Diet sehat membantu tubuh tetap fit </div>
+                                <div class="option correct" data-question="day2q3" data-value="c">c. Setiap tubuh berbeda dan unik </div>
+                                <div class="option" data-question="day2q3" data-value="d">d. Tubuh ideal hanya didapat dengan menahan lapar </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="margin-top: 30px;">Tugas Google Form</h3>
+                        <p>Silakan kumpulkan jawaban kamu melalui Google Form berikut:</p>
+                        <div class="assignment-links">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScCLgalzv1JMtnsPlvf7QORgtYnp7jgNDifIUvtLvGjNy-FSw/viewform?pli=1" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 2: Aspek Afektif Body Image
+                            </a>
+                            <p><em>*Link Google Form akan disediakan oleh guru</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="3">Sebelumnya</button>
+                        <button class="btn btn-primary" id="completeDay2">Selesaikan Hari 2</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Material Page -->
-        <div id="material-page" class="page">
-            <h2>Mengenal Body Image</h2>
-            
-            <div class="content-box slide-in-left">
-                <h3><i class="fas fa-brain"></i> Apa itu Body Image?</h3>
-                <p>Body image adalah cara kita memandang, merasakan, dan berpikir tentang tubuh kita sendiri. Ini mencakup bagaimana kita melihat diri kita di cermin dan bagaimana kita merasa tentang penampilan kita.</p>
+        <!-- ================== PERBAIKAN UNTUK HARI KETIGA ================== -->
+        <div class="day-content" id="day3">
+            <div class="slides-container">
+                <!-- Slide 1 -->
+                <div class="slide active" id="day3-slide1">
+                    <h3 class="slide-header">MATERI ASPEK PERILAKU (BEHAVIORAL)</h3>
+                    <div class="slide-content">
+                        <h3>Pengertian Aspek Perilaku dalam Body Image Satisfaction</h3>
+                        <p>Body image satisfaction tidak hanya terlihat dari cara seseorang berpikir dan merasa tentang tubuhnya, tetapi juga dari tindakan atau perilaku sehari-hari dalam merawat dan memperlakukan tubuh. Aspek perilaku dalam body image satisfaction berkaitan dengan bagaimana individu bersikap terhadap tubuhnya melalui kebiasaan hidup, perawatan diri, dan cara menjaga kesehatan.</p>
+                        <ul></ul>
+                        <p> <strong> Pengertian Aspek perilaku dalam body image satisfaction: </strong> </p>
+                        <div class="highlight">
+                            <p> Aspek perilaku dalam body image satisfaction adalah tindakan nyata yang dilakukan individu sebagai respons terhadap bagaimana ia memandang dan merasakan tubuhnya. Individu dengan body image satisfaction yang baik akan menunjukkan perilaku yang sehat dan positif, seperti merawat tubuh, menjaga kebersihan, dan menerapkan pola hidup sehat.</p>
+                            <p> Sebaliknya, individu dengan body image satisfaction yang rendah cenderung mengabaikan kesehatan tubuh, melakukan perawatan secara berlebihan, atau bahkan menyakiti tubuhnya sendiri.</p>
+                            <ul></ul>
+                        </div>
+                        <p> <strong> Penjelasan tentang tubuh yang sehat:</strong></p>
+                        
+                        <div class="highlight">
+                            <h4>1. Menjaga kebersihan tubuh</h4>
+                            <p>Tubuh yang sehat dimulai dari kebersihan. Menjaga kebersihan merupakan bentuk kepedulian dan penghargaan terhadap tubuh. Perilaku positif yang perlu dibiasakan siswa SMP antara lain:</p>
+                            <ul>
+                                <li> Mandi secara teratur </li>
+                                <li> Mengganti pakaian bersih setiap hari  </li>
+                                <li> Menjaga kebersihan rambut, gigi dan kuku </li>
+                                <li> Menggunakan pakaian yang rapi dan nyaman </li>
+                                <p> <strong> Contoh: </strong> Siswa yang mandi secara teratur dan menjaga kebersihan diri menunjukkan bahwa ia peduli dan bertanggung jawab terhadap tubuhnya</p>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>2. Menerapkan pola makan sehat dan seimbang</h4>
+                            <p>Tubuh membutuhkan makanan bergizi agar dapat tumbuh dan berkembang dengan baik. Pola makan sehat merupakan bagian penting dari perilaku body image satisfaction yang positif. Perilaku positif yang perlu dibiasakan siswa SMP anatara lain :</p>
+                            <ul>
+                                <li> Mengonsumsi makanan bergizi seimbang </li>
+                                <li> Tidak melewatkan waktu makan </li>
+                                <li> Mengurangi makanan instan dan minuman manis berlebihan </li>
+                                <li> Minum air putih yang cukup  </li>
+                                <p> <strong> Contoh: </strong> Siswa yang makan secara teratur dan memilih makanan sehat menunjukkan perilaku positif terhadap tubuh, bukan makan berlebihan atau diet ketat karena ingin mengubah penampilan.</p>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>3. Melakukan aktivitas fisik dan olahraga secara teratur</h4>
+                            <p>Tubuh yang sehat membutuhkan gerak. Aktivitas fisik membantu menjaga kebugaran, kesehatan, dan suasana hati. Perilaku positif yang perlu dibiasakan siswa SMP antara lain: </p>
+                            <ul>
+                                <li> Mengikuti pelajaran olahraga dengan aktif </li>
+                                <li> Bermain dan bergerak bersama teman   </li>
+                                <li> Melakukan olahraga ringan secara rutin </li>
+                                <p> <strong> Contoh: </strong> Siswa yang berolahraga untuk menjaga kesehatan, bukan semata-mata untuk mengubah bentuk tubuh, menunjukkan body image satisfaction yang sehat. </p>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>4. Merawat penampilan diri secara wajar</h4>
+                            <p>Merawat penampilan merupakan hal yang wajar dan positif jika dilakukan secara sehat dan tidak berlebihan. Tujuan merawat penampilan adalah agar tubuh terasa nyaman dan bersih, bukan untuk memenuhi standar orang lain. Perilaku positif yang perlu dibiasakan siswa SMP antara lain: </p>
+                            <ul>
+                                <li> Berpakaian dan berpenampilan sesuai dengan usia dan situasi  </li>
+                                <li> Menjaga kerapian, kebersihan dan kewangian diri </li>
+                                <li> Tidak memaksakan diri untuk mengikuti trend yang tidak sesuai </li>
+                                <p> <strong> Contoh: </strong> Siswa yang berpakaian rapi dan nyaman menunjukkan sikap menghargai diri tanpa merasa harus tampil sempurna dan tidak membandingkan diri dengan orang lain </p>
+                            </ul>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>5. Menghindari perilaku yang merugikan tubuh</h4>
+                            <p>Tubuh yang sehat juga ditunjukkan dengan kemampuan siswa menghindari perilaku yang dapat merugikan kesehatan. Perilaku yang sebaiknya dilakukan: </p>
+                            <ul>
+                                <li> Jangan melakukan diet ketat tanpa pengawasan </li>
+                                <li> Tidak mengonsumsi obat atau suplemen sembarangan  </li>
+                                <li> Tidak menyiksa atau menyakiti tubuh karena tidak puas dengan penampilan </li>
+                                <p> <strong> Contoh: </strong> Siswa yang tidak melakukan diet ekstream dan memilih cara sehat untuk merawat tubuh menunjukkan sikap positif terhadap tubuhnya  </p>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light" disabled>Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day3" data-next="2">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="slide" id="day3-slide2">
+                    <h3 class="slide-header">Manfaat Memiliki Tubuh yang Sehat</h3>
+                    <div class="slide-content">
+                        <h3>1. Kepercayaan Diri karena Memiliki Tubuh yang Sehat</h3>
+                        <p> Kepercayaan diri adalah perasaan yakin dan percaya pada kemampuan serta nilai diri sendiri. Seseorang yang percaya diri merasa nyaman dengan dirinya, berani mencoba hal baru, dan tidak mudah merasa minder ketika berada di lingkungan sosial. </p>
+                        
+                        <h3>2. Hubungan Tubuh yang Sehat dengan Kepercayaan Diri</h3>
+                        <p> Tubuh yang sehat membuat siswa merasa lebih nyaman, bugar, dan siap beraktivitas. Ketika tubuh terasa sehat, siswa tidak mudah lelah, lebih fokus belajar, dan merasa lebih tenang saat berinteraksi dengan orang lain. Kondisi ini secara alami menumbuhkan rasa percaya diri. </p>
+                        
+                        <h3>3. Contoh Kegiatan Positif dan Manfaatnya bagi Tubuh</h3>
+                        
+                        <div class="highlight">
+                            <h4>a. Fajar rutin sarapan, berolahraga, dan menjaga kebersihan diri.</h4>
+                            <p><strong>Manfaat:</strong> Ia merasa tubuhnya lebih segar dan tidak mudah lelah. Di sekolah, Fajar berani mengangkat tangan untuk menjawab pertanyaan guru dan aktif bergaul dengan teman-temannya. </p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>b. Siswa yang memilih makan sehat </h4>
+                            <p><strong>Manfaat:</strong> Menjaga tubuh dan kulit tetap sehat, membantu pencernaan, meningkatkan konsentrasi, dan mampu menjaga dirinya dengan baik.</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <h4>c. Menjaga kebersihan diri</h4>
+                            <p><strong>Manfaat:</strong> Seorang siswa yang menjaga kebersihan diri tidak merasa canggung saat berinteraksi dengan teman atau guru. </p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day3" data-prev="1">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day3" data-next="3">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="slide" id="day3-slide3">
+                    <h3 class="slide-header">Video Gaya Hidup Sehat</h3>
+                    <div class="slide-content">
+                        <p>Tontonlah video berikut tentang pentingnya gaya hidup sehat untuk remaja:</p>
+                        
+                        <div class="video-placeholder">
+                            <i class="fab fa-youtube"></i>
+                            <p>[Video tentang Gaya Hidup Sehat untuk Remaja]</p>
+                            <p style="font-size: 0.9rem; margin-top: 10px;">Link YouTube akan disediakan oleh guru</p>
+                        </div>
+                        
+                        <h3>Tuliskan pesan yang tersirat dari video yang kamu tonton:</h3>
+                        <textarea class="form-input" rows="4" placeholder="Tuliskan pesan utama atau hal penting yang kamu dapatkan dari video tersebut..."></textarea>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day3" data-prev="2">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day3" data-next="4">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 4 -->
+                <div class="slide" id="day3-slide4">
+                    <h3 class="slide-header">Kuis Pilihan Ganda</h3>
+                    <div class="slide-content">
+                        <p>Jawablah pertanyaan berikut dengan memilih jawaban yang paling tepat:</p>
+                        
+                        <div class="quiz-container">
+                            <div class="question">1. Setiap kali kamu membaca materi tentang body image, apa yang bisa kamu lakukan? </div>
+                            <div class="options">
+                                <div class="option" data-question="day3q1" data-value="a">a. Membaca sekedar untuk mengingat saja </div>
+                                <div class="option correct" data-question="day3q1" data-value="b">b. Menulis hal yang penting atau tidak penting </div>
+                                <div class="option" data-question="day3q1" data-value="c">c. Tidak membaca dan menunggu guru menjelaskan </div>
+                            </div>
+                            
+                            <div class="question">2. Bagaimana sikapmu ketika teman membandingkan tubuhnya dengan orang lain? </div>
+                            <div class="options">
+                                <div class="option correct" data-question="day3q2" data-value="a">a. Memberikan komentar negatif </div>
+                                <div class="option" data-question="day3q2" data-value="b">b. Tidak peduli dan ikut membandingkan </div>
+                                <div class="option" data-question="day3q2" data-value="c">c. Memberi dukungan dan menekankan keunikan masing-masing </div>
+                            </div>
+                            
+                            <div class="question">3. Saat guru meminta praktik pola hidup sehat untuk meningkatkan body image, seperti olahraga ringan atau makan sehat, apa yang akan kamu lakukan? </div>
+                            <div class="options">
+                                <div class="option" data-question="day3q3" data-value="a">a. Mengikuti dengan serius </div>
+                                <div class="option" data-question="day3q3" data-value="b">b. Mengikuti hanya karena diminta </div>
+                                <div class="option correct" data-question="day3q3" data-value="c">c. Tidak mengikuti sama sekali </div>
+                            </div>
+
+                            <div class="question">4. Apakah kamu rutin memonitor perasaan atau pikiran tentang tubuhmu sendiri? </div>
+                            <div class="options">
+                                <div class="option" data-question="day3q3" data-value="a">a. Ya, setiap hari atau setiap kali merasa minder </div>
+                                <div class="option" data-question="day3q3" data-value="b">b. Kadang-kadang </div>
+                                <div class="option correct" data-question="day3q3" data-value="c">c. Tidak sama sekali </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="margin-top: 30px;">Tugas Google Form</h3>
+                        <p>Silakan kumpulkan jawaban kamu melalui Google Form berikut:</p>
+                        <div class="assignment-links">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzjy7clQk5gu-RdF8ajsBWke7DfRtI9LNhML-Do6W9v1KBvw/viewform?pli=1" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 3: Aspek Perilaku Body Image
+                            </a>
+                            <p><em>*Link Google Form akan disediakan oleh guru</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day3" data-prev="3">Sebelumnya</button>
+                        <button class="btn btn-primary" id="completeDay3">Selesaikan Hari 3</button>
+                    </div>
+                </div>
             </div>
-            
-            <div class="content-box slide-in-right">
-                <h3><i class="fas fa-balance-scale"></i> Body Image Positif vs Negatif</h3>
-                <p><strong>Body Image Positif:</strong> Merasa nyaman dengan tubuh sendiri, menghargai apa yang bisa dilakukan tubuh, dan menerima keunikan diri.</p>
-                <p><strong>Body Image Negatif:</strong> Tidak puas dengan penampilan, membandingkan diri dengan orang lain, dan merasa tidak percaya diri.</p>
-            </div>
-            
-            <div class="content-box slide-in-left">
-                <h3><i class="fas fa-heart"></i> Mengapa Penting Memahami Body Image?</h3>
-                <p>Memahami body image membantu kita merasa lebih percaya diri, bahagia dengan diri sendiri, dan menghargai keunikan setiap orang.</p>
-            </div>
-            
-            <div class="content-box slide-in-right">
-                <h3><i class="fas fa-child"></i> Mengenal Tubuhku</h3>
-                <p>Tubuhku adalah bagian dari diriku, bukan sekadar tampilan luar. Tubuh membantu kita bergerak, bermain, dan berinteraksi.</p>
-                <p>Setiap orang tumbuh berbeda – dan semuanya berharga. Cintai tubuh karena fungsinya, bukan hanya rupanya.</p>
-                <p class="affirmation">"Kaki yang kuat untuk berjalan, tangan yang bisa mencipta, hati yang berani mencintai."</p>
-            </div>
-            
-            <div class="reflection-box fade-in">
-                <h3>🪞 Refleksi Diri</h3>
-                <p>Sebutkan 3 hal yang kamu syukuri dari tubuhmu:</p>
-                <input type="text" id="gratitude1" placeholder="Hal pertama..." required>
-                <div class="error-message" id="error-gratitude1"></div>
-                <input type="text" id="gratitude2" placeholder="Hal kedua..." required>
-                <div class="error-message" id="error-gratitude2"></div>
-                <input type="text" id="gratitude3" placeholder="Hal ketiga..." required>
-                <div class="error-message" id="error-gratitude3"></div>
-            </div>
-            
-            <div class="navigation">
-                <button class="btn" onclick="navigateTo('landing-page')">Kembali</button>
-                <button class="btn btn-primary" onclick="savePage2Data()">Lanjut</button>
-            </div>
-            
-            <!-- Loading Spinner -->
-            <div class="spinner" id="spinner-page2"></div>
         </div>
 
-        <!-- Reflection Page -->
-        <div id="reflection-page" class="page">
-            <h2>Percaya Diri atau Tidak?</h2>
-            
-            <div class="choice-buttons">
-                <button class="btn choice-btn btn-primary" onclick="setConfidenceLevel('Percaya Diri')">
-                    <i class="fas fa-smile"></i> ✅ Saya Percaya Diri
-                </button>
-                <button class="btn choice-btn" onclick="setConfidenceLevel('Kurang Percaya Diri')">
-                    <i class="fas fa-meh"></i> ❌ Saya Kurang Percaya Diri
-                </button>
+        <!-- ================== PERBAIKAN UNTUK PENGUMPULAN TUGAS ================== -->
+        <div class="day-content" id="assignment">
+            <div class="slides-container">
+                <!-- Slide 1 (hanya satu slide untuk assignment) -->
+                <div class="slide active" id="assignment-slide1">
+                    <h3 class="slide-header">Pengumpulan Tugas</h3>
+                    <div class="slide-content">
+                        <p>Di halaman ini, kamu dapat mengumpulkan semua tugas dari hari pertama hingga hari ketiga. Pastikan kamu telah menyelesaikan semua materi sebelum mengumpulkan tugas.</p>
+                        
+                        <div class="highlight">
+                            <h3>Daftar Tugas yang Harus Dikumpulkan</h3>
+                            <ol>
+                                <li><strong>Hari 1:</strong> Tugas Pilihan Ganda Body Image Satisfaction</li>
+                                <li><strong>Hari 2:</strong> Tugas Refleksi Diri dan Kuis Aspek Afektif</li>
+                                <li><strong>Hari 3:</strong> Tugas Video dan Kuis Aspek Perilaku</li>
+                            </ol>
+                        </div>
+                        
+                        <h3>Link Pengumpulan Tugas</h3>
+                        <div class="assignment-links">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjcKCaeGzUcMkm_AjgU8BSP__rqi0Rz7G7JZzeX5IAUdUd5A/viewform?pli=1" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 1: Body Image Satisfaction
+                            </a>
+                            
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSemOr-Y0fktm2vpoQJXIQZmpzT60l9hrJyhHyUkwCD4t5hwcQ/viewform?pli=1" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 2: Aspek Afektif Body Image
+                            </a>
+                            
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeheW1oTV4MNxVrIP5MLYVpQwMixseHAsO_7fzJa6bsKf2n2g/viewform?pli=1" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 3: Aspek Perilaku Body Image
+                            </a>
+                        </div>
+                        
+                        <div class="highlight" style="margin-top: 30px;">
+                            <h3>Catatan Penting</h3>
+                            <ul>
+                                <li>Pastikan kamu telah mengisi semua tugas dengan lengkap</li>
+                                <li>Jawablah dengan jujur sesuai dengan pemahaman dan perasaan kamu</li>
+                                <li>Tidak ada jawaban yang salah, yang penting adalah proses belajar kamu</li>
+                                <li>Jika ada kesulitan, jangan ragu untuk bertanya kepada guru</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 30px; padding: 20px; background-color: var(--primary-light); border-radius: 10px;">
+                            <h3 style="color: var(--primary);">🎉 Selamat! 🎉</h3>
+                            <p>Kamu telah menyelesaikan semua materi CERDIK (Cerminan Diri dan Kepuasan). Teruslah mencintai dan merawat tubuhmu yang unik!</p>
+                            <p style="font-style: italic; margin-top: 10px;">"Tubuhku Unik, Diriku Hebat!"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light" id="backToHome">Kembali ke Beranda</button>
+                    </div>
+                </div>
             </div>
-            
-            <div id="confident-motivation" class="motivation-box">
-                <h3><i class="fas fa-star"></i> Terima kasih sudah menjadi dirimu sendiri!</h3>
-                <p>"Terima kasih sudah menjadi dirimu sendiri tanpa meminta izin pada dunia."</p>
-                <p>"Terima kasih sudah memiliki percaya, bukan ragu. Dunia butuh lebih banyak orang sepertimu."</p>
-            </div>
-            
-            <div id="not-confident-motivation" class="motivation-box">
-                <h3><i class="fas fa-heart"></i> Kamu istimewa dengan caramu sendiri!</h3>
-                <p>"Kamu tidak harus menjadi seperti orang lain untuk bisa bangga pada dirimu."</p>
-                <p>"Pernahkah kamu sadar? Orang lain mungkin sudah melihat cahaya yang belum kamu sadari dari dirimu."</p>
-            </div>
-            
-            <div class="navigation">
-                <button class="btn" onclick="navigateTo('material-page')">Kembali</button>
-                <button class="btn btn-primary" onclick="savePage3Data()">Lanjut</button>
-            </div>
-            
-            <!-- Loading Spinner -->
-            <div class="spinner" id="spinner-page3"></div>
-        </div>
-
-        <!-- Interactive Page -->
-        <div id="interactive-page" class="page">
-            <h2>Teman Positif</h2>
-            
-            <div class="question-box slide-in-left">
-                <h3><i class="fas fa-hands-helping"></i> Bagaimana kamu mendukung temanmu yang kurang percaya diri?</h3>
-                <textarea id="support-friend" rows="4" placeholder="Tuliskan jawabanmu di sini..." required></textarea>
-                <div class="error-message" id="error-support"></div>
-            </div>
-            
-            <div class="question-box slide-in-right">
-                <h3><i class="fas fa-book"></i> Ceritakan 1 kisah nyata tentang dirimu yang berhasil menghargai diri sendiri.</h3>
-                <textarea id="self-appreciation" rows="4" placeholder="Tuliskan ceritamu di sini..." required></textarea>
-                <div class="error-message" id="error-appreciation"></div>
-            </div>
-            
-            <div class="navigation">
-                <button class="btn" onclick="navigateTo('reflection-page')">Kembali</button>
-                <button class="btn btn-primary" onclick="savePage4Data()">Lanjut</button>
-            </div>
-            
-            <!-- Loading Spinner -->
-            <div class="spinner" id="spinner-page4"></div>
-        </div>
-
-        <!-- Video Page -->
-        <div id="video-page" class="page">
-            <h2>Belajar dari Cerita</h2>
-            <p class="tagline">"Yuk Tonton dan Renungkan!"</p>
-            
-            <div class="video-container fade-in">
-                <!-- Video edukatif tentang body image -->
-                <iframe src="https://www.youtube.com/embed/9z9hZzpxz5w" title="Video edukatif body image" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            
-            <div class="question-box fade-in">
-                <h3><i class="fas fa-pencil-alt"></i> Tuliskan pesan yang tersirat dari video yang kamu tonton.</h3>
-                <textarea id="video-reflection" rows="4" placeholder="Tuliskan pemikiranmu di sini..." required></textarea>
-                <div class="error-message" id="error-video"></div>
-            </div>
-            
-            <!-- Success Message -->
-            <div class="success-message" id="success-message">
-                <i class="fas fa-check-circle"></i> Data berhasil disimpan! Terima kasih telah berpartisipasi.
-            </div>
-            
-            <div class="navigation">
-                <button class="btn" onclick="navigateTo('interactive-page')">Kembali</button>
-                <button class="btn btn-primary" onclick="saveAllData()">Kirim & Selesai!</button>
-            </div>
-            
-            <!-- Loading Spinner -->
-            <div class="spinner" id="spinner-page5"></div>
-        </div>
-    </div>
-
-    <footer>
-        <p>"CERDIK — Belajar mencintai diri, memahami tubuh, dan tumbuh percaya diri."</p>
-        <p style="font-size: 0.85rem; margin-top: 10px; color: #666;">Data disimpan secara aman dan anonim untuk keperluan penelitian pendidikan.</p>
+        </div>        
+    </section>
+    
+    <footer class="footer">
+        <p>CERDIK (Cerminan Diri dan Kepuasan) &copy; 2026 - Website Interaktif untuk Anak SMP</p>
+        <p>Dibuat untuk membantu anak-anak memahami dan mencintai diri sendiri</p>
     </footer>
 
     <script>
-        // Konfigurasi Google Apps Script URL - GANTI DENGAN URL ANDA
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbywNlJGyYO0BXeZRnrU45GamFnpYvsj1GUTOBDzT8sfkS3EgroDLsTMQJWWma9WMA_9RQ/exec';
+        document.addEventListener('DOMContentLoaded', function() {
+        // Elements
+        const startBtn = document.getElementById('startBtn');
+        const homepage = document.querySelector('.homepage');
+        const mainContent = document.getElementById('mainContent');
+        const dayTabs = document.querySelectorAll('.day-tab');
+        const dayContents = document.querySelectorAll('.day-content');
+        const nextSlideBtns = document.querySelectorAll('.next-slide');
+        const prevSlideBtns = document.querySelectorAll('.prev-slide');
+        const backToHomeBtn = document.getElementById('backToHome');
+        const checkScoreDay1Btn = document.getElementById('checkScoreDay1');
+        const saveReflectionBtn = document.getElementById('saveReflection');
+        const completeDay1Btn = document.getElementById('completeDay1');
+        const completeDay2Btn = document.getElementById('completeDay2');
+        const completeDay3Btn = document.getElementById('completeDay3');
         
-        // Data global untuk menyimpan semua jawaban
-        let userData = {
-            timestamp: '',
-            gratitude1: '',
-            gratitude2: '',
-            gratitude3: '',
-            confidenceLevel: '',
-            supportFriend: '',
-            selfAppreciation: '',
-            videoReflection: ''
-        };
-        
-        // Navigation function
-        function navigateTo(pageId) {
-            playSound('click');
+        // Start button click event
+        startBtn.addEventListener('click', function() {
+            homepage.style.display = 'none';
+            mainContent.style.display = 'block';
             
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show the selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update progress bar
-            updateProgressBar(pageId);
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-        
-        // Update progress bar based on current page
-        function updateProgressBar(pageId) {
-            const progressBar = document.getElementById('progress-bar');
-            let progress = 0;
-            
-            switch(pageId) {
-                case 'landing-page': progress = 0; break;
-                case 'material-page': progress = 25; break;
-                case 'reflection-page': progress = 50; break;
-                case 'interactive-page': progress = 75; break;
-                case 'video-page': progress = 100; break;
-            }
-            
-            progressBar.style.width = `${progress}%`;
-        }
-        
-        // Set confidence level
-        function setConfidenceLevel(level) {
-            playSound('click');
-            userData.confidenceLevel = level;
-            
-            // Hide all motivation boxes
-            const motivationBoxes = document.querySelectorAll('.motivation-box');
-            motivationBoxes.forEach(box => {
-                box.style.display = 'none';
-            });
-            
-            // Show the selected motivation
-            if (level === 'Percaya Diri') {
-                document.getElementById('confident-motivation').style.display = 'block';
-                playSound('positive');
-            } else {
-                document.getElementById('not-confident-motivation').style.display = 'block';
-                playSound('encouraging');
-            }
-        }
-        
-        // Save data from page 2 and navigate
-        function savePage2Data() {
-            userData.gratitude1 = document.getElementById('gratitude1').value.trim();
-            userData.gratitude2 = document.getElementById('gratitude2').value.trim();
-            userData.gratitude3 = document.getElementById('gratitude3').value.trim();
-            
-            // Validasi input
-            let isValid = true;
-            
-            // Clear previous error messages
-            document.querySelectorAll('.error-message').forEach(el => {
-                el.style.display = 'none';
-                el.textContent = '';
-            });
-            
-            // Validate each field
-            if (!userData.gratitude1) {
-                showError('error-gratitude1', 'Harap isi hal pertama yang disyukuri');
-                isValid = false;
-            }
-            
-            if (!userData.gratitude2) {
-                showError('error-gratitude2', 'Harap isi hal kedua yang disyukuri');
-                isValid = false;
-            }
-            
-            if (!userData.gratitude3) {
-                showError('error-gratitude3', 'Harap isi hal ketiga yang disyukuri');
-                isValid = false;
-            }
-            
-            if (isValid) {
-                navigateTo('reflection-page');
-            } else {
-                showNotification('Harap isi semua kolom refleksi!', 'error');
-            }
-            
-            return isValid;
-        }
-        
-        // Save data from page 3 and navigate
-        function savePage3Data() {
-            if (!userData.confidenceLevel) {
-                showNotification('Harap pilih tingkat kepercayaan diri Anda!', 'error');
-                return false;
-            }
-            
-            navigateTo('interactive-page');
-            return true;
-        }
-        
-        // Save data from page 4 and navigate
-        function savePage4Data() {
-            userData.supportFriend = document.getElementById('support-friend').value.trim();
-            userData.selfAppreciation = document.getElementById('self-appreciation').value.trim();
-            
-            // Validasi input
-            let isValid = true;
-            
-            // Clear previous error messages
-            document.getElementById('error-support').style.display = 'none';
-            document.getElementById('error-appreciation').style.display = 'none';
-            
-            if (!userData.supportFriend) {
-                showError('error-support', 'Harap isi cara mendukung teman');
-                isValid = false;
-            }
-            
-            if (!userData.selfAppreciation) {
-                showError('error-appreciation', 'Harap ceritakan pengalamanmu');
-                isValid = false;
-            }
-            
-            if (isValid) {
-                navigateTo('video-page');
-            } else {
-                showNotification('Harap isi semua pertanyaan!', 'error');
-            }
-            
-            return isValid;
-        }
-        
-        // Show error message
-        function showError(elementId, message) {
-            const errorElement = document.getElementById(elementId);
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-        }
-        
-        // Di website, update fungsi saveAllData()
-        async function saveAllData() {
-            // ... validasi data ...
-
-            // Tampilkan loading spinner
-            const spinner = document.getElementById('spinner-page5');
-            spinner.style.display = 'block';
-
-            // Siapkan data
-            const dataToSend = {
-                gratitude1: userData.gratitude1,
-                gratitude2: userData.gratitude2,
-                gratitude3: userData.gratitude3,
-                confidenceLevel: userData.confidenceLevel,
-                supportFriend: userData.supportFriend,
-                selfAppreciation: userData.selfAppreciation,
-                videoReflection: userData.videoReflection,
-                timestamp: new Date().toLocaleString('id-ID')
-            };
-
-            try {
-                console.log('Sending data:', dataToSend);
-
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'cors',  // Gunakan mode cors
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(dataToSend)
-                });
-
-                const result = await response.json();
-                console.log('Response:', result);
-
-                if (result.status === "success") {
-                    document.getElementById('success-message').style.display = 'block';
-                    showNotification('✅ Data berhasil dikirim!', 'success');
-                    playSound('celebration');
-                    showSimpleCelebration();
-
-                    setTimeout(() => {
-                        resetForm();
-                        navigateTo('landing-page');
-                    }, 3000);
-                } else {
-                    showNotification('❌ Gagal: ' + result.message, 'error');
-                }
-
-            } catch (error) {
-                console.error('Error:', error);
-                showNotification('❌ Gagal mengirim data. Coba lagi.', 'error');
-            } finally {
-                spinner.style.display = 'none';
-            }
-        }
-
-                // Tambahkan fungsi ini untuk testing koneksi
-        async function testConnection() {
-            try {
-                console.log('Testing connection to:', GOOGLE_SCRIPT_URL);
-                
-                // Test GET request
-                const response = await fetch(GOOGLE_SCRIPT_URL + '?test=connection&time=' + Date.now());
-                const data = await response.json();
-                console.log('Connection test success:', data);
-                
-                showNotification('✅ Koneksi ke server berhasil! Script aktif.', 'success');
-                return true;
-            } catch (error) {
-                console.error('Connection test failed:', error);
-                showNotification('❌ Koneksi gagal: ' + error.message, 'error');
-                return false;
-            }
-        }
-
-        // Panggil saat halaman dimuat
-        window.addEventListener('load', function() {
-            setTimeout(testConnection, 1000);
+            // Show day 1 content by default
+            document.querySelector('.day-content.active').style.display = 'block';
         });
         
-        // Simple celebration animation
-        function showSimpleCelebration() {
-            const celebration = document.getElementById('celebration');
-            celebration.style.display = 'block';
-            
-            // Create minimal confetti (10 pieces instead of 100)
-            for (let i = 0; i < 10; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = getRandomColor();
-                confetti.style.animationDelay = Math.random() * 2 + 's';
-                celebration.appendChild(confetti);
+        // Day tab click event
+        dayTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const day = this.getAttribute('data-day').trim();
                 
-                // Remove confetti after animation
-                setTimeout(() => {
-                    if (confetti.parentNode) {
-                        confetti.remove();
+                // Update active tab
+                dayTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show selected day content
+                dayContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === day) {
+                        content.classList.add('active');
+                        
+                        // Reset to first slide of the day
+                        const slides = content.querySelectorAll('.slide');
+                        slides.forEach(slide => slide.classList.remove('active'));
+                        slides[0].classList.add('active');
+                    } else {
+                        // Deactivate all slides in inactive days
+                        const slides = content.querySelectorAll('.slide');
+                        slides.forEach(slide => slide.classList.remove('active'));
                     }
-                }, 3000);
-            }
-            
-            // Hide celebration after 3 seconds
-            setTimeout(() => {
-                celebration.style.display = 'none';
-                celebration.innerHTML = '';
-            }, 3000);
-        }
+                });
+            });
+        });
         
-        // Reset form
-        function resetForm() {
-            // Reset all inputs
-            document.getElementById('gratitude1').value = '';
-            document.getElementById('gratitude2').value = '';
-            document.getElementById('gratitude3').value = '';
-            document.getElementById('support-friend').value = '';
-            document.getElementById('self-appreciation').value = '';
-            document.getElementById('video-reflection').value = '';
+        // Next slide button click event
+        nextSlideBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const day = this.getAttribute('data-day').trim();
+                const nextSlideNum = this.getAttribute('data-next').trim();
+                const dayContent = document.getElementById(day);
+                
+                // Hide current slide
+                const currentSlide = dayContent.querySelector('.slide.active');
+                currentSlide.classList.remove('active');
+                
+                // Show next slide
+                const nextSlide = document.getElementById(`${day}-slide${nextSlideNum}`);
+                nextSlide.classList.add('active');
+            });
+        });
+        
+        // Previous slide button click event
+        prevSlideBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const day = this.getAttribute('data-day').trim();
+                const prevSlideNum = this.getAttribute('data-prev').trim();
+                const dayContent = document.getElementById(day);
+                
+                // Hide current slide
+                const currentSlide = dayContent.querySelector('.slide.active');
+                currentSlide.classList.remove('active');
+                
+                // Show previous slide
+                const prevSlide = document.getElementById(`${day}-slide${prevSlideNum}`);
+                prevSlide.classList.add('active');
+            });
+        });
+        
+        // Back to home button
+        backToHomeBtn.addEventListener('click', function() {
+            mainContent.style.display = 'none';
+            homepage.style.display = 'flex';
+        });
+        
+        // Quiz functionality for Day 1
+        const quizOptions = document.querySelectorAll('.option');
+        quizOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options in the same question
+                const questionNum = this.getAttribute('data-question');
+                const allOptions = document.querySelectorAll(`.option[data-question="${questionNum}"]`);
+                allOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+            });
+        });
+        
+        // Check score for Day 1 quiz
+        // Check score for Day 1 quiz - ALTERNATIF untuk 5 pertanyaan dengan skor 0-100
+        checkScoreDay1Btn.addEventListener('click', function() {
+            const questions = document.querySelectorAll('.quiz-container .question');
+            let score = 0;
+            let total = 0;
             
-            // Reset motivation boxes
-            document.getElementById('confident-motivation').style.display = 'none';
-            document.getElementById('not-confident-motivation').style.display = 'none';
-            
-            // Reset error messages
-            document.querySelectorAll('.error-message').forEach(el => {
-                el.style.display = 'none';
-                el.textContent = '';
+            questions.forEach(question => {
+                const correctAnswer = question.getAttribute('data-answer');
+                if (correctAnswer) {
+                    total++;
+                    const questionNum = question.textContent.split('.')[0].trim();
+                    const selectedOption = document.querySelector(`.option.selected[data-question="${questionNum}"]`);
+                    
+                    if (selectedOption && selectedOption.getAttribute('data-value') === correctAnswer) {
+                        score++;
+                    }
+                }
             });
             
-            // Reset success message
-            document.getElementById('success-message').style.display = 'none';
+            // Hitung skor dalam rentang 0-100 (skor * 20 karena 5 pertanyaan)
+            const scaledScore = score * 12.5; // Setiap soal bernilai 20 poin
             
-            // Reset user data
-            userData = {
-                timestamp: '',
-                gratitude1: '',
-                gratitude2: '',
-                gratitude3: '',
-                confidenceLevel: '',
-                supportFriend: '',
-                selfAppreciation: '',
-                videoReflection: ''
-            };
-        }
-        
-        function getRandomColor() {
-            const colors = ['#a8d0e6', '#f8c8dc', '#d8bfd8'];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-        
-        // Show notification
-        function showNotification(message, type) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.style.display = 'block';
+            const scoreDisplay = document.getElementById('scoreDay1');
+            scoreDisplay.innerHTML = `
+                <h3>Hasil Kuis Kamu</h3>
+                <p>Jawaban benar: <strong>${score} dari ${total}</strong></p>
+                <p>Skor: <strong>${scaledScore}/100</strong></p>
+            `;
             
-            // Hide notification after 4 seconds
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 4000);
-        }
-        
-        // Simple sound effects - PERFORMANCE FRIENDLY
-        function playSound(type) {
-            // Gunakan audio yang lebih sederhana untuk performa
-            try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                let frequency = 800;
-                
-                switch(type) {
-                    case 'click':
-                        frequency = 800;
-                        break;
-                    case 'positive':
-                        frequency = 600;
-                        break;
-                    case 'encouraging':
-                        frequency = 500;
-                        break;
-                    case 'celebration':
-                        // Play very simple celebration sound
-                        oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
-                        oscillator.frequency.setValueAtTime(800, audioContext.currentTime + 0.1);
-                        break;
-                }
-                
-                if (type !== 'celebration') {
-                    oscillator.frequency.value = frequency;
-                }
-                
-                oscillator.type = 'sine';
-                gainNode.gain.value = 0.05; // Sangat pelan
-                
-                oscillator.start();
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
-                
-                setTimeout(() => {
-                    oscillator.stop();
-                }, 100);
-                
-            } catch (e) {
-                // Jika AudioContext tidak didukung, tidak ada suara
-                console.log("Audio tidak tersedia");
+            scoreDisplay.style.display = 'block';
+            
+            // Pesan motivasi berdasarkan skor
+            let message = '';
+            if (scaledScore === 100) {
+                message = '🎉 SEMPURNA! Kamu menguasai materi dengan baik.';
+            } else if (scaledScore >= 80) {
+                message = '👍 HEBAT! Pemahaman kamu sangat baik.';
+            } else if (scaledScore >= 60) {
+                message = '😊 BAGUS! Kamu sudah paham materi.';
+            } else {
+                message = '📚 COBA LAGI! Review materi dan coba lagi.';
             }
-        }
-        
-        // Initialize when page loads
-        window.addEventListener('load', function() {
-            // Initialize progress bar
-            updateProgressBar('landing-page');
             
-            // Show welcome message
-            setTimeout(() => {
-                showNotification('Selamat datang di CERDIK! Mari belajar mencintai diri sendiri.', 'success');
-            }, 800);
-            
-            // Optimasi: Non-aktifkan animasi jika preferensi pengguna
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                // Non-aktifkan animasi untuk pengguna yang memilih reduced motion
-                document.querySelectorAll('*').forEach(el => {
-                    el.style.animation = 'none';
-                });
-            }
+            scoreDisplay.innerHTML += `<div style="margin-top: 15px; font-weight: bold;">${message}</div>`;
         });
+        
+        // Save reflection for Day 2
+        saveReflectionBtn.addEventListener('click', function() {
+            const reflectionSaved = document.getElementById('reflectionSaved');
+            reflectionSaved.style.display = 'block';
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                reflectionSaved.style.display = 'none';
+            }, 3000);
+        });
+        
+        // Complete day buttons
+        completeDay1Btn.addEventListener('click', function() {
+            alert('Selamat! Kamu telah menyelesaikan materi Hari 1. Lanjut ke Hari 2 untuk mempelajari Aspek Afektif.');
+            document.querySelector('.day-tab[data-day="day2"]').click();
+        });
+        
+        completeDay2Btn.addEventListener('click', function() {
+            alert('Selamat! Kamu telah menyelesaikan materi Hari 2. Lanjut ke Hari 3 untuk mempelajari Aspek Perilaku.');
+            document.querySelector('.day-tab[data-day="day3"]').click();
+        });
+        
+        completeDay3Btn.addEventListener('click', function() {
+            alert('Selamat! Kamu telah menyelesaikan semua materi CERDIK. Sekarang kumpulkan tugas kamu di halaman Pengumpulan Tugas.');
+            document.querySelector('.day-tab[data-day="assignment"]').click();
+        });
+        
+        // Create decorative elements
+        function createDecorativeElements() {
+            const homepageEl = document.querySelector('.homepage');
+            
+            // Create more clouds
+            for (let i = 0; i < 5; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                
+                // Random size and position
+                const size = Math.random() * 60 + 40;
+                cloud.style.width = `${size}px`;
+                cloud.style.height = `${size/3}px`;
+                cloud.style.top = `${Math.random() * 80 + 10}%`;
+                cloud.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation
+                const duration = Math.random() * 30 + 20;
+                cloud.style.animation = `float ${duration}s infinite linear ${Math.random() * 5}s`;
+                
+                homepageEl.appendChild(cloud);
+            }
+            
+            // Create more hearts
+            for (let i = 0; i < 8; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                
+                // Random size and position
+                const size = Math.random() * 20 + 15;
+                heart.style.fontSize = `${size}px`;
+                heart.style.top = `${Math.random() * 80 + 10}%`;
+                heart.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation
+                const duration = Math.random() * 20 + 15;
+                heart.style.animation = `float ${duration}s infinite linear ${Math.random() * 5}s`;
+                
+                homepageEl.appendChild(heart);
+            }
+            
+            // Create more stars
+            for (let i = 0; i < 6; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.innerHTML = '<i class="fas fa-star"></i>';
+                
+                // Random size and position
+                const size = Math.random() * 15 + 10;
+                star.style.fontSize = `${size}px`;
+                star.style.top = `${Math.random() * 80 + 10}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation
+                const duration = Math.random() * 25 + 20;
+                star.style.animation = `spin ${duration}s infinite linear ${Math.random() * 5}s`;
+                
+                homepageEl.appendChild(star);
+            }
+        }
+        
+        // Initialize decorative elements
+        createDecorativeElements();
+    });
     </script>
 </body>
 </html>
