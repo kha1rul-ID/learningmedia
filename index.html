@@ -175,7 +175,7 @@
         }
         
         .header h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             color: var(--primary);
             margin-bottom: 10px;
         }
@@ -184,70 +184,87 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 30px;
+            max-width: 100%;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--light);
         }
         
         .day-tab {
-            padding: 12px 25px;
+            padding: 10px 20px;
             background-color: var(--white);
             border: 2px solid var(--primary-light);
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--primary);
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .day-tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .day-tabs::-webkit-scrollbar-track {
+            background: var(--light);
+            border-radius: 10px;
+        }
+        
+        .day-tabs::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
         }
         
         .day-tab:hover {
             background-color: var(--primary-light);
+            transform: translateY(-2px);
         }
         
         .day-tab.active {
             background-color: var(--primary);
             color: white;
             border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2);
         }
         
         .day-content {
             display: none;
             background-color: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 5px 15px var(--shadow);
+            border-radius: var(--border-radius);
+            padding: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
 
         .day-content.active {
-            display: block; /* Tampilkan yang aktif */
-            opacity: 1;
-            transform: translateY(0);
+            display: block;
+            animation: fadeIn 0.5s ease-out;
         }
         
         .slides-container {
             position: relative;
-            min-height: auto;
         }
         
         .slide {
-        display: none;
-        opacity: 0;
-        transform: translateX(20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+            display: none;
+            animation: slideIn 0.5s ease-out;
         }
 
         .slide.active {
-        display: block;
-        opacity: 1;
-        transform: translateX(0);
+            display: block;
         }
         
         .slide-header {
             text-align: center;
             margin-bottom: 25px;
             color: var(--primary);
-            font-size: 1.8rem;
-            padding-bottom: 10px;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            padding-bottom: 15px;
             border-bottom: 2px solid var(--primary-light);
         }
         
@@ -259,6 +276,13 @@
         .slide-content h3 {
             color: var(--secondary);
             margin: 20px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        .slide-content h4 {
+            color: var(--primary);
+            margin: 15px 0 8px;
+            font-size: 1.1rem;
         }
         
         .slide-content ul, .slide-content ol {
@@ -272,10 +296,11 @@
         
         .highlight {
             background-color: var(--primary-light);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
             border-left: 4px solid var(--primary);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
         }
         
         .myth-fact-container {
@@ -283,67 +308,103 @@
         }
         
         .myth, .fact {
-            padding: 15px;
+            padding: 15px 20px;
             border-radius: 10px;
             margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .myth:hover, .fact:hover {
+            transform: translateX(5px);
         }
         
         .myth {
             background-color: #fff0f0;
-            border-left: 4px solid #ff6b6b;
+            border-left: 4px solid var(--danger);
         }
         
         .fact {
             background-color: #f0fff4;
-            border-left: 4px solid #4caf50;
+            border-left: 4px solid var(--success);
         }
         
         .myth h4, .fact h4 {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-size: 1.1rem;
         }
         
         .myth h4 i {
-            color: #ff6b6b;
+            color: var(--danger);
         }
         
         .fact h4 i {
-            color: #4caf50;
+            color: var(--success);
         }
         
         .quiz-container {
             background-color: #f8f9ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #e6e9ff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
         
         .question {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text);
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
         }
         
         .options {
-            margin-left: 20px;
+            margin-left: 10px;
         }
         
         .option {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             cursor: pointer;
-            padding: 5px;
-            border-radius: 5px;
-            transition: background-color 0.2s;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            background-color: var(--white);
+            border: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
         }
         
         .option:hover {
-            background-color: #e9ecef;
+            background-color: #f0f8ff;
+            border-color: var(--primary-light);
+            transform: translateX(5px);
         }
         
         .option.selected {
-            background-color: #d4edda;
+            background-color: #e8f5e9;
             border-left: 3px solid var(--success);
+            font-weight: 600;
+        }
+        
+        .option.correct-answer {
+            background-color: #d4edda;
+            border-left: 4px solid var(--success);
+            color: #155724;
+            font-weight: bold;
+            animation: pulse 1.5s;
+        }
+        
+        .option.wrong-answer {
+            background-color: #f8d7da;
+            border-left: 4px solid var(--danger);
+            color: #721c24;
+            text-decoration: line-through;
         }
         
         .btn {
@@ -356,6 +417,16 @@
             transition: all 0.3s ease;
             margin-right: 10px;
             margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
         .btn-primary {
@@ -379,16 +450,28 @@
         .btn-light {
             background-color: var(--light);
             color: var(--text);
+            border: 1px solid #dee2e6;
         }
         
         .btn-light:hover {
             background-color: #e9ecef;
         }
         
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
         .slide-navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
         }
         
         .form-input {
@@ -399,11 +482,13 @@
             border-radius: 10px;
             font-size: 1rem;
             font-family: 'Nunito', sans-serif;
+            transition: all 0.3s ease;
         }
         
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.2);
         }
         
         .poster-placeholder {
@@ -416,6 +501,12 @@
             align-items: center;
             margin: 20px 0;
             border: 3px dashed var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .poster-placeholder:hover {
+            background-color: #d4e9ff;
+            transform: scale(1.01);
         }
         
         .poster-placeholder i {
@@ -427,42 +518,154 @@
         .video-placeholder {
             width: 100%;
             height: 300px;
-            background-color: #333;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 20px 0;
             color: white;
             flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
         }
         
         .video-placeholder i {
             font-size: 4rem;
             margin-bottom: 15px;
             color: #ff0000;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .video-placeholder p {
+            position: relative;
+            z-index: 1;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
         
         .score-display {
             text-align: center;
-            font-size: 1.5rem;
-            margin: 20px 0;
-            padding: 20px;
-            background-color: var(--primary-light);
-            border-radius: 10px;
+            margin: 25px 0;
+            padding: 25px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
             display: none;
+            animation: fadeIn 0.5s ease-out;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e6e9ff;
+        }
+
+        .score-display h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .answer-feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary);
+            text-align: left;
+        }
+
+        .correct-feedback {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .score-breakdown {
+            margin-top: 25px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+
+        .score-breakdown h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .score-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #dee2e6;
+        }
+
+        .score-item:last-child {
+            border-bottom: none;
+        }
+
+        .score-progress-container {
+            width: 100%;
+            height: 25px;
+            background-color: #e9ecef;
+            border-radius: 12px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .score-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 12px;
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .score-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
         }
         
         .assignment-links {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
         .assignment-link {
-            display: block;
-            padding: 15px;
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
             background-color: var(--primary-light);
             border-radius: 10px;
             text-decoration: none;
@@ -470,22 +673,63 @@
             font-weight: 600;
             transition: all 0.3s;
             border: 2px solid transparent;
+            font-size: 1.1rem;
         }
         
         .assignment-link:hover {
             background-color: var(--primary);
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(74, 158, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(74, 158, 255, 0.3);
         }
         
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             margin-top: 30px;
             color: var(--text);
             font-size: 0.9rem;
             border-top: 1px solid #e0e0e0;
+            background-color: var(--white);
+        }
+
+        /* TAMBAHKAN di CSS untuk perbaikan tampilan form di hari keempat */
+        #day4 .quiz-container textarea {
+            background-color: var(--white);
+            border: 1px solid var(--primary-light);
+            transition: all 0.3s ease;
+        }
+
+        #day4 .quiz-container textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+        }
+
+        #day4 .highlight .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        #day4 .highlight .option {
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-light);
+            background-color: var(--white);
+        }
+
+        #day4 .highlight .option:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        #day4 .highlight .option.selected {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
         
         /* Animations */
@@ -556,28 +800,74 @@
             }
         }
         
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
         /* Responsive styles */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .day-content {
+                padding: 25px;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .homepage h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
             .affirmation {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .header h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .day-tabs {
-                flex-direction: column;
-                align-items: center;
+                justify-content: flex-start;
+                padding-bottom: 15px;
             }
             
             .day-tab {
-                width: 80%;
-                text-align: center;
+                font-size: 0.85rem;
+                padding: 8px 16px;
             }
             
             .slide-header {
@@ -587,20 +877,38 @@
             .poster-placeholder {
                 height: 300px;
             }
+            
+            .video-placeholder {
+                height: 250px;
+            }
+            
+            .score-display {
+                padding: 20px;
+            }
+            
+            .assignment-link {
+                padding: 15px;
+                font-size: 1rem;
+            }
         }
         
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             .homepage h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .affirmation {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
             
             .start-btn {
-                padding: 15px 30px;
-                font-size: 1.3rem;
+                padding: 12px 30px;
+                font-size: 1.2rem;
+            }
+            
+            .day-content {
+                padding: 20px;
+                border-radius: 12px;
             }
             
             .slide-navigation {
@@ -611,6 +919,66 @@
             .btn {
                 width: 100%;
                 margin-right: 0;
+                justify-content: center;
+            }
+            
+            .quiz-container {
+                padding: 15px;
+            }
+            
+            .question {
+                padding: 12px;
+                font-size: 1rem;
+            }
+            
+            .option {
+                padding: 10px 12px;
+                font-size: 0.95rem;
+            }
+            
+            .highlight {
+                padding: 15px;
+            }
+            
+            .poster-placeholder {
+                height: 200px;
+            }
+            
+            .video-placeholder {
+                height: 200px;
+            }
+            
+            .video-placeholder i {
+                font-size: 3rem;
+            }
+            
+            .score-breakdown {
+                padding: 15px;
+            }
+            
+            .score-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .homepage h1 {
+                font-size: 1.6rem;
+            }
+            
+            .affirmation {
+                font-size: 1.1rem;
+            }
+            
+            .day-tab {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+            
+            .slide-header {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -639,10 +1007,14 @@
         </div>
         
         <!-- Day Tabs -->
+        <!-- GANTI kode Day Tabs di sekitar baris 394 dengan ini: -->
         <div class="day-tabs">
-            <div class="day-tab active" data-day="day1">Hari 1: Aspek Kognitif</div>
-            <div class="day-tab" data-day="day2">Hari 2: Aspek Afektif</div>
-            <div class="day-tab" data-day="day3">Hari 3: Aspek Perilaku</div>
+            <div class="day-tab active" data-day="day1">Pertemuan ke-1</div>
+            <div class="day-tab" data-day="day2">Pertemuan ke-2</div>
+            <div class="day-tab" data-day="day3">Pertemuan ke-3</div>
+            <div class="day-tab" data-day="day4">Pertemuan ke-4</div>
+            <div class="day-tab" data-day="day5">Pertemuan ke-5</div>
+            <div class="day-tab" data-day="day6">Pertemuan ke-6</div>
             <div class="day-tab" data-day="assignment">Pengumpulan Tugas</div>
         </div>
         
@@ -659,7 +1031,7 @@
                             <h4>1. Pengertian Body Image Satisfaction</h4>
                             <p>Body image satisfaction adalah perasaan puas, nyaman, dan menerima diri sendiri terhadap bentuk dan penampilan tubuh yang dimiliki. Artinya, seseorang merasa bahwa tubuhnya sudah cukup baik dan tidak membenci atau merendahkan dirinya sendiri hanya karena penampilan fisik.</p>
                             <p>Secara sederhana, body image satisfaction berarti cara kita memandang dan memperlakukan tubuh kita dengan sikap positif, meskipun tubuh tersebut tidak sama dengan standar tubuh ideal yang sering ditampilkan di media. Bagi siswa SMP, body image satisfaction dapat dipahami sebagai rasa percaya diri dan rasa nyaman dengan tubuh sendiri, seperti tinggi badan, berat badan, warna kulit, atau bentuk wajah.</p>
-                            <h4>Contoh body image satisfaction dalam kehidupan sehari-hari: </h4>
+                            <p><strong>Contoh body image satisfaction dalam kehidupan sehari-hari: </strong> </p>
                             <ul>
                                 <li> Siswa yang merasa tetap percaya diri meskipun tinggi badannya lebih pendek dibanding teman-temannya.</li>
                                 <li> Siswa yang tidak malu menggunakan kacamata atau memiliki warna kulit yang berbeda.</li>
@@ -699,39 +1071,47 @@
                             <p><strong>a. Faktor Dari Dalam Diri (INTERNAL):</strong> Kepribadian, Harga Diri, Cara Berpikir, Pengalaman Pribadi.</p>
                             <h4>1. Kepercayaan diri </h4>
                             <p>Kepercayaan diri sangat memengaruhi cara siswa memandang tubuhnya. Siswa yang percaya diri cenderung lebih mudah menerima kekurangan dan kelebihan tubuhnya.</p>
-                            <p> <strong>Contoh:</strong> Rani memiliki kulit lebih gelap dibandingkan teman-temannya, tetapi ia tetap percaya diri karena merasa pintar dan aktif di kelas. Hal ini membuat Rani tidak malu dengan penampilannya.</p>
-                            
-                            <ul></ul>
+                            <ul>
+                                <p> <strong>Contoh:</strong> Rani memiliki kulit lebih gelap dibandingkan teman-temannya, tetapi ia tetap percaya diri karena merasa pintar dan aktif di kelas. Hal ini membuat Rani tidak malu dengan penampilannya.</p>
+                            </ul>
+
                             <h4>2. Cara berpikir tentang tubuh </h4>
                             <p>Cara berpikir positif atau negatif memengaruhi body image satisfaction. Jika siswa sering berpikir negatif tentang tubuhnya, maka kepuasan terhadap tubuh akan menurun.</p>
-                            <p> <strong>Contoh: </strong> Budi berpikir bahwa tubuh setiap orang berbeda-beda. Meskipun badannya kurus, ia tetap merasa nyaman dan tidak menganggap hal itu sebagai masalah besar.</p>
-                            
-                            <ul></ul>
+                            <ul>
+                                <p> <strong>Contoh: </strong> Budi berpikir bahwa tubuh setiap orang berbeda-beda. Meskipun badannya kurus, ia tetap merasa nyaman dan tidak menganggap hal itu sebagai masalah besar.</p>
+                            </ul>
+
                             <h4>3. Pengalaman pribadi </h4>
                             <p>Pengalaman seperti pujian atau ejekan sangat memengaruhi perasaan siswa terhadap tubuhnya.</p>
-                            <p> <strong>Contoh: </strong> Seorang siswa yang sering diejek karena bentuk tubuhnya bisa menjadi minder. Sebaliknya, siswa yang sering mendapat dukungan akan lebih mudah menerima dirinya.</p>
-                            
-                            <ul></ul>
+                            <ul>
+                                <p> <strong>Contoh: </strong> Seorang siswa yang sering diejek karena bentuk tubuhnya bisa menjadi minder. Sebaliknya, siswa yang sering mendapat dukungan akan lebih mudah menerima dirinya.</p>
+                            </ul>
+
                             <p><strong>b. Faktor Dari Lingkungan (EKSTERNAL):</strong> Keluarga, Teman, Media Sosial, Budaya, Tekanan Sosial.</p>
                             <h4>1. Keluarga </h4>
                             <p>Kata-kata dan sikap keluarga sangat berpengaruh. Dukungan keluarga membantu siswa merasa aman dan dihargai.</p>
-                            <p> <strong>Contoh:</strong> Orang tua yang memberi semangat dan mengatakan bahwa anaknya berharga apa adanya dapat meningkatkan rasa percaya diri anak.</p>
-                            
-                            <ul></ul>
+                            <ul>
+                                <p> <strong>Contoh:</strong> Orang tua yang memberi semangat dan mengatakan bahwa anaknya berharga apa adanya dapat meningkatkan rasa percaya diri anak.</p>
+                            </ul>
+
                             <h4>2. Teman sebaya </h4>
                             <p>Pendapat teman sering dianggap penting oleh siswa SMP. Dukungan teman dapat meningkatkan body image satisfaction, sedangkan ejekan dapat menurunkannya.</p>
-                            <p> <strong>Contoh: </strong> Jika teman-teman saling menghargai dan tidak mengejek fisik, siswa akan merasa lebih nyaman dengan tubuhnya.</p>
-                            
-                            <ul></ul>
+                            <ul>
+                                <p> <strong>Contoh: </strong> Jika teman-teman saling menghargai dan tidak mengejek fisik, siswa akan merasa lebih nyaman dengan tubuhnya.</p>
+                            </ul>
+
                             <h4>3. Media sosial dan Media massa </h4>
                             <p>Media sering menampilkan tubuh ideal yang tidak selalu realistis. Hal ini dapat memengaruhi cara siswa menilai tubuhnya sendiri.</p>
-                            <p> <strong>Contoh: </strong> Siswa yang sering melihat gambar tubuh ideal di media sosial bisa merasa tubuhnya kurang menarik, padahal gambar tersebut sering sudah diedit.</p>
-                            
-                            <ul></ul>
+                            <ul>
+                                <p> <strong>Contoh: </strong> Siswa yang sering melihat gambar tubuh ideal di media sosial bisa merasa tubuhnya kurang menarik, padahal gambar tersebut sering sudah diedit.</p>
+                            </ul>
+
                             <h4>4. Budaya dan lingkungan sekolah </h4>
                             <p> Sekolah merupakan tempat siswa menghabiskan banyak waktu untuk belajar, berinteraksi, dan bersosialisasi. Oleh karena itu, suasana sekolah yang aman, nyaman, dan saling menghargai sangat membantu siswa dalam menerima dirinya sendiri.</p>
+                            <ul>
                             <p> <strong>Contoh: </strong> Di sebuah sekolah yang menerapkan aturan anti-bullying, siswa diajarkan untuk tidak mengejek fisik teman. Guru memberikan nasihat jika terjadi ejekan, dan teman-teman saling mendukung. Dalam lingkungan seperti ini, siswa akan merasa aman, lebih percaya diri, dan lebih mudah menerima tubuhnya sendiri.</p>
-                            
+                            </ul>
+
                         </div>
                     </div>
                     
@@ -961,12 +1341,346 @@
                 </div>
             </div>
         </div>
-        
-        <!-- ================== PERBAIKAN UNTUK HARI KEDUA ================== -->
+
+        <!-- TAMBAHKAN SETELAH day1-content dan SEBELUM day3-content -->
         <div class="day-content" id="day2">
             <div class="slides-container">
                 <!-- Slide 1 -->
                 <div class="slide active" id="day2-slide1">
+                    <h3 class="slide-header">MATERI Cara Berpikir, Pengaruh Sosial, dan Kemampuan Menilai</h3>
+                    <div class="slide-content">
+                        <div class="highlight">
+                            <h3>1. Pengantar Materi (Apersepsi)</h3>
+                            <p>Setiap siswa memiliki tubuh yang berbeda-beda. Ada yang tinggi, pendek, kurus, berisi, berkulit terang, berkulit gelap, memiliki rambut lurus atau keriting. Semua perbedaan tersebut adalah normal dan merupakan bagian dari keunikan setiap individu.</p>
+                            <p>Namun, pada masa SMP, siswa sedang berada pada masa pertumbuhan dan pencarian jati diri. Pada masa ini, siswa mulai:</p>
+                            <ul>
+                                <li> Lebih sering memperhatikan penampilan </li>
+                                <li> Mudah membandingkan diri dengan orang lain </li>
+                                <li> Mudah terpengaruh komentar dari lingkungan </li>
+                            </ul>
+                            <p>Akibatnya, cara berpikir tentang tubuh sering kali tidak berasal dari diri sendiri, melainkan dari lingkungan sosial seperti teman, media sosial, dan standar yang ada di masyarakat.</p>
+                        </div>
+
+                        <div class="highlight">
+                            <h3>2. Aspek Kognitif dengan Unsur Sosial</h3>
+                            <p> Aspek kognitif berkaitan dengan pikiran, keyakinan, dan penilaian seseorang terhadap tubuhnya sendiri. Pada usia SMP, pikiran ini sangat mudah dipengaruhi oleh lingkungan sosial. </p>
+                            <p><strong> Bentuk-Bentuk Pengaruh Sosial </strong><p>
+                            <p> Beberapa pengaruh sosial yang sering dialami siswa SMP antara lain: </p>
+                            <p><strong>1. Komentar Teman Sebaya : </strong> Komentar dari teman sering dianggap penting karena siswa ingin diterima dalam kelompok.</p>
+                            <ul>
+                                <p><strong> Contoh:</strong> Seorang teman berkata, "Kamu kok makin pendek sih dibanding kita?"</p>
+                                <p>Akibatnya, siswa mulai berpikir: "Aku kurang bagus karena tubuhku tidak seperti mereka."</p>
+                            </ul>
+
+                            <p><strong>2. Candaan atau Ejekan (Body Shaming) : </strong> Candaan sering dianggap hal biasa, tetapi bisa berdampak besar pada pikiran. </p>
+                            <ul>
+                                <p><strong> Contoh:</strong> Seorang teman berkata, “Hidung kamu aneh, beda sendiri.”</p>
+                                <p>Meskipun bercanda, komentar ini dapat membuat siswa tersebut:</p>
+                                <p>• Merasa malu</p>
+                                <p>• Terus memikirkan bagian tubuh tersebut</p>
+                            </ul>
+
+                            <p><strong>3. Perbandingan di Media Sosial : </strong> Media sosial sering menampilkan tubuh yang dianggap “Sempurna”.</p>
+                            <ul>
+                                <p><strong> Contoh:</strong> Siswa melihat konten TikTok atau Instagram dengan caption “Body Goals”.</p>
+                                <p>Pikiran yang muncul: “Kalau tubuhku tidak seperti itu, berarti aku tidak menarik.”</p>
+                            </ul>
+
+                            <p><strong>4. Standar Tubuh di Lingkungan Sekolah dan Masyarakat : </strong> Lingkungan sering memberi pujian pada tipe tubuh tertentu.</p>
+                            <ul>
+                                <p><strong> Contoh:</strong> Siswa yang kurus sering dipuji, sedangkan yang berisi jarang mendapatkan komentar positif. </p>
+                                <p>Pikiran yang terbentuk: “Tubuh tertentu lebih berharga daripada yang lain.”</p>
+                            </ul>
+
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light" disabled>Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day2" data-next="2">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="slide" id="day2-slide2">
+                    <h3 class="slide-header">Aspek Kognitif dengan Unsur Evaluatif</h3>
+                    <div class="slide-content">
+                        <h3>a. Pertanyaan Evaluatif yang Dilatih pada Siswa</h3>
+                        <p>Siswa dilatih untuk bertanya pada diri sendiri:</p>
+                        <ul>
+                            <li> Apakah komentar ini fakta atau hanya pendapat?</li>
+                            <li> Apakah orang yang berkomentar memahami kondisiku?</li>
+                            <li> Apakah komentar ini membantu atau justru menyakiti?</li>
+                        </ul>
+                        
+                        <h3>b. Contoh Kasus Evaluatif Nyata</h3>
+                        <div class="highlight">
+                            <p><strong>Kasus:</strong> Seorang siswa berkata kepada temannya: "Kamu terlalu gemuk untuk anak SMP."</p>
+                            <p><strong>Langkah Evaluasi Kognitif:</strong></p>
+                            <ol>
+                                <li>Tubuh remaja masih dalam masa pertumbuhan</li>
+                                <li>Setiap orang memiliki bentuk tubuh yang berbeda</li>
+                                <li>Komentar tersebut tidak selalu bertujuan baik</li>
+                            </ol>
+                            <p><strong>Kesimpulan Kognitif Sehat:</strong> "Komentar ini tidak menentukan nilai diriku."</p>
+                        </div>
+                        
+                        <h3>c. Contoh Evaluasi Media Sosial</h3>
+                        <div class="highlight">
+                            <p><strong>Situasi:</strong> Siswa melihat foto selebriti dengan tubuh sangat ideal.</p>
+                            <p><strong>Evaluasi Sehat:</strong></p>
+                            <ul>
+                                <li> Banyak foto diedit atau menggunakan filter</li>
+                                <li> Tidak semua orang memiliki kondisi tubuh yang sama</li>
+                                <li> Media sosial bukan gambaran kehidupan nyata</li>
+                            </ul>
+                            <p><strong>Pikiran Baru:</strong> "Aku tidak harus seperti mereka untuk merasa berharga."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="1">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day2" data-next="3">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <!-- GANTI seluruh konten Slide 3 hari kedua (day2-slide3) dengan ini: -->
+                <div class="slide" id="day2-slide3">
+                    <h3 class="slide-header">KUIS ASPEK KOGNITIF</h3>
+                    <div class="slide-content">
+                        <p><strong>Petunjuk:</strong> Pilihlah jawaban yang paling tepat dengan memberi tanda (✔) pada huruf A, B, C, atau D.</p>
+                        
+                        <h3>A. Pilihan Ganda (10 soal)</h3>
+                        <div class="quiz-container" id="day2-quiz">
+                            <!-- Soal 1 -->
+                            <div class="question" data-correct="B">
+                                1. Yang dimaksud dengan body image satisfaction adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="1" data-value="A">A. Keinginan memiliki tubuh seperti artis</div>
+                                <div class="option" data-question="1" data-value="B">B. Perasaan puas dan menerima tubuh sendiri</div>
+                                <div class="option" data-question="1" data-value="C">C. Usaha mengubah tubuh agar dipuji orang lain</div>
+                                <div class="option" data-question="1" data-value="D">D. Penilaian orang lain tentang tubuh kita</div>
+                            </div>
+                            
+                            <!-- Soal 2 -->
+                            <div class="question" data-correct="C">
+                                2. Cara berpikir siswa tentang tubuh sering dipengaruhi oleh lingkungan sosial, seperti …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="2" data-value="A">A. Hobi dan cita-cita</div>
+                                <div class="option" data-question="2" data-value="B">B. Nilai pelajaran</div>
+                                <div class="option" data-question="2" data-value="C">C. Komentar teman dan media sosial</div>
+                                <div class="option" data-question="2" data-value="D">D. Jadwal sekolah</div>
+                            </div>
+                            
+                            <!-- Soal 3 -->
+                            <div class="question" data-correct="B">
+                                3. Contoh pengaruh media sosial terhadap cara berpikir tentang tubuh adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="3" data-value="A">A. Siswa belajar dari video edukasi</div>
+                                <div class="option" data-question="3" data-value="B">B. Siswa membandingkan tubuhnya dengan influencer</div>
+                                <div class="option" data-question="3" data-value="C">C. Siswa mengerjakan tugas daring</div>
+                                <div class="option" data-question="3" data-value="D">D. Siswa bermain game online</div>
+                            </div>
+                            
+                            <!-- Soal 4 -->
+                            <div class="question" data-correct="C">
+                                4. Candaan tentang fisik yang membuat seseorang merasa malu atau rendah diri disebut …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="4" data-value="A">A. Motivasi</div>
+                                <div class="option" data-question="4" data-value="B">B. Pujian</div>
+                                <div class="option" data-question="4" data-value="C">C. Body shaming</div>
+                                <div class="option" data-question="4" data-value="D">D. Kerja sama</div>
+                            </div>
+                            
+                            <!-- Soal 5 -->
+                            <div class="question" data-correct="C">
+                                5. Seorang siswa berpikir, "Tubuhku jelek karena temanku bilang begitu." Pernyataan tersebut menunjukkan bahwa cara berpikir siswa dipengaruhi oleh …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="5" data-value="A">A. Diri sendiri</div>
+                                <div class="option" data-question="5" data-value="B">B. Guru</div>
+                                <div class="option" data-question="5" data-value="C">C. Lingkungan sosial</div>
+                                <div class="option" data-question="5" data-value="D">D. Buku pelajaran</div>
+                            </div>
+                            
+                            <!-- Soal 6 -->
+                            <div class="question" data-correct="C">
+                                6. Sikap kognitif yang tepat saat menerima komentar negatif tentang tubuh adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="6" data-value="A">A. Langsung mempercayainya</div>
+                                <div class="option" data-question="6" data-value="B">B. Marah dan membalas</div>
+                                <div class="option" data-question="6" data-value="C">C. Menilai dan menyaring komentar tersebut</div>
+                                <div class="option" data-question="6" data-value="D">D. Menyalahkan diri sendiri</div>
+                            </div>
+                            
+                            <!-- Soal 7 -->
+                            <div class="question" data-correct="C">
+                                7. Contoh pertanyaan evaluatif yang benar adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="7" data-value="A">A. "Kenapa aku berbeda?"</div>
+                                <div class="option" data-question="7" data-value="B">B. "Apa aku harus seperti dia?"</div>
+                                <div class="option" data-question="7" data-value="C">C. "Apakah komentar ini benar dan membangun?"</div>
+                                <div class="option" data-question="7" data-value="D">D. "Kenapa semua orang melihatku?"</div>
+                            </div>
+                            
+                            <!-- Soal 8 -->
+                            <div class="question" data-correct="C">
+                                8. Pernyataan yang menunjukkan cara berpikir sehat tentang tubuh adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="8" data-value="A">A. "Aku harus mengubah tubuhku agar diterima."</div>
+                                <div class="option" data-question="8" data-value="B">B. "Semua orang harus memiliki tubuh yang sama."</div>
+                                <div class="option" data-question="8" data-value="C">C. "Tubuhku sedang berkembang dan tetap berharga."</div>
+                                <div class="option" data-question="8" data-value="D">D. "Pendapat orang lain adalah yang paling penting."</div>
+                            </div>
+                            
+                            <!-- Soal 9 -->
+                            <div class="question" data-correct="B">
+                                9. Jika seseorang menilai tubuhnya hanya berdasarkan komentar orang lain, maka ia …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="9" data-value="A">A. Berpikir kritis</div>
+                                <div class="option" data-question="9" data-value="B">B. Mudah terpengaruh</div>
+                                <div class="option" data-question="9" data-value="C">C. Percaya diri</div>
+                                <div class="option" data-question="9" data-value="D">D. Bersikap bijak</div>
+                            </div>
+                            
+                            <!-- Soal 10 -->
+                            <div class="question" data-correct="C">
+                                10. Kesimpulan yang tepat tentang aspek kognitif body image satisfaction adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="10" data-value="A">A. Tubuh ideal harus sama untuk semua orang</div>
+                                <div class="option" data-question="10" data-value="B">B. Penampilan menentukan nilai diri</div>
+                                <div class="option" data-question="10" data-value="C">C. Cara berpikir tentang tubuh bisa dilatih agar lebih sehat</div>
+                                <div class="option" data-question="10" data-value="D">D. Komentar teman harus selalu dipercaya</div>
+                            </div>
+                            
+                            <h3 style="margin-top: 30px;">B. Studi Kasus Singkat (2 soal)</h3>
+                            
+                            <!-- Soal 11 -->
+                            <div class="question" data-correct="C">
+                                11. <strong>Kasus:</strong> Rina tidak mau ikut pelajaran olahraga karena takut diejek teman tentang bentuk tubuhnya.<br>
+                                <strong>Pertanyaan:</strong> Apa yang seharusnya Rina lakukan secara kognitif?
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="11" data-value="A">A. Menghindari semua kegiatan sekolah</div>
+                                <div class="option" data-question="11" data-value="B">B. Mempercayai semua ejekan teman</div>
+                                <div class="option" data-question="11" data-value="C">C. Menilai bahwa ejekan tidak menentukan nilai dirinya</div>
+                                <div class="option" data-question="11" data-value="D">D. Membenci tubuhnya sendiri</div>
+                            </div>
+                            
+                            <!-- Soal 12 -->
+                            <div class="question" data-correct="B">
+                                12. <strong>Kasus:</strong> Budi sering membandingkan tubuhnya dengan selebriti di media sosial dan merasa tidak percaya diri.<br>
+                                <strong>Pertanyaan:</strong> Sikap kognitif yang tepat adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="12" data-value="A">A. Terus membandingkan diri</div>
+                                <div class="option" data-question="12" data-value="B">B. Menyadari bahwa media sosial tidak selalu nyata</div>
+                                <div class="option" data-question="12" data-value="C">C. Mengikuti semua tren tubuh ideal</div>
+                                <div class="option" data-question="12" data-value="D">D. Menyalahkan diri sendiri</div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-secondary" id="checkScoreDay2">Lihat Skor & Jawaban Benar</button>
+                        <div class="score-display" id="scoreDay2"></div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="2">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day2" data-next="4">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 4 -->
+                <div class="slide" id="day2-slide4">
+                    <h3 class="slide-header">Diskusi Kasus Nyata dan Refleksi Diri</h3>
+                    <div class="slide-content">
+                        <h3>Aktivitas 2: Diskusi Kasus Nyata</h3>
+                        <div class="highlight">
+                            <p><strong>Kasus:</strong> Ani tidak mau ikut olahraga karena takut diejek teman tentang bentuk tubuhnya.</p>
+                            
+                            <h4>1. Apa yang memengaruhi pikiran Ani?</h4>
+                            <textarea class="form-input" rows="2" placeholder="Tulis jawabanmu di sini..."></textarea>
+                            
+                            <h4>2. Apakah ketakutan Ani berdasarkan fakta?</h4>
+                            <textarea class="form-input" rows="2" placeholder="Tulis jawabanmu di sini..."></textarea>
+                            
+                            <h4>3. Pikiran sehat apa yang bisa membantu Ani?</h4>
+                            <textarea class="form-input" rows="2" placeholder="Tulis jawabanmu di sini..."></textarea>
+                        </div>
+                        
+                        <h3>Aktivitas 3: Refleksi Diri</h3>
+                        <div class="highlight">
+                            <p>Siswa melengkapi kalimat:</p>
+                            
+                            <h4>• "Komentar yang paling sering aku dengar tentang tubuhku adalah ..."</h4>
+                            <textarea class="form-input" rows="2" placeholder="Tulis jawabanmu di sini..."></textarea>
+                            
+                            <h4>• "Komentar tersebut membuatku merasa ..."</h4>
+                            <textarea class="form-input" rows="2" placeholder="Tulis jawabanmu di sini..."></textarea>
+                            
+                            <h4>• "Pikiran baru yang ingin aku latih adalah ..."</h4>
+                            <textarea class="form-input" rows="2" placeholder="Tulis jawabanmu di sini..."></textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="saveReflectionDay2">Simpan Jawaban</button>
+                        <p id="reflectionSavedDay2" style="color: var(--success); margin-top: 10px; display: none;"><i class="fas fa-check-circle"></i> Jawaban telah disimpan!</p>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="3">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day2" data-next="5">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 5 -->
+                <div class="slide" id="day2-slide5">
+                    <h3 class="slide-header">Video Pembelajaran</h3>
+                    <div class="slide-content">
+                        <p>Tontonlah video berikut tentang cara berpikir sehat terhadap tubuh:</p>
+                        
+                        <div class="video-placeholder">
+                            <i class="fab fa-youtube"></i>
+                            <p>[Video tentang Cara Berpikir Sehat terhadap Tubuh]</p>
+                            <p style="font-size: 0.9rem; margin-top: 10px;">Link YouTube akan disediakan oleh guru</p>
+                        </div>
+                        
+                        <h3>EVALUASI VIDEO YANG SUDAH DITONTON</h3>
+                        <p>Tuliskan 3 hal penting yang kamu pelajari dari video tersebut:</p>
+                        <textarea class="form-input" rows="4" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
+                        
+                        <h3 style="margin-top: 30px;">Tugas Google Form</h3>
+                        <p>Silakan kumpulkan jawaban kamu melalui Google Form berikut:</p>
+                        <div class="assignment-links">
+                            <a href="https://forms.google.com" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 2: Cara Berpikir & Pengaruh Sosial
+                            </a>
+                            <p><em>*Link Google Form akan disediakan oleh guru</em></p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="4">Sebelumnya</button>
+                        <button class="btn btn-primary" id="completeDay2">Selesaikan Hari 2</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ================== PERBAIKAN UNTUK HARI KETIGA ================== -->
+        <div class="day-content" id="day3">
+            <div class="slides-container">
+                <!-- Slide 1 -->
+                <div class="slide active" id="day3-slide1">
                     <h3 class="slide-header">MATERI ASPEK AFEKTIF (AFFECTIVE)</h3>
                     <div class="slide-content">
                         <h3>Materi Dampak Emosi Negatif</h3>
@@ -1055,12 +1769,12 @@
                     
                     <div class="slide-navigation">
                         <button class="btn btn-light" disabled>Sebelumnya</button>
-                        <button class="btn btn-primary next-slide" data-day="day2" data-next="2">Selanjutnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day3" data-next="2">Selanjutnya</button>
                     </div>
                 </div>
                 
                 <!-- Slide 2 -->
-                <div class="slide" id="day2-slide2">
+                <div class="slide" id="day3-slide2">
                     <h3 class="slide-header">Refleksi Diri</h3>
                     <div class="slide-content">
                         <p>Isilah kolom berikut dengan jujur sesuai perasaan kamu:</p>
@@ -1076,13 +1790,13 @@
                     </div>
                     
                     <div class="slide-navigation">
-                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="1">Sebelumnya</button>
-                        <button class="btn btn-primary next-slide" data-day="day2" data-next="3">Selanjutnya</button>
+                        <button class="btn btn-light prev-slide" data-day="day3" data-prev="1">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day3" data-next="3">Selanjutnya</button>
                     </div>
                 </div>
                 
                 <!-- Slide 3 -->
-                <div class="slide" id="day2-slide3">
+                <div class="slide" id="day3-slide3">
                     <h3 class="slide-header">Video Refleksi Diri</h3>
                     <div class="slide-content">
                         <p>Tontonlah video berikut tentang pentingnya mencintai diri sendiri:</p>
@@ -1098,13 +1812,13 @@
                     </div>
                     
                     <div class="slide-navigation">
-                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="2">Sebelumnya</button>
-                        <button class="btn btn-primary next-slide" data-day="day2" data-next="4">Selanjutnya</button>
+                        <button class="btn btn-light prev-slide" data-day="day3" data-prev="2">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day3" data-next="4">Selanjutnya</button>
                     </div>
                 </div>
                 
                 <!-- Slide 4 -->
-                <div class="slide" id="day2-slide4">
+                <div class="slide" id="day3-slide4">
                     <h3 class="slide-header">Kuis Pilihan Ganda</h3>
                     <div class="slide-content">
                         <p>Jawablah pertanyaan berikut dengan memilih jawaban yang paling tepat:</p>
@@ -1162,18 +1876,325 @@
                     </div>
                     
                     <div class="slide-navigation">
-                        <button class="btn btn-light prev-slide" data-day="day2" data-prev="3">Sebelumnya</button>
-                        <button class="btn btn-primary" id="completeDay2">Selesaikan Hari 2</button>
+                        <button class="btn btn-light prev-slide" data-day="day3" data-prev="3">Sebelumnya</button>
+                        <button class="btn btn-primary" id="completeDay3">Selesaikan Hari 3</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- ================== PERBAIKAN UNTUK HARI KETIGA ================== -->
-        <div class="day-content" id="day3">
+        <div class="day-content" id="day4">
             <div class="slides-container">
                 <!-- Slide 1 -->
-                <div class="slide active" id="day3-slide1">
+                <!-- ================== HARI KEEMPAT: MATERI (PERASAAN, HUBUNGAN SOSIAL, DAN EVALUASI EMOSI) ================== -->
+                <div class="day-content" id="day4">
+                    <div class="slides-container">
+                        <!-- Slide 1 -->
+                        <div class="slide active" id="day4-slide1">
+                            <h3 class="slide-header">MATERI (Perasaan, Hubungan Sosial, dan Evaluasi Emosi)</h3>
+                            <div class="slide-content">
+                                <h3>1. Pengantar Materi (Apersepsi)</h3>
+                                <div class="highlight">
+                                    <p>Setiap siswa tidak hanya memiliki bentuk tubuh yang berbeda, tetapi juga perasaan yang berbeda terhadap tubuhnya. Ada siswa yang merasa percaya diri, ada yang merasa biasa saja, dan ada pula yang merasa malu atau tidak nyaman.</p>
+                                    <p>Pada masa SMP, perasaan terhadap tubuh sangat mudah berubah karena siswa:</p>
+                                    <ul>
+                                        <li> Ingin diterima oleh teman sebaya </li>
+                                        <li> Mulai peka terhadap komentar orang lain </li>
+                                        <li> Lebih sering membandingkan diri dengan orang lain </li>
+                                    </ul>
+                                    <p>Oleh karena itu, penting bagi siswa untuk memahami perasaannya sendiri, mengetahui apa yang memengaruhi perasaan tersebut, dan belajar mengelola emosi secara sehat.</p>
+                                </div>
+                                
+                                <h3>2. Aspek Afektif dengan Unsur Sosial</h3>
+                                <div class="highlight">
+                                    <p>Aspek afektif berkaitan dengan perasaan dan emosi seseorang terhadap tubuhnya, seperti senang, bangga, malu, cemas, atau minder. Perasaan ini sering muncul karena respon sosial dari lingkungan.</p>
+                                    <h4>Bentuk Pengaruh Sosial terhadap Perasaan</h4>
+                                    <p>Beberapa pengaruh sosial yang sering dialami siswa SMP antara lain:</p>
+                                    
+                                    <p><strong>1. Dukungan Teman Sebaya: </strong> Dukungan dapat menumbuhkan perasaan positif.</p>
+                                    <ul>
+                                        <p><strong>Contoh: </strong> Teman berakata, “Kamu hebat walaupun bentuk tubuhmu berbeda.” </p>
+                                        <p>Perasaan yang Muncul:</p>
+                                        <ul>
+                                            <li>Senang</li>
+                                            <li>Merasa Diterima</li>
+                                            <li>Lebih peracaya diri</li>
+                                        </ul>
+                                    </ul>
+
+                                    <p><strong>2. Ejekan atau Body Shaming: </strong> Ejekan dapat memunculkan perasaan negatif.</p>
+                                    <ul>
+                                        <p><strong>Contoh: </strong> Teman berakata, “Kok badan kamu besar banget?” </p>
+                                        <p>Perasaan yang Muncul:</p>
+                                        <ul>
+                                            <li>Malu</li>
+                                            <li>Sedih</li>
+                                            <li>Minder</li>
+                                        </ul>
+                                    </ul>
+
+                                    <p><strong>3. Penerimaan atau Penolakan Lingkungan: </strong> Sikap lingkungan memengaruhi kenyamanan siswa.</p>
+                                    <ul>
+                                        <p><strong>Contoh: </strong> Siswa tidak diajak bermain karena dianggap “tidak menarik”. </p>
+                                        <p>Perasaan yang Muncul:</p>
+                                        <ul>
+                                            <li>Merasa Tersisihkan</li>
+                                            <li>Tidak berharga</li>
+                                        </ul>
+                                    </ul>
+
+                                    <p><strong>4. Reaksi Orang Lain terhadap Penampilan Fisik: </strong> Ekspresi wajah, tatapan, atau komentar dapat memengaruhi emosi.</p>
+                                    <ul>
+                                        <p><strong>Contoh: </strong> Teman tertawa saat melihat bentuk tubuh seseorang. </p>
+                                        <p>Perasaan yang Muncul:</p>
+                                        <ul>
+                                            <li>Merasa Teidak nyaman</li>
+                                            <li>Ingin menghindar</li>
+                                        </ul>
+                                    </ul>
+                                    
+                                    <p><strong>Penguatah Materi: </strong></p>
+                                    <p>Perasaan terhadap tubuh sering muncul setelah kita menerima respon dari orang lain, bukan semata-mata dari tubuh itu sendiri.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="slide-navigation">
+                                <button class="btn btn-light" disabled>Sebelumnya</button>
+                                <button class="btn btn-primary next-slide" data-day="day4" data-next="2">Selanjutnya</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slide" id="day4-slide2">
+                            <h3 class="slide-header">Aspek Afektif dengan Unsur Evaluatif</h3>
+                            <div class="slide-content">
+                                <div class="highlight">
+                                    <p><strong>(Menyadari dan Menilai Emosi)</strong></p>
+                                    <p>Unsur evaluatif membantu siswa mengenali, memahami, dan menilai perasaan yang muncul, bukan memendam atau menyalahkan diri sendiri.</p>
+                                </div>
+                                
+                                <h3>a. Langkah Evaluasi Emosi untuk Siswa</h3>
+                                <p>Siswa diajak melalui langkah berikut:</p>
+                                
+                                <div class="quiz-container">
+                                    <div class="question">
+                                        1. Menyadari perasaan<br>
+                                        "Apa yang aku rasakan sekarang?"
+                                    </div>
+                                    <textarea class="form-input" rows="3" placeholder="Tuliskan perasaan yang sedang kamu rasakan sekarang..."></textarea>
+                                    
+                                    <div class="question">
+                                        2. Mencari penyebab perasaan<br>
+                                        "Kenapa aku merasa seperti ini?"
+                                    </div>
+                                    <textarea class="form-input" rows="3" placeholder="Tuliskan penyebab dari perasaan yang kamu rasakan..."></textarea>
+                                </div>
+                                
+                                <h3>b. Contoh Evaluasi Emosi Nyata</h3>
+                                <div class="highlight">
+                                    <p><strong>Perasaan:</strong> "Aku malu dengan tubuhku."</p>
+                                    
+                                    <p><strong>Evaluasi Emosi:</strong></p>
+                                    <ul>
+                                        <li>Apakah tubuhku benar-benar bermasalah?</li>
+                                        <li>Ataukah aku takut dinilai orang lain?</li>
+                                        <li>Apakah semua orang memiliki tubuh yang sama?</li>
+                                    </ul>
+                                    
+                                    <p><strong>Respon Afektif Sehat:</strong> "Aku boleh merasa tidak nyaman, tetapi aku tidak perlu membenci tubuhku."</p>
+                                </div>
+                                
+                                <h3>c. Contoh Evaluasi Emosi akibat Media Sosial</h3>
+                                <div class="highlight">
+                                    <p><strong>Situasi:</strong> Siswa merasa sedih setelah melihat foto tubuh ideal di media sosial.</p>
+                                    
+                                    <p><strong>Evaluasi Emosi:</strong></p>
+                                    <ul>
+                                        <li>Foto di media sosial belum tentu nyata</li>
+                                        <li>Tidak adil membandingkan diri dengan orang lain</li>
+                                    </ul>
+                                    
+                                    <p><strong>Perasaan Baru:</strong> "Aku cukup dengan versi diriku sendiri."</p>
+                                </div>
+                                
+                                <button class="btn btn-primary" id="saveEmotionEvaluation">Simpan Evaluasi Emosi</button>
+                                <p id="emotionSaved" style="color: var(--success); margin-top: 10px; display: none;">
+                                    <i class="fas fa-check-circle"></i> Evaluasi emosi telah disimpan!
+                                </p>
+                            </div>
+                            
+                            <div class="slide-navigation">
+                                <button class="btn btn-light prev-slide" data-day="day4" data-prev="1">Sebelumnya</button>
+                                <button class="btn btn-primary next-slide" data-day="day4" data-next="3">Selanjutnya</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slide" id="day4-slide3">
+                            <h3 class="slide-header">Ekspresi Emosi Sosial yang Sehat</h3>
+                            <div class="slide-content">
+                                <div class="highlight">
+                                    <p><strong>(Cara Menyampaikan Perasaan secara Positif)</strong></p>
+                                    <p>Siswa tidak hanya belajar memahami emosi, tetapi juga mengekspresikannya dengan cara yang sehat dan bertanggung jawab.</p>
+                                </div>
+                                
+                                <h3>a. Bentuk Ekspresi Emosi yang Sehat</h3>
+                                
+                                <div class="highlight">
+                                    <h4>1. Berani Bercerita kepada Orang Dewasa yang Dipercaya</h4>
+                                    <p><strong>Contoh:</strong> guru BK, wali kelas, orang tua.</p>
+                                    <p><strong>Contoh Nyata:</strong> "Bu, saya merasa tidak percaya diri karena sering diejek teman."</p>
+                                </div>
+                                
+                                <div class="highlight">
+                                    <h4>2. Menggunakan Bahasa Positif saat Berbicara tentang Diri Sendiri</h4>
+                                    <div class="myth-fact-container">
+                                        <div class="myth">
+                                            <h4><i class="fas fa-times-circle"></i> Contoh Tidak Sehat:</h4>
+                                            <p>"Tubuhku jelek."</p>
+                                        </div>
+                                        
+                                        <div class="fact">
+                                            <h4><i class="fas fa-check-circle"></i> Contoh Sehat:</h4>
+                                            <p>"Tubuhku sedang berkembang dan aku belajar menerimanya."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="highlight">
+                                    <h4>3. Tidak Ikut Mengejek atau Merendahkan Orang Lain</h4>
+                                    <p><strong>Contoh Nyata:</strong> Menolak ikut menertawakan teman yang berbeda.</p>
+                                    <p><strong>Kalimat Positif:</strong> "Jangan begitu, setiap orang punya keunikan."</p>
+                                </div>
+                                
+                                <h3>Latihan: Ubah Kalimat Negatif menjadi Positif</h3>
+                                <div class="quiz-container">
+                                    <div class="question">1. "Aku benci dengan bentuk tubuhku."</div>
+                                    <textarea class="form-input" rows="2" placeholder="Ubah menjadi kalimat positif..."></textarea>
+                                    
+                                    <div class="question">2. "Aku tidak percaya diri karena kulitku gelap."</div>
+                                    <textarea class="form-input" rows="2" placeholder="Ubah menjadi kalimat positif..."></textarea>
+                                    
+                                    <div class="question">3. "Semua orang lebih baik dari aku."</div>
+                                    <textarea class="form-input" rows="2" placeholder="Ubah menjadi kalimat positif..."></textarea>
+                                </div>
+                                
+                                <button class="btn btn-primary" id="savePositiveExpression">Simpan Latihan</button>
+                                <p id="expressionSaved" style="color: var(--success); margin-top: 10px; display: none;">
+                                    <i class="fas fa-check-circle"></i> Latihan ekspresi positif telah disimpan!
+                                </p>
+                            </div>
+                            
+                            <div class="slide-navigation">
+                                <button class="btn btn-light prev-slide" data-day="day4" data-prev="2">Sebelumnya</button>
+                                <button class="btn btn-primary next-slide" data-day="day4" data-next="4">Selanjutnya</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 4 -->
+                        <div class="slide" id="day4-slide4">
+                            <h3 class="slide-header">Aktivitas Pembelajaran di Kelas</h3>
+                            <div class="slide-content">
+                                <h3>Aktivitas 1: Mengenal Emosi</h3>
+                                <div class="highlight">
+                                    <p>Guru menyebutkan beberapa perasaan: <strong>senang, malu, sedih, bangga</strong>.</p>
+                                    
+                                    <h4>Tugas Siswa:</h4>
+                                    
+                                    <div class="question">• Pilih satu perasaan yang pernah dirasakan tentang tubuh</div>
+                                    <div class="options">
+                                        <div class="option" data-question="feelings" data-value="senang">Senang</div>
+                                        <div class="option" data-question="feelings" data-value="malu">Malu</div>
+                                        <div class="option" data-question="feelings" data-value="sedih">Sedih</div>
+                                        <div class="option" data-question="feelings" data-value="bangga">Bangga</div>
+                                    </div>
+                                    
+                                    <div class="question" style="margin-top: 20px;">• Ceritakan penyebabnya secara singkat</div>
+                                    <textarea class="form-input" rows="4" placeholder="Ceritakan mengapa kamu merasa seperti itu..."></textarea>
+                                </div>
+                                
+                                <h3>Aktivitas 2: Studi Kasus Afektif</h3>
+                                <div class="highlight">
+                                    <p><strong>Kasus:</strong> Rani merasa minder saat olahraga karena sering mendapat komentar tentang tubuhnya.</p>
+                                    
+                                    <h4>Diskusi:</h4>
+                                    
+                                    <div class="question">1. Perasaan apa yang dirasakan Rani?</div>
+                                    <textarea class="form-input" rows="2" placeholder="Tuliskan perasaan yang dialami Rani..."></textarea>
+                                    
+                                    <div class="question">2. Apa penyebab perasaan tersebut?</div>
+                                    <textarea class="form-input" rows="2" placeholder="Apa yang menyebabkan Rani merasa seperti itu?..."></textarea>
+                                    
+                                    <div class="question">3. Bagaimana respon afektif yang sehat?</div>
+                                    <textarea class="form-input" rows="2" placeholder="Bagaimana seharusnya Rani merespon perasaannya?..."></textarea>
+                                </div>
+                                
+                                <button class="btn btn-primary" id="saveCaseStudy">Simpan Jawaban Studi Kasus</button>
+                                <p id="caseStudySaved" style="color: var(--success); margin-top: 10px; display: none;">
+                                    <i class="fas fa-check-circle"></i> Jawaban studi kasus telah disimpan!
+                                </p>
+                            </div>
+                            
+                            <div class="slide-navigation">
+                                <button class="btn btn-light prev-slide" data-day="day4" data-prev="3">Sebelumnya</button>
+                                <button class="btn btn-primary next-slide" data-day="day4" data-next="5">Selanjutnya</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 5 -->
+                        <div class="slide" id="day4-slide5">
+                            <h3 class="slide-header">Video Pembelajaran</h3>
+                            <div class="slide-content">
+                                <p>Tontonlah video berikut tentang pentingnya mengenali dan mengekspresikan emosi dengan sehat:</p>
+                                
+                                <div class="video-placeholder">
+                                    <i class="fab fa-youtube"></i>
+                                    <p>[Video tentang Pengelolaan Emosi dan Body Image]</p>
+                                    <p style="font-size: 0.9rem; margin-top: 10px;">Link YouTube akan disediakan oleh guru</p>
+                                </div>
+                                
+                                <h3>Evaluasi Video yang Sudah Ditonton</h3>
+                                <div class="quiz-container">
+                                    <div class="question">1. Apa pesan utama dari video yang kamu tonton?</div>
+                                    <textarea class="form-input" rows="3" placeholder="Tuliskan pesan utama dari video..."></textarea>
+                                    
+                                    <div class="question">2. Sebutkan 2 hal baru yang kamu pelajari dari video tersebut!</div>
+                                    <textarea class="form-input" rows="3" placeholder="Tuliskan 2 hal baru yang kamu pelajari..."></textarea>
+                                    
+                                    <div class="question">3. Bagaimana kamu akan menerapkan pelajaran dari video dalam kehidupan sehari-hari?</div>
+                                    <textarea class="form-input" rows="3" placeholder="Tuliskan cara penerapannya..."></textarea>
+                                </div>
+                                
+                                <h3 style="margin-top: 30px;">Tugas Google Form</h3>
+                                <p>Silakan kumpulkan jawaban kamu melalui Google Form berikut:</p>
+                                <div class="assignment-links">
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjcKCaeGzUcMkm_AjgU8BSP__rqi0Rz7G7JZzeX5IAUdUd5A/viewform?pli=1" target="_blank" class="assignment-link">
+                                        <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 4: Perasaan & Hubungan Sosial
+                                    </a>
+                                    <p><em>*Link Google Form akan disediakan oleh guru</em></p>
+                                </div>
+                                
+                                <button class="btn btn-primary" id="saveVideoEvaluation">Simpan Evaluasi Video</button>
+                                <p id="videoSaved" style="color: var(--success); margin-top: 10px; display: none;">
+                                    <i class="fas fa-check-circle"></i> Evaluasi video telah disimpan!
+                                </p>
+                            </div>
+                            
+                            <div class="slide-navigation">
+                                <button class="btn btn-light prev-slide" data-day="day4" data-prev="4">Sebelumnya</button>
+                                <button class="btn btn-primary" id="completeDay4">Selesaikan Hari 4</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================== PERBAIKAN UNTUK HARI KETIGA ================== -->
+        <div class="day-content" id="day5">
+            <div class="slides-container">
+                <!-- Slide 1 -->
+                <div class="slide active" id="day5-slide1">
                     <h3 class="slide-header">MATERI ASPEK PERILAKU (BEHAVIORAL)</h3>
                     <div class="slide-content">
                         <h3>Pengertian Aspek Perilaku dalam Body Image Satisfaction</h3>
@@ -1247,12 +2268,12 @@
                     
                     <div class="slide-navigation">
                         <button class="btn btn-light" disabled>Sebelumnya</button>
-                        <button class="btn btn-primary next-slide" data-day="day3" data-next="2">Selanjutnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day5" data-next="2">Selanjutnya</button>
                     </div>
                 </div>
                 
                 <!-- Slide 2 -->
-                <div class="slide" id="day3-slide2">
+                <div class="slide" id="day5-slide2">
                     <h3 class="slide-header">Manfaat Memiliki Tubuh yang Sehat</h3>
                     <div class="slide-content">
                         <h3>1. Kepercayaan Diri karena Memiliki Tubuh yang Sehat</h3>
@@ -1280,13 +2301,13 @@
                     </div>
                     
                     <div class="slide-navigation">
-                        <button class="btn btn-light prev-slide" data-day="day3" data-prev="1">Sebelumnya</button>
-                        <button class="btn btn-primary next-slide" data-day="day3" data-next="3">Selanjutnya</button>
+                        <button class="btn btn-light prev-slide" data-day="day5" data-prev="1">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day5" data-next="3">Selanjutnya</button>
                     </div>
                 </div>
                 
                 <!-- Slide 3 -->
-                <div class="slide" id="day3-slide3">
+                <div class="slide" id="day5-slide3">
                     <h3 class="slide-header">Video Gaya Hidup Sehat</h3>
                     <div class="slide-content">
                         <p>Tontonlah video berikut tentang pentingnya gaya hidup sehat untuk remaja:</p>
@@ -1302,13 +2323,13 @@
                     </div>
                     
                     <div class="slide-navigation">
-                        <button class="btn btn-light prev-slide" data-day="day3" data-prev="2">Sebelumnya</button>
-                        <button class="btn btn-primary next-slide" data-day="day3" data-next="4">Selanjutnya</button>
+                        <button class="btn btn-light prev-slide" data-day="day5" data-prev="2">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day5" data-next="4">Selanjutnya</button>
                     </div>
                 </div>
                 
                 <!-- Slide 4 -->
-                <div class="slide" id="day3-slide4">
+                <div class="slide" id="day5-slide4">
                     <h3 class="slide-header">Kuis Pilihan Ganda</h3>
                     <div class="slide-content">
                         <p>Jawablah pertanyaan berikut dengan memilih jawaban yang paling tepat:</p>
@@ -1354,8 +2375,304 @@
                     </div>
                     
                     <div class="slide-navigation">
-                        <button class="btn btn-light prev-slide" data-day="day3" data-prev="3">Sebelumnya</button>
-                        <button class="btn btn-primary" id="completeDay3">Selesaikan Hari 3</button>
+                        <button class="btn btn-light prev-slide" data-day="day5" data-prev="3">Sebelumnya</button>
+                        <button class="btn btn-primary" id="completeDay5">Selesaikan Hari 5</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!-- ================== HARI KEENAM: TINDAKAN NYATA & EVALUASI ================== -->
+        <div class="day-content" id="day6">
+            <div class="slides-container">
+                <!-- Slide 1 -->
+                <div class="slide active" id="day6-slide1">
+                    <h3 class="slide-header">MATERI (Tindakan Nyata, Pengaruh Sosial, dan Evaluasi Perilaku)</h3>
+                    <div class="slide-content">
+                        <div class="highlight">
+                            <h3>1. Pengantar Materi (Apersepsi)</h3>
+                            <p> Selain cara berpikir dan perasaan, cara siswa bertindak terhadap tubuhnya juga sangat penting. Tindakan ini disebut sebagai aspek perilaku. </p>
+                            <p>Pada usia SMP, siswa sering:</p>
+                            <ul>
+                                <li> Meniru perilaku teman </li>
+                                <li> Mengikuti tren tanpa mempertimbangkan dampaknya </li>
+                                <li> Bertindak karena ingin diterima lingkungan </li>
+                            </ul>
+                            <p>Oleh karena itu, siswa perlu belajar memilih perilaku yang sehat, bukan sekadar mengikuti tekanan sosial.</p>
+                        </div>
+
+                        <div class="highlight">
+                            <h3>2. Aspek Perilaku dengan Unsur Sosial</h3>
+                            <p>Aspek perilaku berkaitan dengan tindakan nyata siswa terhadap tubuhnya, yang sering kali muncul sebagai respon terhadap pengaruh sosial.</p>
+                            <h4>Bentuk Perilaku yang Dipengaruhi Sosial</h4>
+                            <p><strong>1. Ikut Diet karena Teman : </strong> Siswa melakukan diet bukan karena alasan kesehatan, tetapi karena ingin memiliki tubuh seperti teman.</p>
+                            <ul>
+                                <p><strong>Contoh: </strong> Seorang siswa mulai mengurangi makan secara berlebihan karena melihat teman-temannya sering membicarakan tubuh kurus di media sosial.</p>
+                                <p>Perilaku yang muncul: </p>
+                                <ul>
+                                    <li>Melewatkan makan</li>
+                                    <li>Takut makan di depan teman</li>
+                                </ul>
+                            </ul>
+
+                            <p><strong>2. Menghindari Olahraga karena Takut Diejek: </strong> Siswa enggan bergerak karena khawatir menjadi bahan ejekan.</p>
+                            <ul>
+                                <p><strong>Contoh: </strong> Siswa tidak mau ikut pelajaran olahraga karena takut dikomentari bentuk tubuhnya.</p>
+                                <p>Dampak yang muncul: </p>
+                                <ul>
+                                    <li>Tubuh kurang bergerak</li>
+                                    <li>Kepercayaan diri menurun</li>
+                                </ul>
+                            </ul>
+
+                            <p><strong>3. Mengikuti Tren Perawatan yang Tidak Sesuai Usia : </strong> Siswa meniru tren tanpa memahami risikonya.</p>
+                            <ul>
+                                <p><strong>Contoh: </strong> Menggunakan produk pelangsing atau skincare dewasa karena ingin cepat terlihat menarik.</p>
+                                <p>Dampak yang muncul: </p>
+                                <ul>
+                                    <li>Diare atau sakit perut</li>
+                                    <li>Iritasi pada kulit</li>
+                                </ul>
+                            </ul>
+
+                            <p><strong>Penguatan Materi: </strong></p>
+                            <p> Perilaku terhadap tubuh sering muncul sebagai respon terhadap tekanan atau tuntutan sosial, bukan karena kebutuhan tubuh yang sebenarnya.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light" disabled>Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day6" data-next="2">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="slide" id="day6-slide2">
+                    <h3 class="slide-header">Aspek Perilaku dengan Unsur Evaluatif dan Perilaku Sosial Positif</h3>
+                    <div class="slide-content">
+                        <div class="highlight">
+                            <p><strong>(Menilai dan Memilih Perilaku yang Sehat)</strong></p>
+                            <p>Unsur evaluatif mengajarkan siswa untuk berpikir sebelum bertindak. Siswa diajak menilai apakah perilaku yang dilakukan aman, sehat, dan sesuai usia.</p>
+                        </div>
+                        
+                        <h3>a. Pertanyaan Evaluatif Perilaku</h3>
+                        <p>Siswa diajak bertanya:</p>
+                        
+                        <div class="quiz-container">
+                            <div class="question">• Apakah perilaku ini aman bagi tubuhku?</div>
+                            <textarea class="form-input" rows="3" placeholder="Tulis jawabanmu di sini..."></textarea>
+                            
+                            <div class="question">• Apakah sesuai dengan usiaku sebagai siswa SMP?</div>
+                            <textarea class="form-input" rows="3" placeholder="Tulis jawabanmu di sini..."></textarea>
+                            
+                            <div class="question">• Apakah ini demi kesehatan atau hanya demi penampilan?</div>
+                            <textarea class="form-input" rows="3" placeholder="Tulis jawabanmu di sini..."></textarea>
+                        </div>
+                        
+                        <h3>b. Contoh Evaluasi Perilaku Nyata</h3>
+                        <div class="highlight">
+                            <p><strong>Perilaku:</strong> Diet ketat</p>
+                            
+                            <p><strong>Evaluasi:</strong></p>
+                            <ul>
+                                <li>Diet ketat dapat mengganggu pertumbuhan</li>
+                                <li>Tidak dianjurkan untuk remaja</li>
+                                <li>Tubuh remaja membutuhkan gizi seimbang</li>
+                            </ul>
+                            
+                            <p><strong>Kesimpulan Perilaku Sehat:</strong> "Aku merawat tubuhku untuk sehat, bukan untuk memenuhi standar orang lain."</p>
+                        </div>
+                        
+                        <div class="highlight">
+                            <p><strong>c. Contoh Evaluasi Perilaku Olahraga</strong></p>
+                            <p><strong>Perilaku:</strong> Menghindari olahraga karena malu</p>
+                            
+                            <p><strong>Evaluasi:</strong></p>
+                            <ul>
+                                <li>Olahraga penting untuk kesehatan</li>
+                                <li>Ejekan tidak menentukan nilai diri</li>
+                                <li>Bisa memilih olahraga yang disukai</li>
+                            </ul>
+                            
+                            <p><strong>Perilaku Sehat:</strong> Tetap berolahraga sesuai kemampuan dan merasa bangga telah menjaga kesehatan.</p>
+                        </div>
+                        
+                        <h3>Perilaku Sosial Positif terhadap Tubuh</h3>
+                        <div class="highlight">
+                            <p><strong>(Tindakan Nyata yang Membangun Lingkungan Sehat)</strong></p>
+                            <p>Siswa tidak hanya belajar menjaga tubuh sendiri, tetapi juga bersikap positif terhadap tubuh orang lain.</p>
+                        </div>
+                        
+                        <h4>1. Tidak Mengejek Tubuh Teman</h4>
+                        <p>Menahan diri dari komentar negatif tentang fisik orang lain.</p>
+                        <p><strong>Contoh Nyata:</strong> Tidak ikut menertawakan teman yang berbeda bentuk tubuh.</p>
+                        
+                        <h4>2. Memberi Dukungan kepada Teman</h4>
+                        <p>Membantu teman merasa diterima.</p>
+                        <p><strong>Contoh Nyata:</strong> "Kamu hebat apa adanya, ayo olahraga bareng."</p>
+                        
+                        <h4>3. Menghargai Perbedaan Tubuh</h4>
+                        <p>Menyadari bahwa setiap tubuh unik.</p>
+                        <p><strong>Contoh Nyata:</strong> Mau bermain dan bekerja sama tanpa memilih-milih teman berdasarkan penampilan.</p>
+                        
+                        <button class="btn btn-primary" id="saveDay6Evaluation" style="margin-top: 20px;">Simpan Jawaban</button>
+                        <p id="day6Saved" style="color: var(--success); margin-top: 10px; display: none;">
+                            <i class="fas fa-check-circle"></i> Jawaban telah disimpan!
+                        </p>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day6" data-prev="1">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day6" data-next="3">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="slide" id="day6-slide3">
+                    <h3 class="slide-header">Video Pembelajaran</h3>
+                    <div class="slide-content">
+                        <p>Tontonlah video berikut tentang pentingnya perilaku sehat dan evaluasi diri:</p>
+                        
+                        <div class="video-placeholder">
+                            <i class="fab fa-youtube"></i>
+                            <p>[Video tentang Perilaku Sehat dan Evaluasi Diri]</p>
+                            <p style="font-size: 0.9rem; margin-top: 10px;">Link YouTube akan disediakan oleh guru</p>
+                        </div>
+                        
+                        <h3>Evaluasi Video yang Sudah Ditonton</h3>
+                        <div class="quiz-container">
+                            <div class="question">1. Apa pesan utama dari video yang kamu tonton?</div>
+                            <textarea class="form-input" rows="3" placeholder="Tuliskan pesan utama dari video..."></textarea>
+                            
+                            <div class="question">2. Sebutkan 2 contoh perilaku sehat yang disebutkan dalam video!</div>
+                            <textarea class="form-input" rows="3" placeholder="Tuliskan 2 contoh perilaku sehat..."></textarea>
+                            
+                            <div class="question">3. Bagaimana kamu akan menerapkan pelajaran dari video dalam kehidupan sehari-hari?</div>
+                            <textarea class="form-input" rows="3" placeholder="Tuliskan cara penerapannya..."></textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="saveVideoDay6">Simpan Evaluasi Video</button>
+                        <p id="videoDay6Saved" style="color: var(--success); margin-top: 10px; display: none;">
+                            <i class="fas fa-check-circle"></i> Evaluasi video telah disimpan!
+                        </p>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day6" data-prev="2">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day6" data-next="4">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 4 - KUIS -->
+                <div class="slide" id="day6-slide4">
+                    <h3 class="slide-header">Kuis: Pilih Perilaku yang Tepat!</h3>
+                    <div class="slide-content">
+                        <p>Pilihlah jawaban yang paling tepat untuk pertanyaan berikut:</p>
+                        
+                        <div class="quiz-container" id="day6-quiz">
+                            <!-- Soal 1 -->
+                            <div class="question" data-correct="C">
+                                1. Andi tidak mau ikut pelajaran olahraga karena takut diejek teman tentang bentuk tubuhnya. Perilaku yang paling sehat untuk Andi adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="1" data-value="A">A. Terus menghindari olahraga</div>
+                                <div class="option" data-question="1" data-value="B">B. Membenci tubuhnya sendiri</div>
+                                <div class="option" data-question="1" data-value="C">C. Tetap berolahraga sesuai kemampuan dan fokus pada kesehatan</div>
+                                <div class="option" data-question="1" data-value="D">D. Mengikuti ejekan teman</div>
+                            </div>
+                            
+                            <!-- Soal 2 -->
+                            <div class="question" data-correct="C">
+                                2. Siswa SMP ingin melakukan diet ketat agar tubuhnya kurus seperti teman-temannya. Sikap yang paling tepat adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="2" data-value="A">A. Mengikuti diet ketat agar cepat kurus</div>
+                                <div class="option" data-question="2" data-value="B">B. Tidak makan sama sekali</div>
+                                <div class="option" data-question="2" data-value="C">C. Memilih pola makan seimbang yang sesuai usia</div>
+                                <div class="option" data-question="2" data-value="D">D. Menggunakan produk pelangsing</div>
+                            </div>
+                            
+                            <!-- Soal 3 -->
+                            <div class="question" data-correct="C">
+                                3. Ketika melihat teman diejek karena bentuk tubuhnya, perilaku sosial yang baik adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="3" data-value="A">A. Ikut menertawakan agar tidak diejek</div>
+                                <div class="option" data-question="3" data-value="B">B. Diam saja dan menjauh</div>
+                                <div class="option" data-question="3" data-value="C">C. Memberi dukungan dan tidak ikut mengejek</div>
+                                <div class="option" data-question="3" data-value="D">D. Menyalahkan teman tersebut</div>
+                            </div>
+                            
+                            <!-- Soal 4 -->
+                            <div class="question" data-correct="B">
+                                4. Seorang siswa SMP sering membandingkan tubuhnya dengan selebriti di media sosial. Perilaku evaluatif yang sehat adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="4" data-value="A">A. Berusaha keras untuk menjadi seperti selebriti</div>
+                                <div class="option" data-question="4" data-value="B">B. Menyadari bahwa setiap tubuh berbeda dan media sosial sering tidak realistis</div>
+                                <div class="option" data-question="4" data-value="C">C. Menutup semua akun media sosial</div>
+                                <div class="option" data-question="4" data-value="D">D. Meminta orang tua membeli semua produk yang diiklankan</div>
+                            </div>
+                            
+                            <!-- Soal 5 -->
+                            <div class="question" data-correct="C">
+                                5. Rani merasa malu dengan bentuk tubuhnya sehingga ia menghindari kegiatan sekolah. Perilaku positif yang dapat dilakukan Rani adalah …
+                            </div>
+                            <div class="options">
+                                <div class="option" data-question="5" data-value="A">A. Mengurung diri di rumah</div>
+                                <div class="option" data-question="5" data-value="B">B. Memakai pakaian yang sangat longgar</div>
+                                <div class="option" data-question="5" data-value="C">C. Berbicara dengan guru BK atau orang tua tentang perasaannya</div>
+                                <div class="option" data-question="5" data-value="D">D. Menyalahkan orang tua karena genetiknya</div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-secondary" id="checkScoreDay6">Lihat Skor & Jawaban Benar</button>
+                        <div class="score-display" id="scoreDay6"></div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day6" data-prev="3">Sebelumnya</button>
+                        <button class="btn btn-primary next-slide" data-day="day6" data-next="5">Selanjutnya</button>
+                    </div>
+                </div>
+                
+                <!-- Slide 5 -->
+                <div class="slide" id="day6-slide5">
+                    <h3 class="slide-header">Tugas dan Refleksi Akhir</h3>
+                    <div class="slide-content">
+                        <h3>Tugas Google Form</h3>
+                        <p>Silakan kumpulkan jawaban kamu melalui Google Form berikut:</p>
+                        <div class="assignment-links">
+                            <a href="https://forms.google.com" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 6: Tindakan Nyata & Evaluasi
+                            </a>
+                            <p><em>*Link Google Form akan disediakan oleh guru</em></p>
+                        </div>
+                        
+                        <div class="highlight" style="margin-top: 30px;">
+                            <h3>Refleksi Diri</h3>
+                            <p>Setelah mempelajari semua materi CERDIK, isilah refleksi berikut:</p>
+                            
+                            <div class="question">1. Apa yang paling berkesan dari materi tentang body image satisfaction?</div>
+                            <textarea class="form-input" rows="3" placeholder="Tuliskan hal yang paling berkesan..."></textarea>
+                            
+                            <div class="question">2. Perilaku apa yang akan kamu ubah setelah belajar materi ini?</div>
+                            <textarea class="form-input" rows="3" placeholder="Tuliskan perilaku yang akan diubah..."></textarea>
+                            
+                            <div class="question">3. Bagaimana kamu akan membantu teman yang merasa tidak puas dengan tubuhnya?</div>
+                            <textarea class="form-input" rows="3" placeholder="Tuliskan cara membantu teman..."></textarea>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 30px; padding: 20px; background-color: var(--primary-light); border-radius: 10px;">
+                            <h3 style="color: var(--primary);">🎉 Selamat! 🎉</h3>
+                            <p>Kamu telah menyelesaikan semua materi CERDIK (Cerminan Diri dan Kepuasan). Teruslah mencintai dan merawat tubuhmu yang unik!</p>
+                            <p style="font-style: italic; margin-top: 10px;">"Tubuhku Unik, Diriku Hebat!"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-navigation">
+                        <button class="btn btn-light prev-slide" data-day="day6" data-prev="4">Sebelumnya</button>
+                        <button class="btn btn-primary" id="completeDay6">Selesaikan Hari 6</button>
                     </div>
                 </div>
             </div>
@@ -1373,24 +2690,39 @@
                         <div class="highlight">
                             <h3>Daftar Tugas yang Harus Dikumpulkan</h3>
                             <ol>
-                                <li><strong>Hari 1:</strong> Tugas Pilihan Ganda Body Image Satisfaction</li>
-                                <li><strong>Hari 2:</strong> Tugas Refleksi Diri dan Kuis Aspek Afektif</li>
-                                <li><strong>Hari 3:</strong> Tugas Video dan Kuis Aspek Perilaku</li>
+                                <li><strong>Hari 1:</strong> Tugas Pertemuan Pertama </li>
+                                <li><strong>Hari 2:</strong> Tugas Pertemuan Kedua </li>
+                                <li><strong>Hari 3:</strong> Tugas Pertemuan Ketiga </li>
+                                <li><strong>Hari 4:</strong> Tugas Pertemuan Keempat </li>
+                                <li><strong>Hari 5:</strong> Tugas Pertemuan Kelima </li>
+                                <li><strong>Hari 6:</strong> Tugas Pertemuan Keenam </li>
                             </ol>
                         </div>
                         
                         <h3>Link Pengumpulan Tugas</h3>
                         <div class="assignment-links">
                             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjcKCaeGzUcMkm_AjgU8BSP__rqi0Rz7G7JZzeX5IAUdUd5A/viewform?pli=1" target="_blank" class="assignment-link">
-                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 1: Body Image Satisfaction
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 1
+                            </a>
+
+                            <a href="https://forms.google.com" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 2
                             </a>
                             
                             <a href="https://docs.google.com/forms/d/e/1FAIpQLSemOr-Y0fktm2vpoQJXIQZmpzT60l9hrJyhHyUkwCD4t5hwcQ/viewform?pli=1" target="_blank" class="assignment-link">
-                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 2: Aspek Afektif Body Image
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 3
+                            </a>
+
+                            <a href="https://forms.google.com" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 4
                             </a>
                             
                             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeheW1oTV4MNxVrIP5MLYVpQwMixseHAsO_7fzJa6bsKf2n2g/viewform?pli=1" target="_blank" class="assignment-link">
-                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 3: Aspek Perilaku Body Image
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 5
+                            </a>
+
+                            <a href="https://forms.google.com" target="_blank" class="assignment-link">
+                                <i class="fab fa-google" style="margin-right: 10px;"></i> Tugas Hari 6
                             </a>
                         </div>
                         
@@ -1426,251 +2758,855 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        // Elements
-        const startBtn = document.getElementById('startBtn');
-        const homepage = document.querySelector('.homepage');
-        const mainContent = document.getElementById('mainContent');
-        const dayTabs = document.querySelectorAll('.day-tab');
-        const dayContents = document.querySelectorAll('.day-content');
-        const nextSlideBtns = document.querySelectorAll('.next-slide');
-        const prevSlideBtns = document.querySelectorAll('.prev-slide');
-        const backToHomeBtn = document.getElementById('backToHome');
-        const checkScoreDay1Btn = document.getElementById('checkScoreDay1');
-        const saveReflectionBtn = document.getElementById('saveReflection');
-        const completeDay1Btn = document.getElementById('completeDay1');
-        const completeDay2Btn = document.getElementById('completeDay2');
-        const completeDay3Btn = document.getElementById('completeDay3');
-        
-        // Start button click event
-        startBtn.addEventListener('click', function() {
-            homepage.style.display = 'none';
-            mainContent.style.display = 'block';
+            // Elements
+            const startBtn = document.getElementById('startBtn');
+            const homepage = document.querySelector('.homepage');
+            const mainContent = document.getElementById('mainContent');
+            const dayTabs = document.querySelectorAll('.day-tab');
+            const dayContents = document.querySelectorAll('.day-content');
+            const nextSlideBtns = document.querySelectorAll('.next-slide');
+            const prevSlideBtns = document.querySelectorAll('.prev-slide');
+            const backToHomeBtn = document.getElementById('backToHome');
+            const checkScoreDay1Btn = document.getElementById('checkScoreDay1');
+            const saveReflectionBtn = document.getElementById('saveReflection');
+            const completeDay1Btn = document.getElementById('completeDay1');
+            const completeDay2Btn = document.getElementById('completeDay2');
+            const completeDay3Btn = document.getElementById('completeDay3');
+            const completeDay4Btn = document.getElementById('completeDay4');
+            const completeDay5Btn = document.getElementById('completeDay5');
+            const completeDay6Btn = document.getElementById('completeDay6');
+            const checkScoreDay2Btn = document.getElementById('checkScoreDay2');
+            const saveReflectionDay2Btn = document.getElementById('saveReflectionDay2');
+            const saveEmotionEvaluationBtn = document.getElementById('saveEmotionEvaluation');
+            const savePositiveExpressionBtn = document.getElementById('savePositiveExpression');
+            const saveCaseStudyBtn = document.getElementById('saveCaseStudy');
+            const saveVideoEvaluationBtn = document.getElementById('saveVideoEvaluation');
             
-            // Show day 1 content by default
-            document.querySelector('.day-content.active').style.display = 'block';
-        });
-        
-        // Day tab click event
-        dayTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const day = this.getAttribute('data-day').trim();
+            // Start button click event
+            startBtn.addEventListener('click', function() {
+                homepage.style.display = 'none';
+                mainContent.style.display = 'block';
                 
-                // Update active tab
-                dayTabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Show selected day content
-                dayContents.forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === day) {
-                        content.classList.add('active');
-                        
-                        // Reset to first slide of the day
-                        const slides = content.querySelectorAll('.slide');
-                        slides.forEach(slide => slide.classList.remove('active'));
-                        slides[0].classList.add('active');
-                    } else {
-                        // Deactivate all slides in inactive days
-                        const slides = content.querySelectorAll('.slide');
-                        slides.forEach(slide => slide.classList.remove('active'));
-                    }
+                // Show day 1 content by default
+                document.querySelector('.day-content.active').style.display = 'block';
+            });
+            
+            // Day tab click event
+            dayTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const day = this.getAttribute('data-day').trim();
+                    
+                    // Update active tab
+                    dayTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show selected day content
+                    dayContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === day) {
+                            content.classList.add('active');
+                            
+                            // Reset to first slide of the day
+                            const slides = content.querySelectorAll('.slide');
+                            slides.forEach(slide => slide.classList.remove('active'));
+                            slides[0].classList.add('active');
+                        } else {
+                            // Deactivate all slides in inactive days
+                            const slides = content.querySelectorAll('.slide');
+                            slides.forEach(slide => slide.classList.remove('active'));
+                        }
+                    });
                 });
             });
-        });
-        
-        // Next slide button click event
-        nextSlideBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const day = this.getAttribute('data-day').trim();
-                const nextSlideNum = this.getAttribute('data-next').trim();
-                const dayContent = document.getElementById(day);
-                
-                // Hide current slide
-                const currentSlide = dayContent.querySelector('.slide.active');
-                currentSlide.classList.remove('active');
-                
-                // Show next slide
-                const nextSlide = document.getElementById(`${day}-slide${nextSlideNum}`);
-                nextSlide.classList.add('active');
-            });
-        });
-        
-        // Previous slide button click event
-        prevSlideBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const day = this.getAttribute('data-day').trim();
-                const prevSlideNum = this.getAttribute('data-prev').trim();
-                const dayContent = document.getElementById(day);
-                
-                // Hide current slide
-                const currentSlide = dayContent.querySelector('.slide.active');
-                currentSlide.classList.remove('active');
-                
-                // Show previous slide
-                const prevSlide = document.getElementById(`${day}-slide${prevSlideNum}`);
-                prevSlide.classList.add('active');
-            });
-        });
-        
-        // Back to home button
-        backToHomeBtn.addEventListener('click', function() {
-            mainContent.style.display = 'none';
-            homepage.style.display = 'flex';
-        });
-        
-        // Quiz functionality for Day 1
-        const quizOptions = document.querySelectorAll('.option');
-        quizOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                // Remove selected class from all options in the same question
-                const questionNum = this.getAttribute('data-question');
-                const allOptions = document.querySelectorAll(`.option[data-question="${questionNum}"]`);
-                allOptions.forEach(opt => opt.classList.remove('selected'));
-                
-                // Add selected class to clicked option
-                this.classList.add('selected');
-            });
-        });
-        
-        // Check score for Day 1 quiz
-        // Check score for Day 1 quiz - ALTERNATIF untuk 5 pertanyaan dengan skor 0-100
-        checkScoreDay1Btn.addEventListener('click', function() {
-            const questions = document.querySelectorAll('.quiz-container .question');
-            let score = 0;
-            let total = 0;
             
-            questions.forEach(question => {
-                const correctAnswer = question.getAttribute('data-answer');
-                if (correctAnswer) {
-                    total++;
-                    const questionNum = question.textContent.split('.')[0].trim();
-                    const selectedOption = document.querySelector(`.option.selected[data-question="${questionNum}"]`);
+            // Next slide button click event
+            nextSlideBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const day = this.getAttribute('data-day').trim();
+                    const nextSlideNum = this.getAttribute('data-next').trim();
+                    const dayContent = document.getElementById(day);
                     
-                    if (selectedOption && selectedOption.getAttribute('data-value') === correctAnswer) {
-                        score++;
-                    }
+                    // Hide current slide
+                    const currentSlide = dayContent.querySelector('.slide.active');
+                    currentSlide.classList.remove('active');
+                    
+                    // Show next slide
+                    const nextSlide = document.getElementById(`${day}-slide${nextSlideNum}`);
+                    nextSlide.classList.add('active');
+                });
+            });
+            
+            // Previous slide button click event
+            prevSlideBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const day = this.getAttribute('data-day').trim();
+                    const prevSlideNum = this.getAttribute('data-prev').trim();
+                    const dayContent = document.getElementById(day);
+                    
+                    // Hide current slide
+                    const currentSlide = dayContent.querySelector('.slide.active');
+                    currentSlide.classList.remove('active');
+                    
+                    // Show previous slide
+                    const prevSlide = document.getElementById(`${day}-slide${prevSlideNum}`);
+                    prevSlide.classList.add('active');
+                });
+            });
+            
+            // Back to home button
+            backToHomeBtn.addEventListener('click', function() {
+                mainContent.style.display = 'none';
+                homepage.style.display = 'flex';
+            });
+            
+            // ================== KUIS HARI PERTAMA ==================
+            
+            // Event listener untuk klik opsi di kuis hari pertama
+            document.addEventListener('click', function(e) {
+                // Untuk kuis mitos/fakta hari pertama (slide 5)
+                if (e.target.classList.contains('option') && e.target.closest('#day1-slide5 .quiz-container')) {
+                    const questionNum = e.target.getAttribute('data-question');
+                    const allOptions = document.querySelectorAll(`#day1-slide5 .option[data-question="${questionNum}"]`);
+                    
+                    // Hapus selected dari semua opsi pertanyaan ini
+                    allOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Tambahkan selected ke opsi yang diklik
+                    e.target.classList.add('selected');
+                }
+                
+                // Untuk kuis pilihan ganda hari pertama (slide 6)
+                if (e.target.classList.contains('option') && e.target.closest('#day1-slide6 .quiz-container')) {
+                    const questionNum = e.target.getAttribute('data-question');
+                    const allOptions = document.querySelectorAll(`#day1-slide6 .option[data-question="${questionNum}"]`);
+                    
+                    // Hapus selected dari semua opsi pertanyaan ini
+                    allOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Tambahkan selected ke opsi yang diklik
+                    e.target.classList.add('selected');
                 }
             });
             
-            // Hitung skor dalam rentang 0-100 (skor * 20 karena 5 pertanyaan)
-            const scaledScore = score * 12.5; // Setiap soal bernilai 20 poin
+            // Check score for Day 1 quiz - MITOS/FAKTA (8 soal)
+            checkScoreDay1Btn.addEventListener('click', function() {
+                const quizContainer = document.querySelector('#day1-slide5 .quiz-container');
+                if (!quizContainer) return;
+                
+                const questions = quizContainer.querySelectorAll('.question');
+                let score = 0;
+                let total = 0;
+                let allAnswered = true;
+                
+                // Reset tampilan sebelumnya
+                const allOptions = quizContainer.querySelectorAll('.option');
+                allOptions.forEach(opt => {
+                    opt.classList.remove('correct-answer', 'wrong-answer');
+                });
+                
+                // Array untuk menyimpan hasil per soal
+                const results = [];
+                
+                // Cek setiap soal mitos/fakta
+                questions.forEach((question, index) => {
+                    const questionNum = index + 1;
+                    const correctAnswer = question.getAttribute('data-answer'); // "mitos" atau "fakta"
+                    const selectedOption = quizContainer.querySelector(`.option.selected[data-question="${questionNum}"]`);
+                    
+                    if (correctAnswer) {
+                        total++;
+                        
+                        // Jika tidak ada jawaban yang dipilih
+                        if (!selectedOption) {
+                            allAnswered = false;
+                            results.push({
+                                question: questionNum,
+                                correct: correctAnswer,
+                                selected: null,
+                                isCorrect: false
+                            });
+                            return;
+                        }
+                        
+                        const selectedValue = selectedOption.getAttribute('data-value');
+                        const isCorrect = selectedValue === correctAnswer;
+                        
+                        if (isCorrect) {
+                            score++;
+                        }
+                        
+                        // Tandai jawaban yang benar
+                        const correctOption = quizContainer.querySelector(`.option[data-question="${questionNum}"][data-value="${correctAnswer}"]`);
+                        if (correctOption) {
+                            correctOption.classList.add('correct-answer');
+                        }
+                        
+                        // Tandai jawaban yang salah jika dipilih
+                        if (!isCorrect) {
+                            selectedOption.classList.add('wrong-answer');
+                        }
+                        
+                        results.push({
+                            question: questionNum,
+                            correct: correctAnswer,
+                            selected: selectedValue,
+                            isCorrect: isCorrect
+                        });
+                    }
+                });
+                
+                // Tampilkan hasil
+                const scoreDisplay = document.getElementById('scoreDay1');
+                if (!scoreDisplay) return;
+                
+                // Hitung persentase
+                const percentage = Math.round((score / total) * 100);
+                
+                // Buat tampilan hasil
+                let resultHTML = `
+                    <h3>Hasil Kuis Mitos/Fakta</h3>
+                    <div class="score-progress-container">
+                        <div class="score-progress-bar" style="width: ${percentage}%">${percentage}%</div>
+                    </div>
+                    <p><strong>${score} dari ${total} soal benar</strong></p>
+                `;
+                
+                // Tampilkan pesan berdasarkan skor
+                let message = '';
+                if (percentage === 100) {
+                    message = '🎉 LUAR BIASA! Semua jawaban benar!';
+                } else if (percentage >= 80) {
+                    message = '👍 HEBAT! Pemahaman kamu sangat baik.';
+                } else if (percentage >= 60) {
+                    message = '😊 BAGUS! Kamu sudah memahami materi.';
+                } else if (percentage >= 40) {
+                    message = '📚 CUKUP! Review materi untuk meningkatkan pemahaman.';
+                } else {
+                    message = '💪 JANGAN MENYERAH! Pelajari kembali materi.';
+                }
+                
+                resultHTML += `<div class="answer-feedback correct-feedback">${message}</div>`;
+                
+                // Tampilkan breakdown per soal
+                resultHTML += `
+                    <div class="score-breakdown">
+                        <h4>Detail Jawaban:</h4>
+                        <div style="max-height: 200px; overflow-y: auto;">
+                `;
+                
+                results.forEach(result => {
+                    const status = result.selected ? 
+                        (result.isCorrect ? '✅ Benar' : '❌ Salah') : 
+                        '⚠️ Tidak dijawab';
+                    const correctText = result.selected ? 
+                        `Jawaban kamu: ${result.selected}` : 
+                        'Belum menjawab';
+                    
+                    resultHTML += `
+                        <div class="score-item">
+                            <span>Soal ${result.question}: ${status}</span>
+                            <small>${correctText}</small>
+                        </div>
+                    `;
+                });
+                
+                resultHTML += `
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #6c757d;">
+                            <strong>Keterangan:</strong> Warna hijau = jawaban benar, warna merah = jawaban salah
+                        </p>
+                    </div>
+                `;
+                
+                // Tampilkan alert jika belum semua dijawab
+                if (!allAnswered) {
+                    resultHTML = `
+                        <div style="text-align: center; padding: 20px;">
+                            <h3>⚠️ Perhatian</h3>
+                            <p>Kamu belum menjawab semua soal. Skor sementara:</p>
+                            ${resultHTML}
+                            <p style="color: #dc3545; margin-top: 15px;">
+                                <i class="fas fa-exclamation-triangle"></i> 
+                                Lengkapi semua jawaban untuk mendapatkan skor maksimal!
+                            </p>
+                        </div>
+                    `;
+                }
+                
+                scoreDisplay.innerHTML = resultHTML;
+                scoreDisplay.style.display = 'block';
+                
+                // Scroll ke hasil
+                scoreDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
             
-            const scoreDisplay = document.getElementById('scoreDay1');
-            scoreDisplay.innerHTML = `
-                <h3>Hasil Kuis Kamu</h3>
-                <p>Jawaban benar: <strong>${score} dari ${total}</strong></p>
-                <p>Skor: <strong>${scaledScore}/100</strong></p>
-            `;
+            // ================== KUIS HARI KEDUA ==================
             
-            scoreDisplay.style.display = 'block';
+            // Event listener untuk klik opsi di kuis hari kedua
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('option') && e.target.closest('#day2-quiz')) {
+                    const questionNum = e.target.getAttribute('data-question');
+                    const allOptions = document.querySelectorAll(`#day2-quiz .option[data-question="${questionNum}"]`);
+                    
+                    // Hapus selected dari semua opsi pertanyaan ini
+                    allOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Tambahkan selected ke opsi yang diklik
+                    e.target.classList.add('selected');
+                }
+            });
             
-            // Pesan motivasi berdasarkan skor
-            let message = '';
-            if (scaledScore === 100) {
-                message = '🎉 SEMPURNA! Kamu menguasai materi dengan baik.';
-            } else if (scaledScore >= 80) {
-                message = '👍 HEBAT! Pemahaman kamu sangat baik.';
-            } else if (scaledScore >= 60) {
-                message = '😊 BAGUS! Kamu sudah paham materi.';
-            } else {
-                message = '📚 COBA LAGI! Review materi dan coba lagi.';
+            // Fungsi untuk mengecek skor kuis hari 2
+            document.getElementById('checkScoreDay2').addEventListener('click', function() {
+                checkQuizScore('day2', 12); // 12 soal total
+            });
+            
+            // Fungsi umum untuk mengecek kuis (digunakan untuk hari 2 dan lainnya)
+            function checkQuizScore(day, totalQuestions) {
+                const quizContainer = document.getElementById(`${day}-quiz`);
+                if (!quizContainer) return;
+                
+                const questions = quizContainer.querySelectorAll('.question');
+                let score = 0;
+                let allAnswered = true;
+                
+                // Reset tampilan jawaban sebelumnya
+                const allOptions = quizContainer.querySelectorAll('.option');
+                allOptions.forEach(opt => {
+                    opt.classList.remove('correct-answer', 'wrong-answer');
+                });
+                
+                // Array untuk menyimpan hasil per soal
+                const results = [];
+                
+                // Cek setiap soal
+                questions.forEach((question, index) => {
+                    const questionNum = index + 1;
+                    const correctAnswer = question.getAttribute('data-correct');
+                    const selectedOption = quizContainer.querySelector(`.option.selected[data-question="${questionNum}"]`);
+                    
+                    // Jika tidak ada jawaban yang dipilih
+                    if (!selectedOption) {
+                        allAnswered = false;
+                        results.push({
+                            question: questionNum,
+                            correct: correctAnswer,
+                            selected: null,
+                            isCorrect: false
+                        });
+                        return;
+                    }
+                    
+                    const selectedValue = selectedOption.getAttribute('data-value');
+                    const isCorrect = selectedValue === correctAnswer;
+                    
+                    if (isCorrect) {
+                        score++;
+                    }
+                    
+                    // Tandai jawaban yang benar
+                    const correctOption = quizContainer.querySelector(`.option[data-question="${questionNum}"][data-value="${correctAnswer}"]`);
+                    if (correctOption) {
+                        correctOption.classList.add('correct-answer');
+                    }
+                    
+                    // Tandai jawaban yang salah jika dipilih
+                    if (!isCorrect) {
+                        selectedOption.classList.add('wrong-answer');
+                    }
+                    
+                    results.push({
+                        question: questionNum,
+                        correct: correctAnswer,
+                        selected: selectedValue,
+                        isCorrect: isCorrect
+                    });
+                });
+                
+                // Tampilkan hasil
+                const scoreDisplay = document.getElementById(`score${day.charAt(0).toUpperCase() + day.slice(1)}`);
+                if (!scoreDisplay) return;
+                
+                // Hitung persentase
+                const percentage = Math.round((score / totalQuestions) * 100);
+                
+                // Buat tampilan hasil
+                let resultHTML = `
+                    <h3>Hasil Kuis Kamu</h3>
+                    <div class="score-progress-container">
+                        <div class="score-progress-bar" style="width: ${percentage}%">${percentage}%</div>
+                    </div>
+                    <p><strong>${score} dari ${totalQuestions} soal benar</strong></p>
+                `;
+                
+                // Tampilkan pesan berdasarkan skor
+                let message = '';
+                if (percentage === 100) {
+                    message = '🎉 LUAR BIASA! Semua jawaban benar!';
+                } else if (percentage >= 80) {
+                    message = '👍 HEBAT! Pemahaman kamu sangat baik.';
+                } else if (percentage >= 60) {
+                    message = '😊 BAGUS! Kamu sudah memahami materi.';
+                } else if (percentage >= 40) {
+                    message = '📚 CUKUP! Review materi untuk meningkatkan pemahaman.';
+                } else {
+                    message = '💪 JANGAN MENYERAH! Pelajari kembali materi.';
+                }
+                
+                resultHTML += `<div class="answer-feedback correct-feedback">${message}</div>`;
+                
+                // Tampilkan breakdown per soal
+                resultHTML += `
+                    <div class="score-breakdown">
+                        <h4>Detail Jawaban:</h4>
+                        <div style="max-height: 200px; overflow-y: auto;">
+                `;
+                
+                results.forEach(result => {
+                    const status = result.selected ? 
+                        (result.isCorrect ? '✅ Benar' : '❌ Salah') : 
+                        '⚠️ Tidak dijawab';
+                    const correctText = result.selected ? 
+                        `Jawaban kamu: ${result.selected}` : 
+                        'Belum menjawab';
+                    
+                    resultHTML += `
+                        <div class="score-item">
+                            <span>Soal ${result.question}: ${status}</span>
+                            <small>${correctText}</small>
+                        </div>
+                    `;
+                });
+                
+                resultHTML += `
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #6c757d;">
+                            <strong>Keterangan:</strong> Warna hijau = jawaban benar, warna merah = jawaban salah
+                        </p>
+                    </div>
+                `;
+                
+                // Tampilkan alert jika belum semua dijawab
+                if (!allAnswered) {
+                    resultHTML = `
+                        <div style="text-align: center; padding: 20px;">
+                            <h3>⚠️ Perhatian</h3>
+                            <p>Kamu belum menjawab semua soal. Skor sementara:</p>
+                            ${resultHTML}
+                            <p style="color: #dc3545; margin-top: 15px;">
+                                <i class="fas fa-exclamation-triangle"></i> 
+                                Lengkapi semua jawaban untuk mendapatkan skor maksimal!
+                            </p>
+                        </div>
+                    `;
+                }
+                
+                scoreDisplay.innerHTML = resultHTML;
+                scoreDisplay.style.display = 'block';
+                
+                // Scroll ke hasil
+                scoreDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
             
-            scoreDisplay.innerHTML += `<div style="margin-top: 15px; font-weight: bold;">${message}</div>`;
-        });
-        
-        // Save reflection for Day 2
-        saveReflectionBtn.addEventListener('click', function() {
-            const reflectionSaved = document.getElementById('reflectionSaved');
-            reflectionSaved.style.display = 'block';
+            // ================== FUNGSI LAINNYA ==================
             
-            // Hide message after 3 seconds
-            setTimeout(() => {
-                reflectionSaved.style.display = 'none';
-            }, 3000);
-        });
-        
-        // Complete day buttons
-        completeDay1Btn.addEventListener('click', function() {
-            alert('Selamat! Kamu telah menyelesaikan materi Hari 1. Lanjut ke Hari 2 untuk mempelajari Aspek Afektif.');
-            document.querySelector('.day-tab[data-day="day2"]').click();
-        });
-        
-        completeDay2Btn.addEventListener('click', function() {
-            alert('Selamat! Kamu telah menyelesaikan materi Hari 2. Lanjut ke Hari 3 untuk mempelajari Aspek Perilaku.');
-            document.querySelector('.day-tab[data-day="day3"]').click();
-        });
-        
-        completeDay3Btn.addEventListener('click', function() {
-            alert('Selamat! Kamu telah menyelesaikan semua materi CERDIK. Sekarang kumpulkan tugas kamu di halaman Pengumpulan Tugas.');
-            document.querySelector('.day-tab[data-day="assignment"]').click();
-        });
-        
-        // Create decorative elements
-        function createDecorativeElements() {
-            const homepageEl = document.querySelector('.homepage');
+            // Save reflection for Day 2 (lama)
+            saveReflectionBtn.addEventListener('click', function() {
+                const reflectionSaved = document.getElementById('reflectionSaved');
+                reflectionSaved.style.display = 'block';
+                
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    reflectionSaved.style.display = 'none';
+                }, 3000);
+            });
             
-            // Create more clouds
-            for (let i = 0; i < 5; i++) {
-                const cloud = document.createElement('div');
-                cloud.className = 'cloud';
+            // TAMBAHKAN fungsi untuk simpan refleksi hari 2
+            saveReflectionDay2Btn.addEventListener('click', function() {
+                const reflectionSaved = document.getElementById('reflectionSavedDay2');
+                reflectionSaved.style.display = 'block';
+                setTimeout(() => {
+                    reflectionSaved.style.display = 'none';
+                }, 3000);
+            });
+            
+            // Complete day buttons
+            completeDay1Btn.addEventListener('click', function() {
+                alert('Selamat! Kamu telah menyelesaikan materi Hari 1. Lanjut ke Hari 2.');
+                document.querySelector('.day-tab[data-day="day2"]').click();
+            });
+
+            // UBAH event listener untuk completeDay2Btn
+            completeDay2Btn.addEventListener('click', function() {
+                // Cek apakah sudah mengerjakan kuis
+                const quizContainer = document.getElementById('day2-quiz');
+                const selectedOptions = quizContainer.querySelectorAll('.option.selected');
                 
-                // Random size and position
-                const size = Math.random() * 60 + 40;
-                cloud.style.width = `${size}px`;
-                cloud.style.height = `${size/3}px`;
-                cloud.style.top = `${Math.random() * 80 + 10}%`;
-                cloud.style.left = `${Math.random() * 100}%`;
+                if (selectedOptions.length < 12) {
+                    const confirmMove = confirm('Kamu belum menyelesaikan semua soal kuis. Apakah yakin ingin lanjut ke hari berikutnya?');
+                    if (!confirmMove) return;
+                }
                 
-                // Random animation
-                const duration = Math.random() * 30 + 20;
-                cloud.style.animation = `float ${duration}s infinite linear ${Math.random() * 5}s`;
+                alert('Selamat! Kamu telah menyelesaikan materi Hari 2. Lanjut ke Hari 3 untuk mempelajari Aspek Afektif.');
+                document.querySelector('.day-tab[data-day="day3"]').click();
+            });
+
+            saveEmotionEvaluationBtn.addEventListener('click', function() {
+                const emotionSaved = document.getElementById('emotionSaved');
+                emotionSaved.style.display = 'block';
                 
-                homepageEl.appendChild(cloud);
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    emotionSaved.style.display = 'none';
+                }, 3000);
+            });
+
+            // Event listener untuk tombol simpan latihan ekspresi positif
+            savePositiveExpressionBtn.addEventListener('click', function() {
+                const expressionSaved = document.getElementById('expressionSaved');
+                expressionSaved.style.display = 'block';
+                
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    expressionSaved.style.display = 'none';
+                }, 3000);
+            });
+
+            // Event listener untuk tombol simpan studi kasus
+            saveCaseStudyBtn.addEventListener('click', function() {
+                const caseStudySaved = document.getElementById('caseStudySaved');
+                caseStudySaved.style.display = 'block';
+                
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    caseStudySaved.style.display = 'none';
+                }, 3000);
+            });
+
+            // Event listener untuk tombol simpan evaluasi video
+            saveVideoEvaluationBtn.addEventListener('click', function() {
+                const videoSaved = document.getElementById('videoSaved');
+                videoSaved.style.display = 'block';
+                
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    videoSaved.style.display = 'none';
+                }, 3000);
+            });
+
+            // Event listener untuk opsi perasaan di Aktivitas 1
+            document.addEventListener('click', function(e) {
+                // Untuk aktivitas mengenal emosi (slide 4)
+                if (e.target.classList.contains('option') && e.target.closest('#day4-slide4 .highlight')) {
+                    const questionNum = e.target.getAttribute('data-question');
+                    const allOptions = document.querySelectorAll(`#day4-slide4 .option[data-question="${questionNum}"]`);
+                    
+                    // Hapus selected dari semua opsi pertanyaan ini
+                    allOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Tambahkan selected ke opsi yang diklik
+                    e.target.classList.add('selected');
+                }
+            });
+
+            // Event listener untuk tombol selesaikan hari 4
+            completeDay4Btn.addEventListener('click', function() {
+                // Cek apakah sudah mengisi semua aktivitas (optional)
+                const textareas = document.querySelectorAll('#day4 textarea');
+                let allFilled = true;
+                
+                textareas.forEach(textarea => {
+                    if (textarea.value.trim() === '') {
+                        allFilled = false;
+                    }
+                });
+                
+                if (!allFilled) {
+                    const confirmMove = confirm('Kamu belum mengisi semua aktivitas. Apakah yakin ingin lanjut ke hari berikutnya?');
+                    if (!confirmMove) return;
+                }
+                
+                alert('Selamat! Kamu telah menyelesaikan materi Hari 4. Lanjut ke Hari 5 untuk mempelajari Aspek Perilaku.');
+                document.querySelector('.day-tab[data-day="day5"]').click();
+            });
+
+                        // ================== FUNGSI UNTUK HARI KEENAM ==================
+            
+            // Event listener untuk klik opsi di kuis hari keenam
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('option') && e.target.closest('#day6-quiz')) {
+                    const questionNum = e.target.getAttribute('data-question');
+                    const allOptions = document.querySelectorAll(`#day6-quiz .option[data-question="${questionNum}"]`);
+                    
+                    // Hapus selected dari semua opsi pertanyaan ini
+                    allOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Tambahkan selected ke opsi yang diklik
+                    e.target.classList.add('selected');
+                }
+            });
+            
+            // Fungsi untuk mengecek skor kuis hari 6
+            document.getElementById('checkScoreDay6').addEventListener('click', function() {
+                checkQuizScoreDay6('day6', 5); // 5 soal total
+            });
+            
+            // Fungsi khusus untuk kuis hari 6
+            function checkQuizScoreDay6(day, totalQuestions) {
+                const quizContainer = document.getElementById(`${day}-quiz`);
+                if (!quizContainer) return;
+                
+                const questions = quizContainer.querySelectorAll('.question');
+                let score = 0;
+                let allAnswered = true;
+                
+                // Reset tampilan jawaban sebelumnya
+                const allOptions = quizContainer.querySelectorAll('.option');
+                allOptions.forEach(opt => {
+                    opt.classList.remove('correct-answer', 'wrong-answer');
+                });
+                
+                // Array untuk menyimpan hasil per soal
+                const results = [];
+                
+                // Cek setiap soal
+                questions.forEach((question, index) => {
+                    const questionNum = index + 1;
+                    const correctAnswer = question.getAttribute('data-correct');
+                    const selectedOption = quizContainer.querySelector(`.option.selected[data-question="${questionNum}"]`);
+                    
+                    // Jika tidak ada jawaban yang dipilih
+                    if (!selectedOption) {
+                        allAnswered = false;
+                        results.push({
+                            question: questionNum,
+                            correct: correctAnswer,
+                            selected: null,
+                            isCorrect: false
+                        });
+                        return;
+                    }
+                    
+                    const selectedValue = selectedOption.getAttribute('data-value');
+                    const isCorrect = selectedValue === correctAnswer;
+                    
+                    if (isCorrect) {
+                        score++;
+                    }
+                    
+                    // Tandai jawaban yang benar
+                    const correctOption = quizContainer.querySelector(`.option[data-question="${questionNum}"][data-value="${correctAnswer}"]`);
+                    if (correctOption) {
+                        correctOption.classList.add('correct-answer');
+                    }
+                    
+                    // Tandai jawaban yang salah jika dipilih
+                    if (!isCorrect) {
+                        selectedOption.classList.add('wrong-answer');
+                    }
+                    
+                    results.push({
+                        question: questionNum,
+                        correct: correctAnswer,
+                        selected: selectedValue,
+                        isCorrect: isCorrect
+                    });
+                });
+                
+                // Tampilkan hasil
+                const scoreDisplay = document.getElementById(`score${day.charAt(0).toUpperCase() + day.slice(1)}`);
+                if (!scoreDisplay) return;
+                
+                // Hitung persentase
+                const percentage = Math.round((score / totalQuestions) * 100);
+                
+                // Buat tampilan hasil
+                let resultHTML = `
+                    <h3>Hasil Kuis Hari 6</h3>
+                    <div class="score-progress-container">
+                        <div class="score-progress-bar" style="width: ${percentage}%">${percentage}%</div>
+                    </div>
+                    <p><strong>${score} dari ${totalQuestions} soal benar</strong></p>
+                `;
+                
+                // Tampilkan pesan berdasarkan skor
+                let message = '';
+                if (percentage === 100) {
+                    message = '🎉 LUAR BIASA! Semua jawaban benar! Kamu paham betul tentang perilaku sehat.';
+                } else if (percentage >= 80) {
+                    message = '👍 HEBAT! Pemahaman kamu tentang perilaku sehat sangat baik.';
+                } else if (percentage >= 60) {
+                    message = '😊 BAGUS! Kamu sudah memahami materi perilaku sehat.';
+                } else if (percentage >= 40) {
+                    message = '📚 CUKUP! Review materi untuk meningkatkan pemahaman.';
+                } else {
+                    message = '💪 JANGAN MENYERAH! Pelajari kembali materi tentang perilaku sehat.';
+                }
+                
+                resultHTML += `<div class="answer-feedback correct-feedback">${message}</div>`;
+                
+                // Tampilkan breakdown per soal
+                resultHTML += `
+                    <div class="score-breakdown">
+                        <h4>Detail Jawaban:</h4>
+                        <div style="max-height: 200px; overflow-y: auto;">
+                `;
+                
+                results.forEach(result => {
+                    const status = result.selected ? 
+                        (result.isCorrect ? '✅ Benar' : '❌ Salah') : 
+                        '⚠️ Tidak dijawab';
+                    const correctText = result.selected ? 
+                        `Jawaban kamu: ${result.selected}` : 
+                        'Belum menjawab';
+                    
+                    resultHTML += `
+                        <div class="score-item">
+                            <span>Soal ${result.question}: ${status}</span>
+                            <small>${correctText}</small>
+                        </div>
+                    `;
+                });
+                
+                resultHTML += `
+                        </div>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #6c757d;">
+                            <strong>Keterangan:</strong> Warna hijau = jawaban benar, warna merah = jawaban salah
+                        </p>
+                    </div>
+                `;
+                
+                // Tampilkan alert jika belum semua dijawab
+                if (!allAnswered) {
+                    resultHTML = `
+                        <div style="text-align: center; padding: 20px;">
+                            <h3>⚠️ Perhatian</h3>
+                            <p>Kamu belum menjawab semua soal. Skor sementara:</p>
+                            ${resultHTML}
+                            <p style="color: #dc3545; margin-top: 15px;">
+                                <i class="fas fa-exclamation-triangle"></i> 
+                                Lengkapi semua jawaban untuk mendapatkan skor maksimal!
+                            </p>
+                        </div>
+                    `;
+                }
+                
+                scoreDisplay.innerHTML = resultHTML;
+                scoreDisplay.style.display = 'block';
+                
+                // Scroll ke hasil
+                scoreDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
             
-            // Create more hearts
-            for (let i = 0; i < 8; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerHTML = '<i class="fas fa-heart"></i>';
+            // Event listener untuk tombol simpan di hari 6
+            document.getElementById('saveDay6Evaluation').addEventListener('click', function() {
+                const savedMsg = document.getElementById('day6Saved');
+                savedMsg.style.display = 'block';
+                setTimeout(() => {
+                    savedMsg.style.display = 'none';
+                }, 3000);
+            });
+            
+            document.getElementById('saveVideoDay6').addEventListener('click', function() {
+                const savedMsg = document.getElementById('videoDay6Saved');
+                savedMsg.style.display = 'block';
+                setTimeout(() => {
+                    savedMsg.style.display = 'none';
+                }, 3000);
+            });
+            
+            // Event listener untuk tombol selesaikan hari 6
+            document.getElementById('completeDay6').addEventListener('click', function() {
+                alert('Selamat! Kamu telah menyelesaikan semua materi CERDIK. Sekarang kumpulkan tugas di halaman Pengumpulan Tugas.');
+                document.querySelector('.day-tab[data-day="assignment"]').click();
+            });
+
+            // Tambahkan untuk hari 3, 4, 5, 6
+            completeDay3Btn.addEventListener('click', function() {
+                alert('Selamat! Kamu telah menyelesaikan materi Hari 3. Lanjut ke Hari 4.');
+                document.querySelector('.day-tab[data-day="day4"]').click();
+            });
+
+            completeDay4Btn.addEventListener('click', function() {
+                alert('Selamat! Kamu telah menyelesaikan materi Hari 4. Lanjut ke Hari 5.');
+                document.querySelector('.day-tab[data-day="day5"]').click();
+            });
+
+            completeDay5Btn.addEventListener('click', function() {
+                alert('Selamat! Kamu telah menyelesaikan materi Hari 5. Lanjut ke Hari 6.');
+                document.querySelector('.day-tab[data-day="day6"]').click();
+            });
+
+            completeDay6Btn.addEventListener('click', function() {
+                alert('Selamat! Kamu telah menyelesaikan semua materi. Sekarang kumpulkan tugas di halaman Pengumpulan Tugas.');
+                document.querySelector('.day-tab[data-day="assignment"]').click();
+            });
+            
+            // Create decorative elements
+            function createDecorativeElements() {
+                const homepageEl = document.querySelector('.homepage');
                 
-                // Random size and position
-                const size = Math.random() * 20 + 15;
-                heart.style.fontSize = `${size}px`;
-                heart.style.top = `${Math.random() * 80 + 10}%`;
-                heart.style.left = `${Math.random() * 100}%`;
+                // Create more clouds
+                for (let i = 0; i < 5; i++) {
+                    const cloud = document.createElement('div');
+                    cloud.className = 'cloud';
+                    
+                    // Random size and position
+                    const size = Math.random() * 60 + 40;
+                    cloud.style.width = `${size}px`;
+                    cloud.style.height = `${size/3}px`;
+                    cloud.style.top = `${Math.random() * 80 + 10}%`;
+                    cloud.style.left = `${Math.random() * 100}%`;
+                    
+                    // Random animation
+                    const duration = Math.random() * 30 + 20;
+                    cloud.style.animation = `float ${duration}s infinite linear ${Math.random() * 5}s`;
+                    
+                    homepageEl.appendChild(cloud);
+                }
                 
-                // Random animation
-                const duration = Math.random() * 20 + 15;
-                heart.style.animation = `float ${duration}s infinite linear ${Math.random() * 5}s`;
+                // Create more hearts
+                for (let i = 0; i < 8; i++) {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '<i class="fas fa-heart"></i>';
+                    
+                    // Random size and position
+                    const size = Math.random() * 20 + 15;
+                    heart.style.fontSize = `${size}px`;
+                    heart.style.top = `${Math.random() * 80 + 10}%`;
+                    heart.style.left = `${Math.random() * 100}%`;
+                    
+                    // Random animation
+                    const duration = Math.random() * 20 + 15;
+                    heart.style.animation = `float ${duration}s infinite linear ${Math.random() * 5}s`;
+                    
+                    homepageEl.appendChild(heart);
+                }
                 
-                homepageEl.appendChild(heart);
+                // Create more stars
+                for (let i = 0; i < 6; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.innerHTML = '<i class="fas fa-star"></i>';
+                    
+                    // Random size and position
+                    const size = Math.random() * 15 + 10;
+                    star.style.fontSize = `${size}px`;
+                    star.style.top = `${Math.random() * 80 + 10}%`;
+                    star.style.left = `${Math.random() * 100}%`;
+                    
+                    // Random animation
+                    const duration = Math.random() * 25 + 20;
+                    star.style.animation = `spin ${duration}s infinite linear ${Math.random() * 5}s`;
+                    
+                    homepageEl.appendChild(star);
+                }
             }
             
-            // Create more stars
-            for (let i = 0; i < 6; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.innerHTML = '<i class="fas fa-star"></i>';
-                
-                // Random size and position
-                const size = Math.random() * 15 + 10;
-                star.style.fontSize = `${size}px`;
-                star.style.top = `${Math.random() * 80 + 10}%`;
-                star.style.left = `${Math.random() * 100}%`;
-                
-                // Random animation
-                const duration = Math.random() * 25 + 20;
-                star.style.animation = `spin ${duration}s infinite linear ${Math.random() * 5}s`;
-                
-                homepageEl.appendChild(star);
-            }
-        }
-        
-        // Initialize decorative elements
-        createDecorativeElements();
-    });
+            // Initialize decorative elements
+            createDecorativeElements();
+        });
     </script>
 </body>
 </html>
